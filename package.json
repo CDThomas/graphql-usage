@@ -7,12 +7,14 @@
   },
   "bugs": "https://github.com/CDThomas/graphql-stats/issues",
   "dependencies": {
+    "@babel/parser": "^7.4.5",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
     "tslib": "^1"
   },
   "devDependencies": {
+    "@babel/types": "^7.4.4",
     "@oclif/test": "^1.2.4",
     "@oclif/tslint": "^3",
     "@types/jest": "^24.0.13",

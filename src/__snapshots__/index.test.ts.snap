@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`graphql-stats writes a file 1`] = `"{\\"typeCount\\":28,\\"src\\":\\"./testSrc\\",\\"srcFiles\\":[{\\"name\\":\\"foo\\",\\"content\\":\\"const foo = \\\\\\"foo\\\\\\";\\\\n\\"}]}"`;
+exports[`graphql-stats writes a file 1`] = `"{\\"typeCount\\":28,\\"src\\":\\"./testSrc\\",\\"srcFiles\\":[{\\"name\\":\\"foo\\",\\"tags\\":[{\\"keyName\\":null,\\"template\\":\\"\\\\n  query findGraphQLTagsQuery {\\\\n    hero {\\\\n      id\\\\n    }\\\\n  }\\\\n\\",\\"sourceLocationOffset\\":{\\"line\\":3,\\"column\\":23}}]}]}"`;

@@ -1,4 +1,5 @@
 import { Command, flags } from "@oclif/command";
+import findGraphQLTags from "./findGraphQLTags";
 import fs from "fs";
 import path from "path";
 
@@ -59,7 +60,7 @@ class GraphqlStats extends Command {
 
     var srcFiles = readFilesSync(args.sourceDir).map(({ name, content }) => ({
       name,
-      content
+      tags: findGraphQLTags(content)
     }));
 
     const typeCount = JSON.parse(schema).data.__schema.types.length;

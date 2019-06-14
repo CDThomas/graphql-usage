@@ -21,3 +21,13 @@
 
 - [oclif docs](https://github.com/oclif/oclif)
 - [Apollo CLI](https://github.com/apollographql/apollo-tooling/tree/master/packages/apollo)
+
+# TODO
+
+- [ ] Parse JS source files into JS ASTs for `graphql` tags
+- [ ] Parse content of `graphql` tags into GraphQL ASTs
+- [ ] Generate stats from GraphQL ASTs
+- [ ] Git integration to generate links to source on git
+- [ ] Generate static report files from stats
+- [ ] TS support
+- [ ] Support for `graphql-tag` rather than just Relay
