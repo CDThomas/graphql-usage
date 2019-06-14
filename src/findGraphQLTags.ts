@@ -1,6 +1,8 @@
 import parser = require("@babel/parser");
 import util from "util";
 
+// TODO: Add better types
+
 // https://github.com/facebook/relay/blob/master/packages/relay-compiler/language/RelayLanguagePluginInterface.js
 interface GraphQLTag {
   /**
@@ -13,25 +15,6 @@ interface GraphQLTag {
    *  grapqhl`fragment MyFragment on MyType { … }`
    */
   template: string;
-
-  /**
-   * In the case this tag was part of a fragment container and it used a node
-   * map as fragment spec, rather than a single tagged node, this should hold
-   * the prop key to which the node is assigned.
-   *
-   * TODO: This can probably be removed.
-   *
-   * @example
-   *
-   *  createFragmentContainer(
-   *    MyComponent,
-   *    {
-   *      keyName: graphql`fragment MyComponent_keyName { … }`
-   *    }
-   *  )
-   *
-   */
-  keyName: string | null | undefined;
 
   /**
    * The location in the source file that the tag is placed at.
@@ -121,7 +104,6 @@ function find(text: string): Array<GraphQLTag> {
             getSourceTextForLocation(text, property.value.tag.loc)
           );
           result.push({
-            keyName: property.key.name,
             template: getGraphQLText(property.value.quasi),
             sourceLocationOffset: getSourceLocationOffset(property.value.quasi)
           });
@@ -141,7 +123,6 @@ function find(text: string): Array<GraphQLTag> {
           getSourceTextForLocation(text, fragments.tag.loc)
         );
         result.push({
-          keyName: null,
           template: getGraphQLText(fragments.quasi),
           sourceLocationOffset: getSourceLocationOffset(fragments.quasi)
         });
@@ -155,7 +136,6 @@ function find(text: string): Array<GraphQLTag> {
     TaggedTemplateExpression: (node: any) => {
       if (isGraphQLTag(node.tag)) {
         result.push({
-          keyName: null,
           template: node.quasi.quasis[0].value.raw,
           sourceLocationOffset: getSourceLocationOffset(node.quasi)
         });

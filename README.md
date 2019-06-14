@@ -24,7 +24,7 @@
 
 # TODO
 
-- [ ] Parse JS source files into JS ASTs for `graphql` tags
+- [x] Parse JS source files into JS ASTs for `graphql` tags
 - [ ] Parse content of `graphql` tags into GraphQL ASTs
 - [ ] Generate stats from GraphQL ASTs
 - [ ] Git integration to generate links to source on git

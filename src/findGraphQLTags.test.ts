@@ -8,7 +8,6 @@ test("returns content of GraphQL tags given JS source code", () => {
 
   expect(findGraphQLTags(js)).toEqual([
     {
-      keyName: null,
       sourceLocationOffset: {
         column: 27,
         line: 3
