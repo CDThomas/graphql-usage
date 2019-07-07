@@ -3,7 +3,6 @@ import {
   parse,
   visit,
   visitWithTypeInfo,
-  Location as GraphQLLocation,
   Source,
   TypeInfo
 } from "graphql";
@@ -15,6 +14,7 @@ interface Location {
 }
 
 export interface FieldInfo {
+  parentType: string;
   name: string;
   location: Location;
 }
@@ -47,7 +47,8 @@ function getFeildInfo(
         const templateStart = getLocation(source, loc.start);
 
         fields.push({
-          name: `${parentType.name}.${nodeName}`,
+          name: nodeName,
+          parentType: parentType.name,
           location: {
             line: line + templateStart.line - 1,
             column:
