@@ -74,7 +74,8 @@ describe("graphql-stats", () => {
     .fs(
       resolveFiles({
         "./schema.json": "../__fixtures__/schema.json",
-        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js"
+        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
       })
     )
     .do(() => cmd.run(["./testSrc", "--schema", "./schema.json"]))
