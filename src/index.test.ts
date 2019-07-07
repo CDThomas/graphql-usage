@@ -79,6 +79,7 @@ describe("graphql-stats", () => {
     )
     .do(() => cmd.run(["./testSrc", "--schema", "./schema.json"]))
     .it("writes a file", () => {
-      expect(fs.readFileSync("test.json").toString()).toMatchSnapshot();
+      const output = JSON.parse(fs.readFileSync("test.json", "utf-8"));
+      expect(output).toMatchSnapshot();
     });
 });

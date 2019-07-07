@@ -1,10 +1,12 @@
 import parser = require("@babel/parser");
 import util from "util";
 
-// TODO: Add better types
+// TODO: Add better types.
+//       Reference for types:
+//       https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/babel-types/index.d.ts
 
 // https://github.com/facebook/relay/blob/master/packages/relay-compiler/language/RelayLanguagePluginInterface.js
-interface GraphQLTag {
+export interface GraphQLTag {
   /**
    * Should hold the string content of the `graphql` tagged template literal,
    * which is either an operation or fragment.
