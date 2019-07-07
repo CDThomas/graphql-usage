@@ -34,13 +34,17 @@ function getFeildInfo(
         const parentType = typeInfo.getParentType();
         const nodeName = graphqlNode.name.value;
 
-        const loc: GraphQLLocation = graphqlNode.loc as GraphQLLocation;
+        if (!parentType) {
+          throw new Error(`No parent type for ${nodeName}`);
+        }
+
+        if (!graphqlNode.loc) {
+          throw new Error(`No location for ${nodeName}`);
+        }
+
+        const loc = graphqlNode.loc;
         const source = new Source(template);
         const templateStart = getLocation(source, loc.start);
-
-        if (!parentType) {
-          throw new Error(`No parent type found for ${nodeName}`);
-        }
 
         fields.push({
           name: `${parentType.name}.${nodeName}`,
