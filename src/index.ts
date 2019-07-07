@@ -28,23 +28,20 @@ class GraphqlStats extends Command {
       encoding: "utf-8"
     });
 
-    var srcFiles = readFilesSync(args.sourceDir).map(
-      ({ filepath, content }) => {
-        const tags = findGraphQLTags(content);
-        const { data } = JSON.parse(schema);
-        const typeInfo = new TypeInfo(buildClientSchema(data));
+    var srcFiles = readFilesSync(args.sourceDir).map(({ base, content }) => {
+      const tags = findGraphQLTags(content);
+      const { data } = JSON.parse(schema);
+      const typeInfo = new TypeInfo(buildClientSchema(data));
 
-        const fields = tags.map(unary(partialRight(getFeildInfo, [typeInfo])));
+      const fields = tags.map(unary(partialRight(getFeildInfo, [typeInfo])));
 
-        return {
-          filepath,
-          fields: flatten(fields)
-        };
-      }
-    );
+      return {
+        base,
+        fields: flatten(fields)
+      };
+    });
 
-    const typeCount = JSON.parse(schema).data.__schema.types.length;
-    const output = { typeCount, src: args.sourceDir, srcFiles };
+    const output = { srcFiles };
 
     fs.writeFile("test.json", JSON.stringify(output), "utf-8", function cb(
       err
