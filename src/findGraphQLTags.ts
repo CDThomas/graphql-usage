@@ -6,7 +6,7 @@ import util from "util";
 //       https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/babel-types/index.d.ts
 
 // https://github.com/facebook/relay/blob/master/packages/relay-compiler/language/RelayLanguagePluginInterface.js
-interface GraphQLTag {
+export interface GraphQLTag {
   /**
    * Should hold the string content of the `graphql` tagged template literal,
    * which is either an operation or fragment.

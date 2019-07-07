@@ -31,3 +31,4 @@
 - [ ] Generate static report files from stats
 - [ ] TS support
 - [ ] Support for `graphql-tag` rather than just Relay
+- [ ] Support schemas as both .json and .graphql files

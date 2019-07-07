@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`graphql-stats writes a file 1`] = `"{\\"typeCount\\":28,\\"src\\":\\"./testSrc\\",\\"srcFiles\\":[{\\"name\\":\\"foo\\",\\"tags\\":[{\\"template\\":\\"\\\\n  query findGraphQLTagsQuery {\\\\n    hero {\\\\n      id\\\\n    }\\\\n  }\\\\n\\",\\"sourceLocationOffset\\":{\\"line\\":3,\\"column\\":23}}]}]}"`;
+exports[`graphql-stats writes a file 1`] = `"{\\"typeCount\\":28,\\"src\\":\\"./testSrc\\",\\"srcFiles\\":[{\\"filepath\\":\\"/Users/drew/expert360/development/repos/graphql-stats/__tmp__ObRI6i/testSrc/foo.js\\",\\"fields\\":[{\\"name\\":\\"Query.hero\\",\\"location\\":{\\"line\\":5,\\"column\\":5}},{\\"name\\":\\"Character.id\\",\\"location\\":{\\"line\\":6,\\"column\\":7}}]}]}"`;
