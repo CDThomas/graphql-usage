@@ -4,6 +4,25 @@ exports[`graphql-stats writes a file 1`] = `
 Object {
   "srcFiles": Array [
     Object {
+      "base": "bar.js",
+      "fields": Array [
+        Object {
+          "location": Object {
+            "column": 5,
+            "line": 5,
+          },
+          "name": "Query.hero",
+        },
+        Object {
+          "location": Object {
+            "column": 7,
+            "line": 6,
+          },
+          "name": "Character.id",
+        },
+      ],
+    },
+    Object {
       "base": "foo.js",
       "fields": Array [
         Object {

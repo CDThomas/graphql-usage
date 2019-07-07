@@ -11,21 +11,25 @@ interface File {
 }
 
 function readFilesSync(dir: string) {
-  const files: File[] = [];
+  let files: File[] = [];
 
   fs.readdirSync(dir).forEach(filename => {
-    // TODO: handle nested dirs
     const name = path.parse(filename).name;
     const ext = path.parse(filename).ext;
     const base = path.parse(filename).base;
     const filepath = path.resolve(dir, filename);
     const stat = fs.statSync(filepath);
-    const isFile = stat.isFile();
-    const content = fs.readFileSync(filepath, {
-      encoding: "utf-8"
-    });
+    const isDirectory = stat.isDirectory();
 
-    if (isFile) files.push({ filepath, name, ext, stat, content, base });
+    if (isDirectory) {
+      const nestedFiles = readFilesSync(filepath);
+      files = [...files, ...nestedFiles];
+    } else {
+      const content = fs.readFileSync(filepath, {
+        encoding: "utf-8"
+      });
+      files.push({ filepath, name, ext, stat, content, base });
+    }
   });
 
   files.sort((a, b) => {
