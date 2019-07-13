@@ -28,18 +28,24 @@ class GraphqlStats extends Command {
       encoding: "utf-8"
     });
 
-    var srcFiles = readFilesSync(args.sourceDir).map(({ base, content }) => {
-      const tags = findGraphQLTags(content);
-      const { data } = JSON.parse(schema);
-      const typeInfo = new TypeInfo(buildClientSchema(data));
+    var srcFiles = readFilesSync(args.sourceDir)
+      .filter(({ ext }) => ext === ".js")
+      .map(({ base, filepath }) => {
+        const content = fs.readFileSync(filepath, {
+          encoding: "utf-8"
+        });
 
-      const fields = tags.map(unary(partialRight(getFeildInfo, [typeInfo])));
+        const tags = findGraphQLTags(content);
+        const { data } = JSON.parse(schema);
+        const typeInfo = new TypeInfo(buildClientSchema(data));
 
-      return {
-        base,
-        fields: flatten(fields)
-      };
-    });
+        const fields = tags.map(unary(partialRight(getFeildInfo, [typeInfo])));
+
+        return {
+          base,
+          fields: flatten(fields)
+        };
+      });
 
     const output = { srcFiles };
 
