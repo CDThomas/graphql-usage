@@ -6,7 +6,6 @@ interface File {
   name: string;
   ext: string;
   stat: fs.Stats;
-  content: string;
   base: string;
 }
 
@@ -25,10 +24,7 @@ function readFilesSync(dir: string) {
       const nestedFiles = readFilesSync(filepath);
       files = [...files, ...nestedFiles];
     } else {
-      const content = fs.readFileSync(filepath, {
-        encoding: "utf-8"
-      });
-      files.push({ filepath, name, ext, stat, content, base });
+      files.push({ filepath, name, ext, stat, base });
     }
   });
 
