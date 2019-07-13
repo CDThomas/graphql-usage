@@ -7,6 +7,7 @@ import flatten from "./flatten";
 import getFeildInfo from "./getFieldInfo";
 import readFilesSync from "./readFilesSync";
 import { unary, partialRight } from "ramda";
+import NodeGit from "nodegit";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -14,7 +15,12 @@ class GraphqlStats extends Command {
   static flags = {
     version: flags.version({ char: "v" }),
     help: flags.help({ char: "h" }),
-    schema: flags.string({ char: "s", description: "GraphQL schema" })
+    schema: flags.string({ char: "s", description: "GraphQL schema" }),
+    gitDir: flags.string({
+      char: "g",
+      description: "Path to Git project root",
+      required: true
+    })
   };
 
   static args = [{ name: "sourceDir", required: true }];
@@ -22,15 +28,38 @@ class GraphqlStats extends Command {
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
 
+    const localGitRoot = path.resolve(process.cwd(), flags.gitDir);
+
+    const { refName, remoteURL } = await NodeGit.Repository.open(
+      localGitRoot
+    ).then(async repo => {
+      const refName = await repo.getCurrentBranch().then(ref => {
+        return ref.name();
+      });
+
+      const remoteURL = await repo.getRemote("origin").then(remote => {
+        return remote.url();
+      });
+
+      return { refName, remoteURL };
+    });
+
+    const branchNameRegEx = /^refs\/heads\/(.*)/;
+    const repoBasePathRegEx = /^git@github\.com:(.*)\.git$/;
+
+    const branchName = refName.match(branchNameRegEx)[1];
+    const repoBasePath = remoteURL.match(repoBasePathRegEx)[1];
+    const githubURL = `https://github.com/${repoBasePath}/tree/${branchName}`;
+
     const schemaFile = flags.schema || "schema.json";
 
     const schema = fs.readFileSync(path.resolve(schemaFile), {
       encoding: "utf-8"
     });
 
-    var srcFiles = readFilesSync(args.sourceDir)
+    var fields = readFilesSync(args.sourceDir)
       .filter(({ ext }) => ext === ".js")
-      .map(({ base, filepath }) => {
+      .map(({ filepath }) => {
         const content = fs.readFileSync(filepath, {
           encoding: "utf-8"
         });
@@ -39,23 +68,26 @@ class GraphqlStats extends Command {
         const { data } = JSON.parse(schema);
         const typeInfo = new TypeInfo(buildClientSchema(data));
 
-        const fields = tags.map(unary(partialRight(getFeildInfo, [typeInfo])));
+        const githubBaseURL = filepath.replace(localGitRoot, githubURL);
+        const fields = tags.map(
+          unary(partialRight(getFeildInfo, [typeInfo, githubBaseURL]))
+        );
 
-        return {
-          base,
-          fields: flatten(fields)
-        };
+        return flatten(fields);
       });
 
-    const output = { srcFiles };
+    const output = { fields: flatten(fields) };
 
-    fs.writeFile("test.json", JSON.stringify(output), "utf-8", function cb(
-      err
-    ) {
-      if (err) {
-        console.error(err);
+    fs.writeFile(
+      "test.json",
+      JSON.stringify(output, null, 2),
+      "utf-8",
+      function cb(err) {
+        if (err) {
+          console.error(err);
+        }
       }
-    });
+    );
   }
 }
 

@@ -8,24 +8,19 @@ import {
 } from "graphql";
 import { GraphQLTag } from "./findGraphQLTags";
 
-interface Location {
-  column: number;
-  line: number;
-}
-
 export interface FieldInfo {
   name: string;
-  location: Location;
+  link: string;
   parentType: string;
   type: string;
 }
 
 function getFeildInfo(
   { template, sourceLocationOffset }: GraphQLTag,
-  typeInfo: TypeInfo
+  typeInfo: TypeInfo,
+  githubBaseURL: string
 ) {
   const fields: FieldInfo[] = [];
-  const { line, column } = sourceLocationOffset;
   const ast = parse(template);
 
   visit(
@@ -51,18 +46,13 @@ function getFeildInfo(
         const loc = graphqlNode.loc;
         const source = new Source(template);
         const templateStart = getLocation(source, loc.start);
+        const line = sourceLocationOffset.line + templateStart.line - 1;
 
         fields.push({
           name: nodeName,
           type: nodeType.toString(),
           parentType: parentType.toString(),
-          location: {
-            line: line + templateStart.line - 1,
-            column:
-              templateStart.column === 1
-                ? column + templateStart.column
-                : templateStart.column
-          }
+          link: `${githubBaseURL}#L${line}`
         });
       }
     })

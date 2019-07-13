@@ -78,7 +78,9 @@ describe("graphql-stats", () => {
         "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
       })
     )
-    .do(() => cmd.run(["./testSrc", "--schema", "./schema.json"]))
+    .do(() =>
+      cmd.run(["./testSrc", "--schema", "./schema.json", "--gitDir", "../../"])
+    )
     .it("writes a file", () => {
       const output = JSON.parse(fs.readFileSync("test.json", "utf-8"));
       expect(output).toMatchSnapshot();
