@@ -7,6 +7,7 @@ import flatten from "./flatten";
 import getFeildInfo from "./getFieldInfo";
 import readFilesSync from "./readFilesSync";
 import { unary, partialRight } from "ramda";
+import getGitHubBaseURL from "./getGitHubBaseURL";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -14,13 +15,19 @@ class GraphqlStats extends Command {
   static flags = {
     version: flags.version({ char: "v" }),
     help: flags.help({ char: "h" }),
-    schema: flags.string({ char: "s", description: "GraphQL schema" })
+    schema: flags.string({ char: "s", description: "GraphQL schema" }),
+    gitDir: flags.string({
+      char: "g",
+      description: "Path to Git project root",
+      required: true
+    })
   };
 
   static args = [{ name: "sourceDir", required: true }];
 
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
+    const { gitDir } = flags;
 
     const schemaFile = flags.schema || "schema.json";
 
@@ -28,9 +35,11 @@ class GraphqlStats extends Command {
       encoding: "utf-8"
     });
 
-    var srcFiles = readFilesSync(args.sourceDir)
+    const gitHubBaseURL = await getGitHubBaseURL(gitDir);
+
+    var fields = readFilesSync(args.sourceDir)
       .filter(({ ext }) => ext === ".js")
-      .map(({ base, filepath }) => {
+      .map(({ filepath }) => {
         const content = fs.readFileSync(filepath, {
           encoding: "utf-8"
         });
@@ -39,23 +48,30 @@ class GraphqlStats extends Command {
         const { data } = JSON.parse(schema);
         const typeInfo = new TypeInfo(buildClientSchema(data));
 
-        const fields = tags.map(unary(partialRight(getFeildInfo, [typeInfo])));
+        const gitHubFileURL = filepath.replace(
+          path.resolve(gitDir),
+          gitHubBaseURL
+        );
 
-        return {
-          base,
-          fields: flatten(fields)
-        };
+        const fields = tags.map(
+          unary(partialRight(getFeildInfo, [typeInfo, gitHubFileURL]))
+        );
+
+        return flatten(fields);
       });
 
-    const output = { srcFiles };
+    const output = { fields: flatten(fields) };
 
-    fs.writeFile("test.json", JSON.stringify(output), "utf-8", function cb(
-      err
-    ) {
-      if (err) {
-        console.error(err);
+    fs.writeFile(
+      "test.json",
+      JSON.stringify(output, null, 2),
+      "utf-8",
+      function cb(err) {
+        if (err) {
+          console.error(err);
+        }
       }
-    });
+    );
   }
 }
 
