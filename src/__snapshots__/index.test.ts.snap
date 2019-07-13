@@ -2,53 +2,36 @@
 
 exports[`graphql-stats writes a file 1`] = `
 Object {
-  "srcFiles": Array [
-    Object {
-      "base": "bar.js",
-      "fields": Array [
-        Object {
-          "location": Object {
-            "column": 5,
-            "line": 5,
-          },
-          "name": "hero",
-          "parentType": "Query",
-          "type": "Character",
-        },
-        Object {
-          "location": Object {
-            "column": 7,
-            "line": 6,
-          },
-          "name": "id",
-          "parentType": "Character",
-          "type": "ID!",
-        },
-      ],
-    },
-    Object {
-      "base": "foo.js",
-      "fields": Array [
-        Object {
-          "location": Object {
-            "column": 5,
-            "line": 5,
-          },
-          "name": "hero",
-          "parentType": "Query",
-          "type": "Character",
-        },
-        Object {
-          "location": Object {
-            "column": 7,
-            "line": 6,
-          },
-          "name": "id",
-          "parentType": "Character",
-          "type": "ID!",
-        },
-      ],
-    },
-  ],
+  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "name": "hero",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 2`] = `
+Object {
+  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "name": "id",
+  "parentType": "Character",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 3`] = `
+Object {
+  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "name": "hero",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 4`] = `
+Object {
+  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "name": "id",
+  "parentType": "Character",
+  "type": "ID!",
 }
 `;

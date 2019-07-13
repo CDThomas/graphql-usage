@@ -27,22 +27,21 @@ class GraphqlStats extends Command {
 
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
+    const { gitDir } = flags;
 
-    const localGitRoot = path.resolve(process.cwd(), flags.gitDir);
+    const { refName, remoteURL } = await NodeGit.Repository.open(gitDir).then(
+      async repo => {
+        const refName = await repo.getCurrentBranch().then(ref => {
+          return ref.name();
+        });
 
-    const { refName, remoteURL } = await NodeGit.Repository.open(
-      localGitRoot
-    ).then(async repo => {
-      const refName = await repo.getCurrentBranch().then(ref => {
-        return ref.name();
-      });
+        const remoteURL = await repo.getRemote("origin").then(remote => {
+          return remote.url();
+        });
 
-      const remoteURL = await repo.getRemote("origin").then(remote => {
-        return remote.url();
-      });
-
-      return { refName, remoteURL };
-    });
+        return { refName, remoteURL };
+      }
+    );
 
     const branchNameRegEx = /^refs\/heads\/(.*)/;
     const repoBasePathRegEx = /^git@github\.com:(.*)\.git$/;
@@ -68,7 +67,7 @@ class GraphqlStats extends Command {
         const { data } = JSON.parse(schema);
         const typeInfo = new TypeInfo(buildClientSchema(data));
 
-        const githubBaseURL = filepath.replace(localGitRoot, githubURL);
+        const githubBaseURL = filepath.replace(path.resolve(gitDir), githubURL);
         const fields = tags.map(
           unary(partialRight(getFeildInfo, [typeInfo, githubBaseURL]))
         );

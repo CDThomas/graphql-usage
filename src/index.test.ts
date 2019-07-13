@@ -1,6 +1,7 @@
 import { test } from "@oclif/test";
 import fs from "fs";
 import path from "path";
+import { FieldInfo } from "./getFieldInfo";
 
 import cmd = require("../src");
 
@@ -79,10 +80,17 @@ describe("graphql-stats", () => {
       })
     )
     .do(() =>
-      cmd.run(["./testSrc", "--schema", "./schema.json", "--gitDir", "../../"])
+      cmd.run(["./testSrc", "--schema", "./schema.json", "--gitDir", "../"])
     )
     .it("writes a file", () => {
       const output = JSON.parse(fs.readFileSync("test.json", "utf-8"));
-      expect(output).toMatchSnapshot();
+
+      output.fields.map((field: FieldInfo) => {
+        expect(field).toMatchSnapshot({
+          link: expect.stringMatching(
+            /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
+          )
+        });
+      });
     });
 });
