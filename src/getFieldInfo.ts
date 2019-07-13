@@ -9,14 +9,15 @@ import {
 import { GraphQLTag } from "./findGraphQLTags";
 
 interface Location {
-  line: number;
   column: number;
+  line: number;
 }
 
 export interface FieldInfo {
-  parentType: string;
   name: string;
   location: Location;
+  parentType: string;
+  type: string;
 }
 
 function getFeildInfo(
@@ -32,10 +33,15 @@ function getFeildInfo(
     visitWithTypeInfo(typeInfo, {
       Field(graphqlNode) {
         const parentType = typeInfo.getParentType();
+        const nodeType = typeInfo.getType();
         const nodeName = graphqlNode.name.value;
 
         if (!parentType) {
           throw new Error(`No parent type for ${nodeName}`);
+        }
+
+        if (!nodeType) {
+          throw new Error(`No type for ${nodeName}`);
         }
 
         if (!graphqlNode.loc) {
@@ -48,7 +54,8 @@ function getFeildInfo(
 
         fields.push({
           name: nodeName,
-          parentType: parentType.name,
+          type: nodeType.toString(),
+          parentType: parentType.toString(),
           location: {
             line: line + templateStart.line - 1,
             column:
