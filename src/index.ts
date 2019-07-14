@@ -6,49 +6,10 @@ import { buildClientSchema, TypeInfo } from "graphql";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
 import readFilesSync from "./readFilesSync";
-import R, { unary, partialRight } from "ramda";
+import { unary, partialRight } from "ramda";
 import getGitHubBaseURL from "./getGitHubBaseURL";
-
-import {
-  GraphQLField,
-  GraphQLSchema,
-  GraphQLAbbreviatedType,
-  getTypes
-} from "./schemaUtils";
-
-interface Report {
-  data: {
-    types: ReportType[];
-  };
-}
-
-interface ReportType {
-  name: string;
-  fields: ReportField[];
-}
-
-interface ReportField {
-  parentType: string;
-  type: string;
-  name: string;
-  occurrences: ReportOccurrence[];
-}
-
-interface ReportOccurrence {
-  filename: string;
-  rootNodeName: string;
-}
-
-function formatTypeName(type: GraphQLAbbreviatedType): string {
-  switch (type.kind) {
-    case "LIST":
-      return `[${formatTypeName(type.ofType)}]`;
-    case "NON_NULL":
-      return `${formatTypeName(type.ofType)}!`;
-    default:
-      return type.name;
-  }
-}
+import { buildReport } from "./report";
+import createServer from "./server";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -103,75 +64,11 @@ class GraphqlStats extends Command {
         return flatten(fields);
       });
 
-    const byName = R.groupBy((summaryField: FieldInfo) => {
-      return `${summaryField.parentType}.${summaryField.name}`;
-    });
-
-    const summaryFieldsByName = byName(flatten(summaryFields));
-
-    // Get all fields in schema
-    // For each field
-    // Format as Report field
-    //   Find occurrences in matching summary fields
-    const fields: ReportField[] = flatten(
-      getTypes(<GraphQLSchema>schema).map(type => {
-        if (!type.fields) return [];
-
-        return type.fields.map(
-          (field: GraphQLField): ReportField => {
-            return {
-              parentType: type.name,
-              type: formatTypeName(field.type),
-              name: field.name,
-              occurrences: []
-            };
-          }
-        );
-      })
-    );
-
-    const reportFields = fields.map(field => {
-      const summaryFields =
-        summaryFieldsByName[`${field.parentType}.${field.name}`];
-
-      if (!summaryFields) return field;
-
-      // TODO: should probably include concrete type occurences here for interface fields
-      // TODO: how to handle unions?
-      const occurrences = summaryFields.map(summaryField => {
-        return {
-          filename: summaryField.link,
-          rootNodeName: summaryField.rootNodeName
-        };
-      });
-
-      return {
-        ...field,
-        occurrences
-      };
-    });
-
-    const byParentType = R.groupBy(({ parentType }: ReportField) => parentType);
-    const sortByName = R.sortBy(R.prop("name"));
-
-    const reportTypes: ReportType[] = Object.entries(
-      byParentType(reportFields)
-    ).map(item => {
-      const [name, fields] = item;
-      return { name, fields: sortByName(fields) };
-    });
-
-    const report: Report = {
-      data: {
-        types: sortByName(reportTypes)
-      }
-    };
-
-    const output = report;
+    const report = buildReport(flatten(summaryFields), schema);
 
     fs.writeFile(
       path.resolve(__dirname, "../graphql-stats-ui/src/graphql-stats.json"),
-      JSON.stringify(output, null, 2),
+      JSON.stringify(report, null, 2),
       "utf-8",
       function cb(err) {
         if (err) {
@@ -179,6 +76,11 @@ class GraphqlStats extends Command {
         }
       }
     );
+
+    const port = 3001;
+    createServer(report).listen(port, () => {
+      console.log(`Server started at http://localhost:${port}`);
+    });
   }
 }
 

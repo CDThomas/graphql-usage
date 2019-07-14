@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { ReportField, Report, ReportType } from './reportTypes';
-import Header from './Header';
-import DetailsPanel from './DetailsPanel';
+import React, { useState, useEffect } from "react";
+import { ReportField, Report, ReportType } from "./reportTypes";
+import Header from "./Header";
+import DetailsPanel from "./DetailsPanel";
 
 interface SchemaProps {
   types: ReportType[];
@@ -12,11 +12,12 @@ function Schema({ types, filter, onFieldClick }: SchemaProps) {
   return (
     <div
       style={{
-        padding: '24px',
-        backgroundColor: '#ffffff',
+        padding: "24px",
+        backgroundColor: "#ffffff",
         fontFamily:
-          "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
-      }}>
+          "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace"
+      }}
+    >
       {types.map(type => {
         return (
           <TypeBlock
@@ -32,7 +33,7 @@ function Schema({ types, filter, onFieldClick }: SchemaProps) {
 }
 
 function TypeLine({
-  children,
+  children
 }: {
   children: Array<JSX.Element | String> | JSX.Element | string;
 }) {
@@ -52,30 +53,32 @@ function FieldLine({ field, filter, onFieldClick }: FieldLineProps) {
 
   return (
     <div
-      style={{ display: 'flex', alignItems: 'center', paddingLeft: '16px' }}
-      onClick={() => onFieldClick(field)}>
-      <div className="field-line" style={{ padding: '10px 0px' }}>
+      style={{ display: "flex", alignItems: "center", paddingLeft: "16px" }}
+      onClick={() => onFieldClick(field)}
+    >
+      <div className="field-line" style={{ padding: "10px 0px" }}>
         <FieldName highlight={!!filter && fieldMatchesFilter}>{name}</FieldName>
-        <Delimiter token={':'} />{' '}
+        <Delimiter token={":"} />{" "}
         <FieldType highlight={!!filter && typeMatchesFilter}>{type}</FieldType>
       </div>
 
       {occurrences.length === 0 && (
         <span
           style={{
-            display: 'inline-block',
-            padding: '.25em .4em',
-            fontSize: '75%',
+            display: "inline-block",
+            padding: ".25em .4em",
+            fontSize: "75%",
             fontWeight: 700,
             lineHeight: 1,
-            textAlign: 'center',
-            whiteSpace: 'nowrap',
-            verticalAlign: 'baseline',
-            borderRadius: '.25rem',
-            backgroundColor: '#f25c54',
-            color: '#fff',
-            marginLeft: '8px',
-          }}>
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            verticalAlign: "baseline",
+            borderRadius: ".25rem",
+            backgroundColor: "#f25c54",
+            color: "#fff",
+            marginLeft: "8px"
+          }}
+        >
           Unused
         </span>
       )}
@@ -88,16 +91,16 @@ interface FieldNameProps {
   highlight: boolean;
 }
 function FieldName({ children, highlight }: FieldNameProps) {
-  const highlightStyles = highlight ? { backgroundColor: '#ffffe0' } : {};
+  const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
   return (
-    <span style={{ color: '#1f61a0', padding: '10px 0px', ...highlightStyles }}>
+    <span style={{ color: "#1f61a0", padding: "10px 0px", ...highlightStyles }}>
       {children}
     </span>
   );
 }
 
 function TypeKind({ children }: { children: string }) {
-  return <span style={{ color: '#1f61a0' }}>{children}</span>;
+  return <span style={{ color: "#1f61a0" }}>{children}</span>;
 }
 
 interface TypeNameProps {
@@ -105,10 +108,10 @@ interface TypeNameProps {
   highlight: boolean;
 }
 function TypeName({ children, highlight }: TypeNameProps) {
-  const highlightStyles = highlight ? { backgroundColor: '#ffffe0' } : {};
+  const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
 
   return (
-    <span style={{ color: '#f25c54', padding: '10px 0px', ...highlightStyles }}>
+    <span style={{ color: "#f25c54", padding: "10px 0px", ...highlightStyles }}>
       {children}
     </span>
   );
@@ -119,9 +122,9 @@ interface FieldTypeProps {
   highlight: boolean;
 }
 function FieldType({ children, highlight }: FieldTypeProps) {
-  const highlightStyles = highlight ? { backgroundColor: '#ffffe0' } : {};
+  const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
   return (
-    <span style={{ color: '#f5a000', padding: '10px 0px', ...highlightStyles }}>
+    <span style={{ color: "#f5a000", padding: "10px 0px", ...highlightStyles }}>
       {children}
     </span>
   );
@@ -129,7 +132,7 @@ function FieldType({ children, highlight }: FieldTypeProps) {
 
 function Delimiter({ token }: { token: string }) {
   const color =
-    token === '{' || token === '}' ? 'rgba(23,42,58,.5)' : '#555555';
+    token === "{" || token === "}" ? "rgba(23,42,58,.5)" : "#555555";
 
   return <span style={{ color }}>{token}</span>;
 }
@@ -146,11 +149,11 @@ function TypeBlock({ type, filter, onFieldClick }: TypeBlockProps) {
     .includes(filter.toLowerCase());
 
   return (
-    <div style={{ paddingBottom: '20px' }}>
+    <div style={{ paddingBottom: "20px" }}>
       <TypeLine>
-        <TypeKind>type</TypeKind>{' '}
-        <TypeName highlight={!!filter && typeMatchesFilter}>{name}</TypeName>{' '}
-        <Delimiter token={'{'} />
+        <TypeKind>type</TypeKind>{" "}
+        <TypeName highlight={!!filter && typeMatchesFilter}>{name}</TypeName>{" "}
+        <Delimiter token={"{"} />
       </TypeLine>
       {fields.map(field => {
         return (
@@ -163,18 +166,14 @@ function TypeBlock({ type, filter, onFieldClick }: TypeBlockProps) {
         );
       })}
       <TypeLine>
-        <Delimiter token={'}'} />
+        <Delimiter token={"}"} />
       </TypeLine>
     </div>
   );
 }
 
-interface AppProps {
-  report: Report;
-}
-
-function App({ report }: AppProps) {
-  const [filter, setFilter] = useState('');
+function App() {
+  const [filter, setFilter] = useState("");
   const handleSearchChange = (searchText: string) => setFilter(searchText);
 
   const [showDetails, setShowDetails] = useState(false);
@@ -183,6 +182,20 @@ function App({ report }: AppProps) {
     setShowDetails(true);
     setSelectedField(field);
   };
+
+  const [report, setReport] = useState<Report | null>(null);
+
+  useEffect(() => {
+    fetch("/stats")
+      .then(res => res.json())
+      .then((report: Report) => {
+        setReport(report);
+      });
+  }, [!!report]);
+
+  if (!report) {
+    return <div>Loading...</div>;
+  }
 
   const types = report.data.types.filter(type => {
     const lowerCaseFilter = filter.toLowerCase();
@@ -205,12 +218,12 @@ function App({ report }: AppProps) {
   });
 
   return (
-    <div style={{ paddingTop: '94px' }}>
+    <div style={{ paddingTop: "94px" }}>
       <Header onSearchChange={handleSearchChange} searchText={filter} />
       {types.length === 0 ? (
-        <p style={{ padding: '36px' }}>No types or fields match your search.</p>
+        <p style={{ padding: "36px" }}>No types or fields match your search.</p>
       ) : (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: "flex" }}>
           <Schema
             types={types}
             filter={filter}
