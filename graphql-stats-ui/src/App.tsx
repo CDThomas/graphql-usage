@@ -184,6 +184,7 @@ function App() {
   };
 
   const [report, setReport] = useState<Report | null>(null);
+  const hasReportLoaded = !!report;
 
   useEffect(() => {
     fetch("/stats")
@@ -191,7 +192,7 @@ function App() {
       .then((report: Report) => {
         setReport(report);
       });
-  }, [!!report]);
+  }, [hasReportLoaded]);
 
   if (!report) {
     return <div>Loading...</div>;
