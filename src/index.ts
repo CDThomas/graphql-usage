@@ -22,6 +22,9 @@ class GraphqlStats extends Command {
       char: "g",
       description: "Path to Git project root",
       required: true
+    }),
+    json: flags.boolean({
+      description: "Output report as JSON rather than starting the app"
     })
   };
 
@@ -29,7 +32,7 @@ class GraphqlStats extends Command {
 
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
-    const { gitDir } = flags;
+    const { gitDir, json } = flags;
 
     const schemaFile = flags.schema || "schema.json";
 
@@ -66,21 +69,23 @@ class GraphqlStats extends Command {
 
     const report = buildReport(flatten(summaryFields), schema);
 
-    fs.writeFile(
-      path.resolve(__dirname, "../graphql-stats-ui/src/graphql-stats.json"),
-      JSON.stringify(report, null, 2),
-      "utf-8",
-      function cb(err) {
-        if (err) {
-          console.error(err);
+    if (json) {
+      fs.writeFile(
+        path.resolve(__dirname, "../graphql-stats-ui/src/graphql-stats.json"),
+        JSON.stringify(report, null, 2),
+        "utf-8",
+        function cb(err) {
+          if (err) {
+            console.error(err);
+          }
         }
-      }
-    );
-
-    const port = 3001;
-    createServer(report).listen(port, () => {
-      console.log(`Server started at http://localhost:${port}`);
-    });
+      );
+    } else {
+      const port = 3001;
+      createServer(report).listen(port, () => {
+        console.log(`Server started at http://localhost:${port}`);
+      });
+    }
   }
 }
 

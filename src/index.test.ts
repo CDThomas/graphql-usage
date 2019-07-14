@@ -80,7 +80,14 @@ describe("graphql-stats", () => {
       })
     )
     .do(() =>
-      cmd.run(["./testSrc", "--schema", "./schema.json", "--gitDir", "../"])
+      cmd.run([
+        "./testSrc",
+        "--schema",
+        "./schema.json",
+        "--gitDir",
+        "../",
+        "--json"
+      ])
     )
     .it("writes a file", () => {
       const output = JSON.parse(
