@@ -83,14 +83,18 @@ describe("graphql-stats", () => {
       cmd.run(["./testSrc", "--schema", "./schema.json", "--gitDir", "../"])
     )
     .it("writes a file", () => {
-      const output = JSON.parse(fs.readFileSync("test.json", "utf-8"));
+      const output = JSON.parse(
+        fs.readFileSync("../graphql-stats-ui/src/graphql-stats.json", "utf-8")
+      );
 
-      output.fields.map((field: FieldInfo) => {
-        expect(field).toMatchSnapshot({
-          link: expect.stringMatching(
-            /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
-          )
-        });
-      });
+      // output.fields.map((field: FieldInfo) => {
+      //   expect(field).toMatchSnapshot({
+      //     link: expect.stringMatching(
+      //       /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
+      //     )
+      //   });
+      // });
+
+      expect(output).toMatchSnapshot();
     });
 });

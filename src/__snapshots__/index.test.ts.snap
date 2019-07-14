@@ -2,36 +2,571 @@
 
 exports[`graphql-stats writes a file 1`] = `
 Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
-  "name": "hero",
-  "parentType": "Query",
-  "type": "Character",
-}
-`;
-
-exports[`graphql-stats writes a file 2`] = `
-Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
-  "name": "id",
-  "parentType": "Character",
-  "type": "ID!",
-}
-`;
-
-exports[`graphql-stats writes a file 3`] = `
-Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
-  "name": "hero",
-  "parentType": "Query",
-  "type": "Character",
-}
-`;
-
-exports[`graphql-stats writes a file 4`] = `
-Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
-  "name": "id",
-  "parentType": "Character",
-  "type": "ID!",
+  "data": Object {
+    "types": Array [
+      Object {
+        "fields": Array [
+          Object {
+            "name": "appearsIn",
+            "occurrences": Array [],
+            "parentType": "Character",
+            "type": "[Episode]!",
+          },
+          Object {
+            "name": "friends",
+            "occurrences": Array [],
+            "parentType": "Character",
+            "type": "[Character]",
+          },
+          Object {
+            "name": "friendsConnection",
+            "occurrences": Array [],
+            "parentType": "Character",
+            "type": "FriendsConnection!",
+          },
+          Object {
+            "name": "id",
+            "occurrences": Array [
+              Object {
+                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/nestedDir/bar.js#L6",
+              },
+              Object {
+                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/foo.js#L6",
+              },
+            ],
+            "parentType": "Character",
+            "type": "ID!",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "Character",
+            "type": "String!",
+          },
+        ],
+        "name": "Character",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "appearsIn",
+            "occurrences": Array [],
+            "parentType": "Droid",
+            "type": "[Episode]!",
+          },
+          Object {
+            "name": "friends",
+            "occurrences": Array [],
+            "parentType": "Droid",
+            "type": "[Character]",
+          },
+          Object {
+            "name": "friendsConnection",
+            "occurrences": Array [],
+            "parentType": "Droid",
+            "type": "FriendsConnection!",
+          },
+          Object {
+            "name": "id",
+            "occurrences": Array [],
+            "parentType": "Droid",
+            "type": "ID!",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "Droid",
+            "type": "String!",
+          },
+          Object {
+            "name": "primaryFunction",
+            "occurrences": Array [],
+            "parentType": "Droid",
+            "type": "String",
+          },
+        ],
+        "name": "Droid",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "edges",
+            "occurrences": Array [],
+            "parentType": "FriendsConnection",
+            "type": "[FriendsEdge]",
+          },
+          Object {
+            "name": "friends",
+            "occurrences": Array [],
+            "parentType": "FriendsConnection",
+            "type": "[Character]",
+          },
+          Object {
+            "name": "pageInfo",
+            "occurrences": Array [],
+            "parentType": "FriendsConnection",
+            "type": "PageInfo!",
+          },
+          Object {
+            "name": "totalCount",
+            "occurrences": Array [],
+            "parentType": "FriendsConnection",
+            "type": "Int",
+          },
+        ],
+        "name": "FriendsConnection",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "cursor",
+            "occurrences": Array [],
+            "parentType": "FriendsEdge",
+            "type": "ID!",
+          },
+          Object {
+            "name": "node",
+            "occurrences": Array [],
+            "parentType": "FriendsEdge",
+            "type": "Character",
+          },
+        ],
+        "name": "FriendsEdge",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "appearsIn",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "[Episode]!",
+          },
+          Object {
+            "name": "friends",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "[Character]",
+          },
+          Object {
+            "name": "friendsConnection",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "FriendsConnection!",
+          },
+          Object {
+            "name": "height",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "Float",
+          },
+          Object {
+            "name": "homePlanet",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "String",
+          },
+          Object {
+            "name": "id",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "ID!",
+          },
+          Object {
+            "name": "mass",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "Float",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "String!",
+          },
+          Object {
+            "name": "starships",
+            "occurrences": Array [],
+            "parentType": "Human",
+            "type": "[Starship]",
+          },
+        ],
+        "name": "Human",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "createReview",
+            "occurrences": Array [],
+            "parentType": "Mutation",
+            "type": "Review",
+          },
+        ],
+        "name": "Mutation",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "endCursor",
+            "occurrences": Array [],
+            "parentType": "PageInfo",
+            "type": "ID",
+          },
+          Object {
+            "name": "hasNextPage",
+            "occurrences": Array [],
+            "parentType": "PageInfo",
+            "type": "Boolean!",
+          },
+          Object {
+            "name": "startCursor",
+            "occurrences": Array [],
+            "parentType": "PageInfo",
+            "type": "ID",
+          },
+        ],
+        "name": "PageInfo",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "character",
+            "occurrences": Array [],
+            "parentType": "Query",
+            "type": "Character",
+          },
+          Object {
+            "name": "droid",
+            "occurrences": Array [],
+            "parentType": "Query",
+            "type": "Droid",
+          },
+          Object {
+            "name": "hero",
+            "occurrences": Array [
+              Object {
+                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/nestedDir/bar.js#L5",
+              },
+              Object {
+                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/foo.js#L5",
+              },
+            ],
+            "parentType": "Query",
+            "type": "Character",
+          },
+          Object {
+            "name": "human",
+            "occurrences": Array [],
+            "parentType": "Query",
+            "type": "Human",
+          },
+          Object {
+            "name": "reviews",
+            "occurrences": Array [],
+            "parentType": "Query",
+            "type": "[Review]",
+          },
+          Object {
+            "name": "search",
+            "occurrences": Array [],
+            "parentType": "Query",
+            "type": "[SearchResult]",
+          },
+          Object {
+            "name": "starship",
+            "occurrences": Array [],
+            "parentType": "Query",
+            "type": "Starship",
+          },
+        ],
+        "name": "Query",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "commentary",
+            "occurrences": Array [],
+            "parentType": "Review",
+            "type": "String",
+          },
+          Object {
+            "name": "stars",
+            "occurrences": Array [],
+            "parentType": "Review",
+            "type": "Int!",
+          },
+        ],
+        "name": "Review",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "coordinates",
+            "occurrences": Array [],
+            "parentType": "Starship",
+            "type": "[[Float!]!]",
+          },
+          Object {
+            "name": "id",
+            "occurrences": Array [],
+            "parentType": "Starship",
+            "type": "ID!",
+          },
+          Object {
+            "name": "length",
+            "occurrences": Array [],
+            "parentType": "Starship",
+            "type": "Float",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "Starship",
+            "type": "String!",
+          },
+        ],
+        "name": "Starship",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "args",
+            "occurrences": Array [],
+            "parentType": "__Directive",
+            "type": "[__InputValue!]!",
+          },
+          Object {
+            "name": "description",
+            "occurrences": Array [],
+            "parentType": "__Directive",
+            "type": "String",
+          },
+          Object {
+            "name": "locations",
+            "occurrences": Array [],
+            "parentType": "__Directive",
+            "type": "[__DirectiveLocation!]!",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "__Directive",
+            "type": "String!",
+          },
+          Object {
+            "name": "onField",
+            "occurrences": Array [],
+            "parentType": "__Directive",
+            "type": "Boolean!",
+          },
+          Object {
+            "name": "onFragment",
+            "occurrences": Array [],
+            "parentType": "__Directive",
+            "type": "Boolean!",
+          },
+          Object {
+            "name": "onOperation",
+            "occurrences": Array [],
+            "parentType": "__Directive",
+            "type": "Boolean!",
+          },
+        ],
+        "name": "__Directive",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "deprecationReason",
+            "occurrences": Array [],
+            "parentType": "__EnumValue",
+            "type": "String",
+          },
+          Object {
+            "name": "description",
+            "occurrences": Array [],
+            "parentType": "__EnumValue",
+            "type": "String",
+          },
+          Object {
+            "name": "isDeprecated",
+            "occurrences": Array [],
+            "parentType": "__EnumValue",
+            "type": "Boolean!",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "__EnumValue",
+            "type": "String!",
+          },
+        ],
+        "name": "__EnumValue",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "args",
+            "occurrences": Array [],
+            "parentType": "__Field",
+            "type": "[__InputValue!]!",
+          },
+          Object {
+            "name": "deprecationReason",
+            "occurrences": Array [],
+            "parentType": "__Field",
+            "type": "String",
+          },
+          Object {
+            "name": "description",
+            "occurrences": Array [],
+            "parentType": "__Field",
+            "type": "String",
+          },
+          Object {
+            "name": "isDeprecated",
+            "occurrences": Array [],
+            "parentType": "__Field",
+            "type": "Boolean!",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "__Field",
+            "type": "String!",
+          },
+          Object {
+            "name": "type",
+            "occurrences": Array [],
+            "parentType": "__Field",
+            "type": "__Type!",
+          },
+        ],
+        "name": "__Field",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "defaultValue",
+            "occurrences": Array [],
+            "parentType": "__InputValue",
+            "type": "String",
+          },
+          Object {
+            "name": "description",
+            "occurrences": Array [],
+            "parentType": "__InputValue",
+            "type": "String",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "__InputValue",
+            "type": "String!",
+          },
+          Object {
+            "name": "type",
+            "occurrences": Array [],
+            "parentType": "__InputValue",
+            "type": "__Type!",
+          },
+        ],
+        "name": "__InputValue",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "directives",
+            "occurrences": Array [],
+            "parentType": "__Schema",
+            "type": "[__Directive!]!",
+          },
+          Object {
+            "name": "mutationType",
+            "occurrences": Array [],
+            "parentType": "__Schema",
+            "type": "__Type",
+          },
+          Object {
+            "name": "queryType",
+            "occurrences": Array [],
+            "parentType": "__Schema",
+            "type": "__Type!",
+          },
+          Object {
+            "name": "subscriptionType",
+            "occurrences": Array [],
+            "parentType": "__Schema",
+            "type": "__Type",
+          },
+          Object {
+            "name": "types",
+            "occurrences": Array [],
+            "parentType": "__Schema",
+            "type": "[__Type!]!",
+          },
+        ],
+        "name": "__Schema",
+      },
+      Object {
+        "fields": Array [
+          Object {
+            "name": "description",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "String",
+          },
+          Object {
+            "name": "enumValues",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "[__EnumValue!]",
+          },
+          Object {
+            "name": "fields",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "[__Field!]",
+          },
+          Object {
+            "name": "inputFields",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "[__InputValue!]",
+          },
+          Object {
+            "name": "interfaces",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "[__Type!]",
+          },
+          Object {
+            "name": "kind",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "__TypeKind!",
+          },
+          Object {
+            "name": "name",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "String",
+          },
+          Object {
+            "name": "ofType",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "__Type",
+          },
+          Object {
+            "name": "possibleTypes",
+            "occurrences": Array [],
+            "parentType": "__Type",
+            "type": "[__Type!]",
+          },
+        ],
+        "name": "__Type",
+      },
+    ],
+  },
 }
 `;

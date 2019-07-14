@@ -13,6 +13,7 @@ export interface FieldInfo {
   link: string;
   parentType: string;
   type: string;
+  rootNodeName: string;
 }
 
 function getFeildInfo(
@@ -21,11 +22,26 @@ function getFeildInfo(
   githubBaseURL: string
 ) {
   const fields: FieldInfo[] = [];
+  let operationName: string | undefined;
   const ast = parse(template);
 
   visit(
     ast,
     visitWithTypeInfo(typeInfo, {
+      OperationDefinition(graphqlNode) {
+        if (graphqlNode.name) {
+          operationName = graphqlNode.name.value;
+        } else {
+          throw new Error(`No name for OperationDefinition`);
+        }
+      },
+      FragmentDefinition(graphqlNode) {
+        if (graphqlNode.name) {
+          operationName = graphqlNode.name.value;
+        } else {
+          throw new Error(`No name for OperationDefinition`);
+        }
+      },
       Field(graphqlNode) {
         const parentType = typeInfo.getParentType();
         const nodeType = typeInfo.getType();
@@ -52,13 +68,23 @@ function getFeildInfo(
           name: nodeName,
           type: nodeType.toString(),
           parentType: parentType.toString(),
-          link: `${githubBaseURL}#L${line}`
+          link: `${githubBaseURL}#L${line}`,
+          rootNodeName: ""
         });
       }
     })
   );
 
-  return fields;
+  return fields.map(field => {
+    if (!operationName) {
+      throw new Error("No operation name");
+    }
+
+    return {
+      ...field,
+      rootNodeName: operationName
+    };
+  });
 }
 
 export default getFeildInfo;
