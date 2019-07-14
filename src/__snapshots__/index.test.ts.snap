@@ -2,571 +2,748 @@
 
 exports[`graphql-stats writes a file 1`] = `
 Object {
-  "data": Object {
-    "types": Array [
-      Object {
-        "fields": Array [
-          Object {
-            "name": "appearsIn",
-            "occurrences": Array [],
-            "parentType": "Character",
-            "type": "[Episode]!",
-          },
-          Object {
-            "name": "friends",
-            "occurrences": Array [],
-            "parentType": "Character",
-            "type": "[Character]",
-          },
-          Object {
-            "name": "friendsConnection",
-            "occurrences": Array [],
-            "parentType": "Character",
-            "type": "FriendsConnection!",
-          },
-          Object {
-            "name": "id",
-            "occurrences": Array [
-              Object {
-                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/nestedDir/bar.js#L6",
-              },
-              Object {
-                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/foo.js#L6",
-              },
-            ],
-            "parentType": "Character",
-            "type": "ID!",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "Character",
-            "type": "String!",
-          },
-        ],
-        "name": "Character",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "appearsIn",
-            "occurrences": Array [],
-            "parentType": "Droid",
-            "type": "[Episode]!",
-          },
-          Object {
-            "name": "friends",
-            "occurrences": Array [],
-            "parentType": "Droid",
-            "type": "[Character]",
-          },
-          Object {
-            "name": "friendsConnection",
-            "occurrences": Array [],
-            "parentType": "Droid",
-            "type": "FriendsConnection!",
-          },
-          Object {
-            "name": "id",
-            "occurrences": Array [],
-            "parentType": "Droid",
-            "type": "ID!",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "Droid",
-            "type": "String!",
-          },
-          Object {
-            "name": "primaryFunction",
-            "occurrences": Array [],
-            "parentType": "Droid",
-            "type": "String",
-          },
-        ],
-        "name": "Droid",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "edges",
-            "occurrences": Array [],
-            "parentType": "FriendsConnection",
-            "type": "[FriendsEdge]",
-          },
-          Object {
-            "name": "friends",
-            "occurrences": Array [],
-            "parentType": "FriendsConnection",
-            "type": "[Character]",
-          },
-          Object {
-            "name": "pageInfo",
-            "occurrences": Array [],
-            "parentType": "FriendsConnection",
-            "type": "PageInfo!",
-          },
-          Object {
-            "name": "totalCount",
-            "occurrences": Array [],
-            "parentType": "FriendsConnection",
-            "type": "Int",
-          },
-        ],
-        "name": "FriendsConnection",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "cursor",
-            "occurrences": Array [],
-            "parentType": "FriendsEdge",
-            "type": "ID!",
-          },
-          Object {
-            "name": "node",
-            "occurrences": Array [],
-            "parentType": "FriendsEdge",
-            "type": "Character",
-          },
-        ],
-        "name": "FriendsEdge",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "appearsIn",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "[Episode]!",
-          },
-          Object {
-            "name": "friends",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "[Character]",
-          },
-          Object {
-            "name": "friendsConnection",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "FriendsConnection!",
-          },
-          Object {
-            "name": "height",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "Float",
-          },
-          Object {
-            "name": "homePlanet",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "String",
-          },
-          Object {
-            "name": "id",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "ID!",
-          },
-          Object {
-            "name": "mass",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "Float",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "String!",
-          },
-          Object {
-            "name": "starships",
-            "occurrences": Array [],
-            "parentType": "Human",
-            "type": "[Starship]",
-          },
-        ],
-        "name": "Human",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "createReview",
-            "occurrences": Array [],
-            "parentType": "Mutation",
-            "type": "Review",
-          },
-        ],
-        "name": "Mutation",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "endCursor",
-            "occurrences": Array [],
-            "parentType": "PageInfo",
-            "type": "ID",
-          },
-          Object {
-            "name": "hasNextPage",
-            "occurrences": Array [],
-            "parentType": "PageInfo",
-            "type": "Boolean!",
-          },
-          Object {
-            "name": "startCursor",
-            "occurrences": Array [],
-            "parentType": "PageInfo",
-            "type": "ID",
-          },
-        ],
-        "name": "PageInfo",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "character",
-            "occurrences": Array [],
-            "parentType": "Query",
-            "type": "Character",
-          },
-          Object {
-            "name": "droid",
-            "occurrences": Array [],
-            "parentType": "Query",
-            "type": "Droid",
-          },
-          Object {
-            "name": "hero",
-            "occurrences": Array [
-              Object {
-                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/nestedDir/bar.js#L5",
-              },
-              Object {
-                "filename": "https://github.com/CDThomas/graphql-stats/tree/add-ui/__tmp__WHWeM8/testSrc/foo.js#L5",
-              },
-            ],
-            "parentType": "Query",
-            "type": "Character",
-          },
-          Object {
-            "name": "human",
-            "occurrences": Array [],
-            "parentType": "Query",
-            "type": "Human",
-          },
-          Object {
-            "name": "reviews",
-            "occurrences": Array [],
-            "parentType": "Query",
-            "type": "[Review]",
-          },
-          Object {
-            "name": "search",
-            "occurrences": Array [],
-            "parentType": "Query",
-            "type": "[SearchResult]",
-          },
-          Object {
-            "name": "starship",
-            "occurrences": Array [],
-            "parentType": "Query",
-            "type": "Starship",
-          },
-        ],
-        "name": "Query",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "commentary",
-            "occurrences": Array [],
-            "parentType": "Review",
-            "type": "String",
-          },
-          Object {
-            "name": "stars",
-            "occurrences": Array [],
-            "parentType": "Review",
-            "type": "Int!",
-          },
-        ],
-        "name": "Review",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "coordinates",
-            "occurrences": Array [],
-            "parentType": "Starship",
-            "type": "[[Float!]!]",
-          },
-          Object {
-            "name": "id",
-            "occurrences": Array [],
-            "parentType": "Starship",
-            "type": "ID!",
-          },
-          Object {
-            "name": "length",
-            "occurrences": Array [],
-            "parentType": "Starship",
-            "type": "Float",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "Starship",
-            "type": "String!",
-          },
-        ],
-        "name": "Starship",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "args",
-            "occurrences": Array [],
-            "parentType": "__Directive",
-            "type": "[__InputValue!]!",
-          },
-          Object {
-            "name": "description",
-            "occurrences": Array [],
-            "parentType": "__Directive",
-            "type": "String",
-          },
-          Object {
-            "name": "locations",
-            "occurrences": Array [],
-            "parentType": "__Directive",
-            "type": "[__DirectiveLocation!]!",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "__Directive",
-            "type": "String!",
-          },
-          Object {
-            "name": "onField",
-            "occurrences": Array [],
-            "parentType": "__Directive",
-            "type": "Boolean!",
-          },
-          Object {
-            "name": "onFragment",
-            "occurrences": Array [],
-            "parentType": "__Directive",
-            "type": "Boolean!",
-          },
-          Object {
-            "name": "onOperation",
-            "occurrences": Array [],
-            "parentType": "__Directive",
-            "type": "Boolean!",
-          },
-        ],
-        "name": "__Directive",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "deprecationReason",
-            "occurrences": Array [],
-            "parentType": "__EnumValue",
-            "type": "String",
-          },
-          Object {
-            "name": "description",
-            "occurrences": Array [],
-            "parentType": "__EnumValue",
-            "type": "String",
-          },
-          Object {
-            "name": "isDeprecated",
-            "occurrences": Array [],
-            "parentType": "__EnumValue",
-            "type": "Boolean!",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "__EnumValue",
-            "type": "String!",
-          },
-        ],
-        "name": "__EnumValue",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "args",
-            "occurrences": Array [],
-            "parentType": "__Field",
-            "type": "[__InputValue!]!",
-          },
-          Object {
-            "name": "deprecationReason",
-            "occurrences": Array [],
-            "parentType": "__Field",
-            "type": "String",
-          },
-          Object {
-            "name": "description",
-            "occurrences": Array [],
-            "parentType": "__Field",
-            "type": "String",
-          },
-          Object {
-            "name": "isDeprecated",
-            "occurrences": Array [],
-            "parentType": "__Field",
-            "type": "Boolean!",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "__Field",
-            "type": "String!",
-          },
-          Object {
-            "name": "type",
-            "occurrences": Array [],
-            "parentType": "__Field",
-            "type": "__Type!",
-          },
-        ],
-        "name": "__Field",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "defaultValue",
-            "occurrences": Array [],
-            "parentType": "__InputValue",
-            "type": "String",
-          },
-          Object {
-            "name": "description",
-            "occurrences": Array [],
-            "parentType": "__InputValue",
-            "type": "String",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "__InputValue",
-            "type": "String!",
-          },
-          Object {
-            "name": "type",
-            "occurrences": Array [],
-            "parentType": "__InputValue",
-            "type": "__Type!",
-          },
-        ],
-        "name": "__InputValue",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "directives",
-            "occurrences": Array [],
-            "parentType": "__Schema",
-            "type": "[__Directive!]!",
-          },
-          Object {
-            "name": "mutationType",
-            "occurrences": Array [],
-            "parentType": "__Schema",
-            "type": "__Type",
-          },
-          Object {
-            "name": "queryType",
-            "occurrences": Array [],
-            "parentType": "__Schema",
-            "type": "__Type!",
-          },
-          Object {
-            "name": "subscriptionType",
-            "occurrences": Array [],
-            "parentType": "__Schema",
-            "type": "__Type",
-          },
-          Object {
-            "name": "types",
-            "occurrences": Array [],
-            "parentType": "__Schema",
-            "type": "[__Type!]!",
-          },
-        ],
-        "name": "__Schema",
-      },
-      Object {
-        "fields": Array [
-          Object {
-            "name": "description",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "String",
-          },
-          Object {
-            "name": "enumValues",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "[__EnumValue!]",
-          },
-          Object {
-            "name": "fields",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "[__Field!]",
-          },
-          Object {
-            "name": "inputFields",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "[__InputValue!]",
-          },
-          Object {
-            "name": "interfaces",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "[__Type!]",
-          },
-          Object {
-            "name": "kind",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "__TypeKind!",
-          },
-          Object {
-            "name": "name",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "String",
-          },
-          Object {
-            "name": "ofType",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "__Type",
-          },
-          Object {
-            "name": "possibleTypes",
-            "occurrences": Array [],
-            "parentType": "__Type",
-            "type": "[__Type!]",
-          },
-        ],
-        "name": "__Type",
-      },
-    ],
-  },
+  "name": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 2`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Character",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-stats writes a file 3`] = `
+Object {
+  "name": "friends",
+  "parentType": "Character",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 4`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Character",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-stats writes a file 5`] = `
+Object {
+  "name": "id",
+  "parentType": "Character",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 6`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 7`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 8`] = `
+Object {
+  "name": "name",
+  "parentType": "Character",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 9`] = `
+Object {
+  "name": "Droid",
+}
+`;
+
+exports[`graphql-stats writes a file 10`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Droid",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-stats writes a file 11`] = `
+Object {
+  "name": "friends",
+  "parentType": "Droid",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 12`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Droid",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-stats writes a file 13`] = `
+Object {
+  "name": "id",
+  "parentType": "Droid",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 14`] = `
+Object {
+  "name": "name",
+  "parentType": "Droid",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 15`] = `
+Object {
+  "name": "primaryFunction",
+  "parentType": "Droid",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 16`] = `
+Object {
+  "name": "FriendsConnection",
+}
+`;
+
+exports[`graphql-stats writes a file 17`] = `
+Object {
+  "name": "edges",
+  "parentType": "FriendsConnection",
+  "type": "[FriendsEdge]",
+}
+`;
+
+exports[`graphql-stats writes a file 18`] = `
+Object {
+  "name": "friends",
+  "parentType": "FriendsConnection",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 19`] = `
+Object {
+  "name": "pageInfo",
+  "parentType": "FriendsConnection",
+  "type": "PageInfo!",
+}
+`;
+
+exports[`graphql-stats writes a file 20`] = `
+Object {
+  "name": "totalCount",
+  "parentType": "FriendsConnection",
+  "type": "Int",
+}
+`;
+
+exports[`graphql-stats writes a file 21`] = `
+Object {
+  "name": "FriendsEdge",
+}
+`;
+
+exports[`graphql-stats writes a file 22`] = `
+Object {
+  "name": "cursor",
+  "parentType": "FriendsEdge",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 23`] = `
+Object {
+  "name": "node",
+  "parentType": "FriendsEdge",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 24`] = `
+Object {
+  "name": "Human",
+}
+`;
+
+exports[`graphql-stats writes a file 25`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Human",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-stats writes a file 26`] = `
+Object {
+  "name": "friends",
+  "parentType": "Human",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 27`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Human",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-stats writes a file 28`] = `
+Object {
+  "name": "height",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-stats writes a file 29`] = `
+Object {
+  "name": "homePlanet",
+  "parentType": "Human",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 30`] = `
+Object {
+  "name": "id",
+  "parentType": "Human",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 31`] = `
+Object {
+  "name": "mass",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-stats writes a file 32`] = `
+Object {
+  "name": "name",
+  "parentType": "Human",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 33`] = `
+Object {
+  "name": "starships",
+  "parentType": "Human",
+  "type": "[Starship]",
+}
+`;
+
+exports[`graphql-stats writes a file 34`] = `
+Object {
+  "name": "Mutation",
+}
+`;
+
+exports[`graphql-stats writes a file 35`] = `
+Object {
+  "name": "createReview",
+  "parentType": "Mutation",
+  "type": "Review",
+}
+`;
+
+exports[`graphql-stats writes a file 36`] = `
+Object {
+  "name": "PageInfo",
+}
+`;
+
+exports[`graphql-stats writes a file 37`] = `
+Object {
+  "name": "endCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-stats writes a file 38`] = `
+Object {
+  "name": "hasNextPage",
+  "parentType": "PageInfo",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 39`] = `
+Object {
+  "name": "startCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-stats writes a file 40`] = `
+Object {
+  "name": "Query",
+}
+`;
+
+exports[`graphql-stats writes a file 41`] = `
+Object {
+  "name": "character",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 42`] = `
+Object {
+  "name": "droid",
+  "parentType": "Query",
+  "type": "Droid",
+}
+`;
+
+exports[`graphql-stats writes a file 43`] = `
+Object {
+  "name": "hero",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 44`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 45`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 46`] = `
+Object {
+  "name": "human",
+  "parentType": "Query",
+  "type": "Human",
+}
+`;
+
+exports[`graphql-stats writes a file 47`] = `
+Object {
+  "name": "reviews",
+  "parentType": "Query",
+  "type": "[Review]",
+}
+`;
+
+exports[`graphql-stats writes a file 48`] = `
+Object {
+  "name": "search",
+  "parentType": "Query",
+  "type": "[SearchResult]",
+}
+`;
+
+exports[`graphql-stats writes a file 49`] = `
+Object {
+  "name": "starship",
+  "parentType": "Query",
+  "type": "Starship",
+}
+`;
+
+exports[`graphql-stats writes a file 50`] = `
+Object {
+  "name": "Review",
+}
+`;
+
+exports[`graphql-stats writes a file 51`] = `
+Object {
+  "name": "commentary",
+  "parentType": "Review",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 52`] = `
+Object {
+  "name": "stars",
+  "parentType": "Review",
+  "type": "Int!",
+}
+`;
+
+exports[`graphql-stats writes a file 53`] = `
+Object {
+  "name": "Starship",
+}
+`;
+
+exports[`graphql-stats writes a file 54`] = `
+Object {
+  "name": "coordinates",
+  "parentType": "Starship",
+  "type": "[[Float!]!]",
+}
+`;
+
+exports[`graphql-stats writes a file 55`] = `
+Object {
+  "name": "id",
+  "parentType": "Starship",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 56`] = `
+Object {
+  "name": "length",
+  "parentType": "Starship",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-stats writes a file 57`] = `
+Object {
+  "name": "name",
+  "parentType": "Starship",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 58`] = `
+Object {
+  "name": "__Directive",
+}
+`;
+
+exports[`graphql-stats writes a file 59`] = `
+Object {
+  "name": "args",
+  "parentType": "__Directive",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 60`] = `
+Object {
+  "name": "description",
+  "parentType": "__Directive",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 61`] = `
+Object {
+  "name": "locations",
+  "parentType": "__Directive",
+  "type": "[__DirectiveLocation!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 62`] = `
+Object {
+  "name": "name",
+  "parentType": "__Directive",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 63`] = `
+Object {
+  "name": "onField",
+  "parentType": "__Directive",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 64`] = `
+Object {
+  "name": "onFragment",
+  "parentType": "__Directive",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 65`] = `
+Object {
+  "name": "onOperation",
+  "parentType": "__Directive",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 66`] = `
+Object {
+  "name": "__EnumValue",
+}
+`;
+
+exports[`graphql-stats writes a file 67`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 68`] = `
+Object {
+  "name": "description",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 69`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__EnumValue",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 70`] = `
+Object {
+  "name": "name",
+  "parentType": "__EnumValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 71`] = `
+Object {
+  "name": "__Field",
+}
+`;
+
+exports[`graphql-stats writes a file 72`] = `
+Object {
+  "name": "args",
+  "parentType": "__Field",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 73`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 74`] = `
+Object {
+  "name": "description",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 75`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__Field",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 76`] = `
+Object {
+  "name": "name",
+  "parentType": "__Field",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 77`] = `
+Object {
+  "name": "type",
+  "parentType": "__Field",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-stats writes a file 78`] = `
+Object {
+  "name": "__InputValue",
+}
+`;
+
+exports[`graphql-stats writes a file 79`] = `
+Object {
+  "name": "defaultValue",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 80`] = `
+Object {
+  "name": "description",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 81`] = `
+Object {
+  "name": "name",
+  "parentType": "__InputValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 82`] = `
+Object {
+  "name": "type",
+  "parentType": "__InputValue",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-stats writes a file 83`] = `
+Object {
+  "name": "__Schema",
+}
+`;
+
+exports[`graphql-stats writes a file 84`] = `
+Object {
+  "name": "directives",
+  "parentType": "__Schema",
+  "type": "[__Directive!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 85`] = `
+Object {
+  "name": "mutationType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 86`] = `
+Object {
+  "name": "queryType",
+  "parentType": "__Schema",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-stats writes a file 87`] = `
+Object {
+  "name": "subscriptionType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 88`] = `
+Object {
+  "name": "types",
+  "parentType": "__Schema",
+  "type": "[__Type!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 89`] = `
+Object {
+  "name": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 90`] = `
+Object {
+  "name": "description",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 91`] = `
+Object {
+  "name": "enumValues",
+  "parentType": "__Type",
+  "type": "[__EnumValue!]",
+}
+`;
+
+exports[`graphql-stats writes a file 92`] = `
+Object {
+  "name": "fields",
+  "parentType": "__Type",
+  "type": "[__Field!]",
+}
+`;
+
+exports[`graphql-stats writes a file 93`] = `
+Object {
+  "name": "inputFields",
+  "parentType": "__Type",
+  "type": "[__InputValue!]",
+}
+`;
+
+exports[`graphql-stats writes a file 94`] = `
+Object {
+  "name": "interfaces",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-stats writes a file 95`] = `
+Object {
+  "name": "kind",
+  "parentType": "__Type",
+  "type": "__TypeKind!",
+}
+`;
+
+exports[`graphql-stats writes a file 96`] = `
+Object {
+  "name": "name",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 97`] = `
+Object {
+  "name": "ofType",
+  "parentType": "__Type",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 98`] = `
+Object {
+  "name": "possibleTypes",
+  "parentType": "__Type",
+  "type": "[__Type!]",
 }
 `;
