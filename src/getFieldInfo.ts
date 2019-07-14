@@ -39,7 +39,7 @@ function getFeildInfo(
         if (graphqlNode.name) {
           operationName = graphqlNode.name.value;
         } else {
-          throw new Error(`No name for OperationDefinition`);
+          throw new Error(`No name for FragmentDefinition`);
         }
       },
       Field(graphqlNode) {
