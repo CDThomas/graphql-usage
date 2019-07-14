@@ -2,6 +2,7 @@ import { test } from "@oclif/test";
 import fs from "fs";
 import path from "path";
 import { FieldInfo } from "./getFieldInfo";
+import { omit } from "ramda";
 
 import cmd = require("../src");
 
@@ -80,16 +81,33 @@ describe("graphql-stats", () => {
       })
     )
     .do(() =>
-      cmd.run(["./testSrc", "--schema", "./schema.json", "--gitDir", "../"])
+      cmd.run([
+        "./testSrc",
+        "--schema",
+        "./schema.json",
+        "--gitDir",
+        "../",
+        "--json"
+      ])
     )
     .it("writes a file", () => {
-      const output = JSON.parse(fs.readFileSync("test.json", "utf-8"));
+      const output = JSON.parse(
+        fs.readFileSync("../graphql-stats-ui/src/graphql-stats.json", "utf-8")
+      );
 
-      output.fields.map((field: FieldInfo) => {
-        expect(field).toMatchSnapshot({
-          link: expect.stringMatching(
-            /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
-          )
+      output.data.types.map((type: any) => {
+        expect(omit(["fields"], type)).toMatchSnapshot();
+
+        type.fields.map((field: any) => {
+          expect(omit(["occurrences"], field)).toMatchSnapshot();
+
+          field.occurrences.map((occurence: any) => {
+            expect(occurence).toMatchSnapshot({
+              filename: expect.stringMatching(
+                /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
+              )
+            });
+          });
         });
       });
     });

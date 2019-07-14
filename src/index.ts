@@ -4,10 +4,12 @@ import fs from "fs";
 import path from "path";
 import { buildClientSchema, TypeInfo } from "graphql";
 import flatten from "./flatten";
-import getFeildInfo from "./getFieldInfo";
+import getFeildInfo, { FieldInfo } from "./getFieldInfo";
 import readFilesSync from "./readFilesSync";
 import { unary, partialRight } from "ramda";
 import getGitHubBaseURL from "./getGitHubBaseURL";
+import { buildReport } from "./report";
+import createServer from "./server";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -20,6 +22,9 @@ class GraphqlStats extends Command {
       char: "g",
       description: "Path to Git project root",
       required: true
+    }),
+    json: flags.boolean({
+      description: "Output report as JSON rather than starting the app"
     })
   };
 
@@ -27,17 +32,19 @@ class GraphqlStats extends Command {
 
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
-    const { gitDir } = flags;
+    const { gitDir, json } = flags;
 
     const schemaFile = flags.schema || "schema.json";
 
-    const schema = fs.readFileSync(path.resolve(schemaFile), {
-      encoding: "utf-8"
-    });
+    const schema = JSON.parse(
+      fs.readFileSync(path.resolve(schemaFile), {
+        encoding: "utf-8"
+      })
+    );
 
     const gitHubBaseURL = await getGitHubBaseURL(gitDir);
 
-    var fields = readFilesSync(args.sourceDir)
+    const summaryFields: FieldInfo[][] = readFilesSync(args.sourceDir)
       .filter(({ ext }) => ext === ".js")
       .map(({ filepath }) => {
         const content = fs.readFileSync(filepath, {
@@ -45,7 +52,7 @@ class GraphqlStats extends Command {
         });
 
         const tags = findGraphQLTags(content);
-        const { data } = JSON.parse(schema);
+        const { data } = schema;
         const typeInfo = new TypeInfo(buildClientSchema(data));
 
         const gitHubFileURL = filepath.replace(
@@ -53,25 +60,32 @@ class GraphqlStats extends Command {
           gitHubBaseURL
         );
 
-        const fields = tags.map(
+        const fields: FieldInfo[][] = tags.map(
           unary(partialRight(getFeildInfo, [typeInfo, gitHubFileURL]))
         );
 
         return flatten(fields);
       });
 
-    const output = { fields: flatten(fields) };
+    const report = buildReport(flatten(summaryFields), schema);
 
-    fs.writeFile(
-      "test.json",
-      JSON.stringify(output, null, 2),
-      "utf-8",
-      function cb(err) {
-        if (err) {
-          console.error(err);
+    if (json) {
+      fs.writeFile(
+        path.resolve(__dirname, "../graphql-stats-ui/src/graphql-stats.json"),
+        JSON.stringify(report, null, 2),
+        "utf-8",
+        function cb(err) {
+          if (err) {
+            console.error(err);
+          }
         }
-      }
-    );
+      );
+    } else {
+      const port = 3001;
+      createServer(report).listen(port, () => {
+        console.log(`Server started at http://localhost:${port}`);
+      });
+    }
   }
 }
 

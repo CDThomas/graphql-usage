@@ -26,9 +26,9 @@
 
 - [x] Parse JS source files into JS ASTs for `graphql` tags
 - [x] Parse content of `graphql` tags into GraphQL ASTs
-- [ ] Generate stats from GraphQL ASTs
-- [ ] Git integration to generate links to source on git
-- [ ] Generate static report files from stats
-- [ ] TS support
+- [x] Generate stats from GraphQL ASTs
+- [x] Git integration to generate links to source on git
+- [x] Add UI
+- [ ] Support for analyzing TS files
 - [ ] Support for `graphql-tag` rather than just Relay
 - [ ] Support schemas as both .json and .graphql files

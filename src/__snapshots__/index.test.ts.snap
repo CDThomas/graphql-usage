@@ -2,36 +2,748 @@
 
 exports[`graphql-stats writes a file 1`] = `
 Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
-  "name": "hero",
-  "parentType": "Query",
-  "type": "Character",
+  "name": "Character",
 }
 `;
 
 exports[`graphql-stats writes a file 2`] = `
 Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "name": "appearsIn",
+  "parentType": "Character",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-stats writes a file 3`] = `
+Object {
+  "name": "friends",
+  "parentType": "Character",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 4`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Character",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-stats writes a file 5`] = `
+Object {
   "name": "id",
   "parentType": "Character",
   "type": "ID!",
 }
 `;
 
-exports[`graphql-stats writes a file 3`] = `
+exports[`graphql-stats writes a file 6`] = `
 Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 7`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 8`] = `
+Object {
+  "name": "name",
+  "parentType": "Character",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 9`] = `
+Object {
+  "name": "Droid",
+}
+`;
+
+exports[`graphql-stats writes a file 10`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Droid",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-stats writes a file 11`] = `
+Object {
+  "name": "friends",
+  "parentType": "Droid",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 12`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Droid",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-stats writes a file 13`] = `
+Object {
+  "name": "id",
+  "parentType": "Droid",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 14`] = `
+Object {
+  "name": "name",
+  "parentType": "Droid",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 15`] = `
+Object {
+  "name": "primaryFunction",
+  "parentType": "Droid",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 16`] = `
+Object {
+  "name": "FriendsConnection",
+}
+`;
+
+exports[`graphql-stats writes a file 17`] = `
+Object {
+  "name": "edges",
+  "parentType": "FriendsConnection",
+  "type": "[FriendsEdge]",
+}
+`;
+
+exports[`graphql-stats writes a file 18`] = `
+Object {
+  "name": "friends",
+  "parentType": "FriendsConnection",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 19`] = `
+Object {
+  "name": "pageInfo",
+  "parentType": "FriendsConnection",
+  "type": "PageInfo!",
+}
+`;
+
+exports[`graphql-stats writes a file 20`] = `
+Object {
+  "name": "totalCount",
+  "parentType": "FriendsConnection",
+  "type": "Int",
+}
+`;
+
+exports[`graphql-stats writes a file 21`] = `
+Object {
+  "name": "FriendsEdge",
+}
+`;
+
+exports[`graphql-stats writes a file 22`] = `
+Object {
+  "name": "cursor",
+  "parentType": "FriendsEdge",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 23`] = `
+Object {
+  "name": "node",
+  "parentType": "FriendsEdge",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 24`] = `
+Object {
+  "name": "Human",
+}
+`;
+
+exports[`graphql-stats writes a file 25`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Human",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-stats writes a file 26`] = `
+Object {
+  "name": "friends",
+  "parentType": "Human",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-stats writes a file 27`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Human",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-stats writes a file 28`] = `
+Object {
+  "name": "height",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-stats writes a file 29`] = `
+Object {
+  "name": "homePlanet",
+  "parentType": "Human",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 30`] = `
+Object {
+  "name": "id",
+  "parentType": "Human",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 31`] = `
+Object {
+  "name": "mass",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-stats writes a file 32`] = `
+Object {
+  "name": "name",
+  "parentType": "Human",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 33`] = `
+Object {
+  "name": "starships",
+  "parentType": "Human",
+  "type": "[Starship]",
+}
+`;
+
+exports[`graphql-stats writes a file 34`] = `
+Object {
+  "name": "Mutation",
+}
+`;
+
+exports[`graphql-stats writes a file 35`] = `
+Object {
+  "name": "createReview",
+  "parentType": "Mutation",
+  "type": "Review",
+}
+`;
+
+exports[`graphql-stats writes a file 36`] = `
+Object {
+  "name": "PageInfo",
+}
+`;
+
+exports[`graphql-stats writes a file 37`] = `
+Object {
+  "name": "endCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-stats writes a file 38`] = `
+Object {
+  "name": "hasNextPage",
+  "parentType": "PageInfo",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 39`] = `
+Object {
+  "name": "startCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-stats writes a file 40`] = `
+Object {
+  "name": "Query",
+}
+`;
+
+exports[`graphql-stats writes a file 41`] = `
+Object {
+  "name": "character",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-stats writes a file 42`] = `
+Object {
+  "name": "droid",
+  "parentType": "Query",
+  "type": "Droid",
+}
+`;
+
+exports[`graphql-stats writes a file 43`] = `
+Object {
   "name": "hero",
   "parentType": "Query",
   "type": "Character",
 }
 `;
 
-exports[`graphql-stats writes a file 4`] = `
+exports[`graphql-stats writes a file 44`] = `
 Object {
-  "link": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 45`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-stats writes a file 46`] = `
+Object {
+  "name": "human",
+  "parentType": "Query",
+  "type": "Human",
+}
+`;
+
+exports[`graphql-stats writes a file 47`] = `
+Object {
+  "name": "reviews",
+  "parentType": "Query",
+  "type": "[Review]",
+}
+`;
+
+exports[`graphql-stats writes a file 48`] = `
+Object {
+  "name": "search",
+  "parentType": "Query",
+  "type": "[SearchResult]",
+}
+`;
+
+exports[`graphql-stats writes a file 49`] = `
+Object {
+  "name": "starship",
+  "parentType": "Query",
+  "type": "Starship",
+}
+`;
+
+exports[`graphql-stats writes a file 50`] = `
+Object {
+  "name": "Review",
+}
+`;
+
+exports[`graphql-stats writes a file 51`] = `
+Object {
+  "name": "commentary",
+  "parentType": "Review",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 52`] = `
+Object {
+  "name": "stars",
+  "parentType": "Review",
+  "type": "Int!",
+}
+`;
+
+exports[`graphql-stats writes a file 53`] = `
+Object {
+  "name": "Starship",
+}
+`;
+
+exports[`graphql-stats writes a file 54`] = `
+Object {
+  "name": "coordinates",
+  "parentType": "Starship",
+  "type": "[[Float!]!]",
+}
+`;
+
+exports[`graphql-stats writes a file 55`] = `
+Object {
   "name": "id",
-  "parentType": "Character",
+  "parentType": "Starship",
   "type": "ID!",
+}
+`;
+
+exports[`graphql-stats writes a file 56`] = `
+Object {
+  "name": "length",
+  "parentType": "Starship",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-stats writes a file 57`] = `
+Object {
+  "name": "name",
+  "parentType": "Starship",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 58`] = `
+Object {
+  "name": "__Directive",
+}
+`;
+
+exports[`graphql-stats writes a file 59`] = `
+Object {
+  "name": "args",
+  "parentType": "__Directive",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 60`] = `
+Object {
+  "name": "description",
+  "parentType": "__Directive",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 61`] = `
+Object {
+  "name": "locations",
+  "parentType": "__Directive",
+  "type": "[__DirectiveLocation!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 62`] = `
+Object {
+  "name": "name",
+  "parentType": "__Directive",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 63`] = `
+Object {
+  "name": "onField",
+  "parentType": "__Directive",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 64`] = `
+Object {
+  "name": "onFragment",
+  "parentType": "__Directive",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 65`] = `
+Object {
+  "name": "onOperation",
+  "parentType": "__Directive",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 66`] = `
+Object {
+  "name": "__EnumValue",
+}
+`;
+
+exports[`graphql-stats writes a file 67`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 68`] = `
+Object {
+  "name": "description",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 69`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__EnumValue",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 70`] = `
+Object {
+  "name": "name",
+  "parentType": "__EnumValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 71`] = `
+Object {
+  "name": "__Field",
+}
+`;
+
+exports[`graphql-stats writes a file 72`] = `
+Object {
+  "name": "args",
+  "parentType": "__Field",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 73`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 74`] = `
+Object {
+  "name": "description",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 75`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__Field",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-stats writes a file 76`] = `
+Object {
+  "name": "name",
+  "parentType": "__Field",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 77`] = `
+Object {
+  "name": "type",
+  "parentType": "__Field",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-stats writes a file 78`] = `
+Object {
+  "name": "__InputValue",
+}
+`;
+
+exports[`graphql-stats writes a file 79`] = `
+Object {
+  "name": "defaultValue",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 80`] = `
+Object {
+  "name": "description",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 81`] = `
+Object {
+  "name": "name",
+  "parentType": "__InputValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-stats writes a file 82`] = `
+Object {
+  "name": "type",
+  "parentType": "__InputValue",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-stats writes a file 83`] = `
+Object {
+  "name": "__Schema",
+}
+`;
+
+exports[`graphql-stats writes a file 84`] = `
+Object {
+  "name": "directives",
+  "parentType": "__Schema",
+  "type": "[__Directive!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 85`] = `
+Object {
+  "name": "mutationType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 86`] = `
+Object {
+  "name": "queryType",
+  "parentType": "__Schema",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-stats writes a file 87`] = `
+Object {
+  "name": "subscriptionType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 88`] = `
+Object {
+  "name": "types",
+  "parentType": "__Schema",
+  "type": "[__Type!]!",
+}
+`;
+
+exports[`graphql-stats writes a file 89`] = `
+Object {
+  "name": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 90`] = `
+Object {
+  "name": "description",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 91`] = `
+Object {
+  "name": "enumValues",
+  "parentType": "__Type",
+  "type": "[__EnumValue!]",
+}
+`;
+
+exports[`graphql-stats writes a file 92`] = `
+Object {
+  "name": "fields",
+  "parentType": "__Type",
+  "type": "[__Field!]",
+}
+`;
+
+exports[`graphql-stats writes a file 93`] = `
+Object {
+  "name": "inputFields",
+  "parentType": "__Type",
+  "type": "[__InputValue!]",
+}
+`;
+
+exports[`graphql-stats writes a file 94`] = `
+Object {
+  "name": "interfaces",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-stats writes a file 95`] = `
+Object {
+  "name": "kind",
+  "parentType": "__Type",
+  "type": "__TypeKind!",
+}
+`;
+
+exports[`graphql-stats writes a file 96`] = `
+Object {
+  "name": "name",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-stats writes a file 97`] = `
+Object {
+  "name": "ofType",
+  "parentType": "__Type",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-stats writes a file 98`] = `
+Object {
+  "name": "possibleTypes",
+  "parentType": "__Type",
+  "type": "[__Type!]",
 }
 `;
