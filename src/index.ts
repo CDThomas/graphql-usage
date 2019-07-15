@@ -10,6 +10,8 @@ import { unary, partialRight } from "ramda";
 import getGitHubBaseURL from "./getGitHubBaseURL";
 import { buildReport } from "./report";
 import createServer from "./server";
+import { execSync } from "child_process";
+import open from "open";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -35,6 +37,18 @@ class GraphqlStats extends Command {
     const { gitDir, json } = flags;
 
     const schemaFile = flags.schema || "schema.json";
+
+    const uiBuildPath = path.resolve(__dirname, "../graphql-stats-ui/build");
+
+    if (!fs.existsSync(uiBuildPath)) {
+      this.log("Building static assets for UI ...");
+      const currentDir = process.cwd();
+      process.chdir(path.resolve(__dirname, "../graphql-stats-ui"));
+      execSync("yarn build");
+      process.chdir(currentDir);
+    }
+
+    this.log("Analyzing source files and starting server ...");
 
     const schema = JSON.parse(
       fs.readFileSync(path.resolve(schemaFile), {
@@ -84,6 +98,7 @@ class GraphqlStats extends Command {
       const port = 3001;
       createServer(report).listen(port, () => {
         console.log(`Server started at http://localhost:${port}`);
+        open(`http://localhost:${port}`);
       });
     }
   }
