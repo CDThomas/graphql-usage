@@ -29,8 +29,11 @@
 - [x] Generate stats from GraphQL ASTs
 - [x] Git integration to generate links to source on git
 - [x] Add UI
+- [ ] Support schemas as both .json and .graphql files
+- [ ] Add CI
+- [ ] Rename project
+- [ ] Publish to NPM
 - [ ] Rewrite sync code as async to improve perf and DX
 - [ ] Use [listr](https://github.com/SamVerschueren/listr) or something similar
 - [ ] Support for analyzing TS files
 - [ ] Support for `graphql-tag` rather than just Relay tags
-- [ ] Support schemas as both .json and .graphql files
