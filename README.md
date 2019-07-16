@@ -37,3 +37,5 @@
 - [ ] Use [listr](https://github.com/SamVerschueren/listr) or something similar
 - [ ] Support for analyzing TS files
 - [ ] Support for `graphql-tag` rather than just Relay tags
+- [ ] Show usage for input types
+- [ ] Improve usage info for abstract types
