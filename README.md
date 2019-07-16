@@ -40,3 +40,4 @@
 - [ ] Show usage for input types
 - [ ] Improve usage info for abstract types
 - [ ] Improve usage info for object types (e.g. whether the type is used rather than individual fields)
+- [ ] Remove --gitRoot flag
