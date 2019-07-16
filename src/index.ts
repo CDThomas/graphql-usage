@@ -2,7 +2,12 @@ import { Command, flags } from "@oclif/command";
 import findGraphQLTags from "./findGraphQLTags";
 import fs from "fs";
 import path from "path";
-import { buildClientSchema, TypeInfo } from "graphql";
+import {
+  buildClientSchema,
+  TypeInfo,
+  GraphQLSchema,
+  buildSchema
+} from "graphql";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
 import readFilesSync from "./readFilesSync";
@@ -12,6 +17,8 @@ import { buildReport } from "./report";
 import createServer from "./server";
 import { execSync } from "child_process";
 import open from "open";
+
+const OUTPUT_FILE = "report.json";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -50,11 +57,7 @@ class GraphqlStats extends Command {
 
     this.log("Analyzing source files and starting server ...");
 
-    const schema = JSON.parse(
-      fs.readFileSync(path.resolve(schemaFile), {
-        encoding: "utf-8"
-      })
-    );
+    const schema = readSchema(schemaFile);
 
     const gitHubBaseURL = await getGitHubBaseURL(gitDir);
 
@@ -66,8 +69,7 @@ class GraphqlStats extends Command {
         });
 
         const tags = findGraphQLTags(content);
-        const { data } = schema;
-        const typeInfo = new TypeInfo(buildClientSchema(data));
+        const typeInfo = new TypeInfo(schema);
 
         const gitHubFileURL = filepath.replace(
           path.resolve(gitDir),
@@ -85,7 +87,7 @@ class GraphqlStats extends Command {
 
     if (json) {
       fs.writeFile(
-        path.resolve(__dirname, "../graphql-stats-ui/src/graphql-stats.json"),
+        OUTPUT_FILE,
         JSON.stringify(report, null, 2),
         "utf-8",
         function cb(err) {
@@ -102,6 +104,27 @@ class GraphqlStats extends Command {
       });
     }
   }
+}
+
+function readSchema(schemaFile: string): GraphQLSchema {
+  const extension = path.extname(schemaFile);
+
+  const schemaString = fs.readFileSync(schemaFile, {
+    encoding: "utf-8"
+  });
+
+  if (extension === ".json") {
+    const schemaJSON = JSON.parse(schemaString);
+    return buildClientSchema(schemaJSON.data);
+  }
+
+  if (extension === ".graphql") {
+    return buildSchema(schemaString);
+  }
+
+  throw new Error(
+    "Invalid schema file. Please provide a .json or .graphql GraphQL schema."
+  );
 }
 
 export = GraphqlStats;
