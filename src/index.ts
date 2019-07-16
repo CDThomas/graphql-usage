@@ -44,7 +44,7 @@ class GraphqlStats extends Command {
       this.log("Building static assets for UI ...");
       const currentDir = process.cwd();
       process.chdir(path.resolve(__dirname, "../graphql-stats-ui"));
-      execSync("yarn build");
+      execSync("yarn && yarn build");
       process.chdir(currentDir);
     }
 
