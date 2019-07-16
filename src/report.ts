@@ -1,12 +1,7 @@
 import R from "ramda";
 import flatten from "./flatten";
 import { FieldInfo } from "./getFieldInfo";
-import {
-  GraphQLAbbreviatedType,
-  GraphQLField,
-  GraphQLSchema,
-  getTypes
-} from "./schemaUtils";
+import { isObjectType, GraphQLSchema } from "graphql";
 
 interface Report {
   data: {
@@ -31,17 +26,6 @@ interface ReportOccurrence {
   rootNodeName: string;
 }
 
-function formatTypeName(type: GraphQLAbbreviatedType): string {
-  switch (type.kind) {
-    case "LIST":
-      return `[${formatTypeName(type.ofType)}]`;
-    case "NON_NULL":
-      return `${formatTypeName(type.ofType)}!`;
-    default:
-      return type.name;
-  }
-}
-
 function buildReport(
   summaryFields: FieldInfo[],
   schema: GraphQLSchema
@@ -57,14 +41,14 @@ function buildReport(
   // Format as Report field
   //   Find occurrences in matching summary fields
   const fields: ReportField[] = flatten(
-    getTypes(schema).map(type => {
-      if (!type.fields) return [];
+    schema.toConfig().types.map(type => {
+      if (!isObjectType(type)) return [];
 
-      return type.fields.map(
-        (field: GraphQLField): ReportField => {
+      return Object.values(type.getFields()).map(
+        (field): ReportField => {
           return {
             parentType: type.name,
-            type: formatTypeName(field.type),
+            type: field.type.toString(),
             name: field.name,
             occurrences: []
           };

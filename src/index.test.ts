@@ -90,25 +90,54 @@ describe("graphql-stats", () => {
         "--json"
       ])
     )
-    .it("writes a file", () => {
-      const output = JSON.parse(
-        fs.readFileSync("../graphql-stats-ui/src/graphql-stats.json", "utf-8")
-      );
+    .it("writes a file given a .json GraphQL schema", () => {
+      const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
 
-      output.data.types.map((type: any) => {
-        expect(omit(["fields"], type)).toMatchSnapshot();
+      assertOutputMatchesSnapshot(output);
+    });
 
-        type.fields.map((field: any) => {
-          expect(omit(["occurrences"], field)).toMatchSnapshot();
+  test
+    .register("fs", setupFS)
+    .fs(
+      resolveFiles({
+        "./schema.graphql": "../__fixtures__/schema.graphql",
+        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
+      })
+    )
+    .do(() =>
+      cmd.run([
+        "./testSrc",
+        "--schema",
+        "./schema.graphql",
+        "--gitDir",
+        "../",
+        "--json"
+      ])
+    )
+    .it("writes a file given a .graphql GraphQL schema", () => {
+      const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
 
-          field.occurrences.map((occurence: any) => {
-            expect(occurence).toMatchSnapshot({
-              filename: expect.stringMatching(
-                /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
-              )
-            });
-          });
+      assertOutputMatchesSnapshot(output);
+    });
+});
+
+function assertOutputMatchesSnapshot(output: {
+  data: { types: Array<Object> };
+}) {
+  output.data.types.map((type: any) => {
+    expect(omit(["fields"], type)).toMatchSnapshot();
+
+    type.fields.map((field: any) => {
+      expect(omit(["occurrences"], field)).toMatchSnapshot();
+
+      field.occurrences.map((occurence: any) => {
+        expect(occurence).toMatchSnapshot({
+          filename: expect.stringMatching(
+            /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
+          )
         });
       });
     });
-});
+  });
+}

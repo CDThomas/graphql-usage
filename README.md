@@ -29,7 +29,7 @@
 - [x] Generate stats from GraphQL ASTs
 - [x] Git integration to generate links to source on git
 - [x] Add UI
-- [ ] Support schemas as both .json and .graphql files
+- [x] Support schemas as both .json and .graphql files
 - [ ] Add CI
 - [ ] Rename project
 - [ ] Publish to NPM
@@ -39,3 +39,4 @@
 - [ ] Support for `graphql-tag` rather than just Relay tags
 - [ ] Show usage for input types
 - [ ] Improve usage info for abstract types
+- [ ] Improve usage info for object types (e.g. whether the type is used rather than individual fields)
