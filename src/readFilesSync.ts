@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { promisify } from "util";
 
 interface File {
   filepath: string;
@@ -9,24 +10,27 @@ interface File {
   base: string;
 }
 
-function readFilesSync(dir: string) {
+async function readFiles(dir: string) {
   let files: File[] = [];
 
-  fs.readdirSync(dir).forEach(filename => {
+  const fileNames = await promisify(fs.readdir)(dir);
+  const promises = fileNames.map(async filename => {
     const name = path.parse(filename).name;
     const ext = path.parse(filename).ext;
     const base = path.parse(filename).base;
     const filepath = path.resolve(dir, filename);
-    const stat = fs.statSync(filepath);
+    const stat = await promisify(fs.stat)(filepath);
     const isDirectory = stat.isDirectory();
 
     if (isDirectory) {
-      const nestedFiles = readFilesSync(filepath);
+      const nestedFiles = await readFiles(filepath);
       files = [...files, ...nestedFiles];
     } else {
       files.push({ filepath, name, ext, stat, base });
     }
   });
+
+  await Promise.all(promises);
 
   files.sort((a, b) => {
     // natural sort alphanumeric strings
@@ -40,4 +44,4 @@ function readFilesSync(dir: string) {
   return files;
 }
 
-export default readFilesSync;
+export default readFiles;

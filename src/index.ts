@@ -2,6 +2,7 @@ import { Command, flags } from "@oclif/command";
 import findGraphQLTags from "./findGraphQLTags";
 import fs from "fs";
 import path from "path";
+import { promisify } from "util";
 import {
   buildClientSchema,
   TypeInfo,
@@ -10,12 +11,12 @@ import {
 } from "graphql";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
-import readFilesSync from "./readFilesSync";
+import readFiles from "./readFilesSync";
 import { unary, partialRight } from "ramda";
 import getGitHubBaseURL from "./getGitHubBaseURL";
 import { buildReport } from "./report";
 import createServer from "./server";
-import { execSync } from "child_process";
+import { exec } from "child_process";
 import open from "open";
 
 const OUTPUT_FILE = "report.json";
@@ -47,11 +48,11 @@ class GraphqlStats extends Command {
 
     const uiBuildPath = path.resolve(__dirname, "../graphql-stats-ui/build");
 
-    if (!fs.existsSync(uiBuildPath)) {
+    if (!(await promisify(fs.exists)(uiBuildPath))) {
       this.log("Building static assets for UI ...");
       const currentDir = process.cwd();
       process.chdir(path.resolve(__dirname, "../graphql-stats-ui"));
-      execSync("yarn && yarn build");
+      await promisify(exec)("yarn && yarn build");
       process.chdir(currentDir);
     }
 
@@ -61,10 +62,12 @@ class GraphqlStats extends Command {
 
     const gitHubBaseURL = await getGitHubBaseURL(gitDir);
 
-    const summaryFields: FieldInfo[][] = readFilesSync(args.sourceDir)
+    const files = await readFiles(args.sourceDir);
+
+    const summaryFields: Promise<FieldInfo[]>[] = files
       .filter(({ ext }) => ext === ".js")
-      .map(({ filepath }) => {
-        const content = fs.readFileSync(filepath, {
+      .map(async ({ filepath }) => {
+        const content = await promisify(fs.readFile)(filepath, {
           encoding: "utf-8"
         });
 
@@ -82,8 +85,9 @@ class GraphqlStats extends Command {
 
         return flatten(fields);
       });
+    const resolved = await Promise.all(summaryFields);
 
-    const report = buildReport(flatten(summaryFields), schema);
+    const report = buildReport(flatten(resolved), schema);
 
     if (json) {
       fs.writeFile(
