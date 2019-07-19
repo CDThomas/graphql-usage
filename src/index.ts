@@ -14,12 +14,11 @@ import getFeildInfo, { FieldInfo } from "./getFieldInfo";
 import readFiles from "./readFilesSync";
 import { unary, partialRight } from "ramda";
 import getGitHubBaseURL from "./getGitHubBaseURL";
-import { buildReport } from "./report";
+import { buildReport, Report } from "./report";
 import createServer from "./server";
 import { exec } from "child_process";
 import open from "open";
-
-const OUTPUT_FILE = "report.json";
+import Listr from "listr";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -47,66 +46,57 @@ class GraphqlStats extends Command {
     const schemaFile = flags.schema || "schema.json";
 
     const uiBuildPath = path.resolve(__dirname, "../graphql-stats-ui/build");
+    const isUIBuilt = await promisify(fs.exists)(uiBuildPath);
 
-    if (!(await promisify(fs.exists)(uiBuildPath))) {
-      this.log("Building static assets for UI ...");
-      const currentDir = process.cwd();
-      process.chdir(path.resolve(__dirname, "../graphql-stats-ui"));
-      await promisify(exec)("yarn && yarn build");
-      process.chdir(currentDir);
-    }
+    const analyzeFilesTask = {
+      title: "Analyzing source files ",
+      task: async (ctx: { report: Report | undefined }) => {
+        ctx.report = await analyzeFiles(schemaFile, gitDir, args.sourceDir);
+      }
+    };
 
-    this.log("Analyzing source files and starting server ...");
-
-    const schema = readSchema(schemaFile);
-
-    const gitHubBaseURL = await getGitHubBaseURL(gitDir);
-
-    const files = await readFiles(args.sourceDir);
-
-    const summaryFields: Promise<FieldInfo[]>[] = files
-      .filter(({ ext }) => ext === ".js")
-      .map(async ({ filepath }) => {
-        const content = await promisify(fs.readFile)(filepath, {
-          encoding: "utf-8"
-        });
-
-        const tags = findGraphQLTags(content);
-        const typeInfo = new TypeInfo(schema);
-
-        const gitHubFileURL = filepath.replace(
-          path.resolve(gitDir),
-          gitHubBaseURL
-        );
-
-        const fields: FieldInfo[][] = tags.map(
-          unary(partialRight(getFeildInfo, [typeInfo, gitHubFileURL]))
-        );
-
-        return flatten(fields);
-      });
-    const resolved = await Promise.all(summaryFields);
-
-    const report = buildReport(flatten(resolved), schema);
-
-    if (json) {
-      fs.writeFile(
-        OUTPUT_FILE,
-        JSON.stringify(report, null, 2),
-        "utf-8",
-        function cb(err) {
-          if (err) {
-            console.error(err);
-          }
+    const jsonTasks = new Listr([
+      analyzeFilesTask,
+      {
+        title: "Writing JSON",
+        task: ({ report }: { report: Report }) => {
+          writeJSON(report);
         }
-      );
-    } else {
-      const port = 3001;
-      createServer(report).listen(port, () => {
-        console.log(`Server started at http://localhost:${port}`);
-        open(`http://localhost:${port}`);
-      });
-    }
+      }
+    ]);
+
+    const concurrentTasks = new Listr(
+      [
+        {
+          title: "Building static assets",
+          skip: () => {
+            if (isUIBuilt) return "Already built";
+          },
+          task: async () => {
+            await buildStaticAssets();
+          }
+        },
+        analyzeFilesTask
+      ],
+      { concurrent: true }
+    );
+
+    const appTasks = new Listr([
+      {
+        title: "Building report",
+        task: () => concurrentTasks
+      },
+      {
+        title: "Starting server at http://localhost:3001",
+        task: ({ report }: { report: Report }) => {
+          startServer(report);
+        }
+      }
+    ]);
+
+    await (json ? jsonTasks : appTasks).run().catch(err => {
+      console.error(err);
+    });
   }
 }
 
@@ -129,6 +119,70 @@ function readSchema(schemaFile: string): GraphQLSchema {
   throw new Error(
     "Invalid schema file. Please provide a .json or .graphql GraphQL schema."
   );
+}
+
+async function analyzeFiles(
+  schemaFile: string,
+  gitDir: string,
+  sourceDir: string
+): Promise<Report> {
+  const schema = readSchema(schemaFile);
+
+  const gitHubBaseURL = await getGitHubBaseURL(gitDir);
+
+  const files = await readFiles(sourceDir);
+
+  const summaryFields: Promise<FieldInfo[]>[] = files
+    .filter(({ ext }) => ext === ".js")
+    .map(async ({ filepath }) => {
+      const content = await promisify(fs.readFile)(filepath, {
+        encoding: "utf-8"
+      });
+
+      const tags = findGraphQLTags(content);
+      const typeInfo = new TypeInfo(schema);
+
+      const gitHubFileURL = filepath.replace(
+        path.resolve(gitDir),
+        gitHubBaseURL
+      );
+
+      const fields: FieldInfo[][] = tags.map(
+        unary(partialRight(getFeildInfo, [typeInfo, gitHubFileURL]))
+      );
+
+      return flatten(fields);
+    });
+  const resolved = await Promise.all(summaryFields);
+
+  return buildReport(flatten(resolved), schema);
+}
+
+async function buildStaticAssets() {
+  const uiPath = path.resolve(__dirname, "../graphql-stats-ui");
+  await promisify(exec)("yarn && yarn build", { cwd: uiPath });
+}
+
+function writeJSON(report: Report): void {
+  const OUTPUT_FILE = "./report.json";
+
+  fs.writeFile(
+    OUTPUT_FILE,
+    JSON.stringify(report, null, 2),
+    "utf-8",
+    function cb(err) {
+      if (err) {
+        console.error(err);
+      }
+    }
+  );
+}
+
+function startServer(report: Report): void {
+  const port = 3001;
+  createServer(report).listen(port, () => {
+    open(`http://localhost:${port}`);
+  });
 }
 
 export = GraphqlStats;
