@@ -11,7 +11,7 @@ import {
 } from "graphql";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
-import readFiles from "./readFilesSync";
+import readFiles from "./readFiles";
 import { unary, partialRight } from "ramda";
 import getGitHubBaseURL from "./getGitHubBaseURL";
 import { buildReport, Report } from "./report";
@@ -100,10 +100,10 @@ class GraphqlStats extends Command {
   }
 }
 
-function readSchema(schemaFile: string): GraphQLSchema {
+async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
   const extension = path.extname(schemaFile);
 
-  const schemaString = fs.readFileSync(schemaFile, {
+  const schemaString = await promisify(fs.readFile)(schemaFile, {
     encoding: "utf-8"
   });
 
@@ -126,7 +126,7 @@ async function analyzeFiles(
   gitDir: string,
   sourceDir: string
 ): Promise<Report> {
-  const schema = readSchema(schemaFile);
+  const schema = await readSchema(schemaFile);
 
   const gitHubBaseURL = await getGitHubBaseURL(gitDir);
 
