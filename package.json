@@ -44,7 +44,8 @@
   },
   "files": [
     "/bin",
-    "/lib"
+    "/lib",
+    "/graphql-usage-ui/build"
   ],
   "homepage": "https://github.com/CDThomas/graphql-usage",
   "keywords": [
@@ -57,8 +58,9 @@
   },
   "repository": "CDThomas/graphql-usage",
   "scripts": {
+    "build-ui": "cd ./graphql-usage-ui && rm -rf build && yarn build",
     "posttest": "tslint -p . -t stylish",
-    "prepack": "rm -rf lib && tsc -b",
+    "prepack": "rm -rf lib && tsc -b && yarn build-ui",
     "test": "jest",
     "test:watch": "jest --watch"
   },
