@@ -1,24 +1,25 @@
 import { Command, flags } from "@oclif/command";
-import findGraphQLTags from "./findGraphQLTags";
+import { exec } from "child_process";
 import fs from "fs";
-import path from "path";
-import { promisify } from "util";
 import {
   buildClientSchema,
-  TypeInfo,
+  buildSchema,
   GraphQLSchema,
-  buildSchema
+  TypeInfo
 } from "graphql";
+import Listr from "listr";
+import open from "open";
+import path from "path";
+import { partialRight, unary } from "ramda";
+import { promisify } from "util";
+
+import findGraphQLTags from "./findGraphQLTags";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
-import readFiles from "./readFiles";
-import { unary, partialRight } from "ramda";
 import getGitHubBaseURL from "./getGitHubBaseURL";
+import readFiles from "./readFiles";
 import { buildReport, Report } from "./report";
 import createServer from "./server";
-import { exec } from "child_process";
-import open from "open";
-import Listr from "listr";
 
 class GraphqlStats extends Command {
   static description = "describe the command here";
@@ -46,7 +47,7 @@ class GraphqlStats extends Command {
     const schemaFile = flags.schema || "schema.json";
 
     const uiBuildPath = path.resolve(__dirname, "../graphql-usage-ui/build");
-    const isUIBuilt = await promisify(fs.exists)(uiBuildPath);
+    const isUIBuilt = await exists(uiBuildPath);
 
     const analyzeFilesTask = {
       title: "Analyzing source files ",
@@ -94,9 +95,7 @@ class GraphqlStats extends Command {
       }
     ]);
 
-    await (json ? jsonTasks : appTasks).run().catch(err => {
-      console.error(err);
-    });
+    await (json ? jsonTasks : appTasks).run();
   }
 }
 
@@ -166,23 +165,29 @@ async function buildStaticAssets() {
 function writeJSON(report: Report): void {
   const OUTPUT_FILE = "./report.json";
 
-  fs.writeFile(
-    OUTPUT_FILE,
-    JSON.stringify(report, null, 2),
-    "utf-8",
-    function cb(err) {
-      if (err) {
-        console.error(err);
-      }
+  fs.writeFile(OUTPUT_FILE, JSON.stringify(report, null, 2), "utf-8", err => {
+    if (err) {
+      throw err;
     }
-  );
+  });
 }
 
 function startServer(report: Report): void {
   const port = 3001;
-  createServer(report).listen(port, () => {
-    open(`http://localhost:${port}`);
+  createServer(report).listen(port, async () => {
+    // tslint:disable-next-line:no-http-string
+    await open(`http://localhost:${port}`);
   });
+}
+
+async function exists(path: string): Promise<boolean> {
+  try {
+    await promisify(fs.access)(path, fs.constants.R_OK);
+  } catch (error) {
+    if (error.code === "ENOENT") return false;
+    throw error;
+  }
+  return true;
 }
 
 export = GraphqlStats;

@@ -1,3 +1,5 @@
+/* tslint:disable:no-banned-terms triple-equals no-for-in*/
+
 import parser = require("@babel/parser");
 import util from "util";
 
