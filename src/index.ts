@@ -45,7 +45,7 @@ class GraphqlStats extends Command {
 
     const schemaFile = flags.schema || "schema.json";
 
-    const uiBuildPath = path.resolve(__dirname, "../graphql-stats-ui/build");
+    const uiBuildPath = path.resolve(__dirname, "../graphql-usage-ui/build");
     const isUIBuilt = await promisify(fs.exists)(uiBuildPath);
 
     const analyzeFilesTask = {
@@ -159,7 +159,7 @@ async function analyzeFiles(
 }
 
 async function buildStaticAssets() {
-  const uiPath = path.resolve(__dirname, "../graphql-stats-ui");
+  const uiPath = path.resolve(__dirname, "../graphql-usage-ui");
   await promisify(exec)("yarn && yarn build", { cwd: uiPath });
 }
 

@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 1`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 1`] = `
 Object {
   "name": "Droid",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 2`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 2`] = `
 Object {
   "name": "appearsIn",
   "parentType": "Droid",
@@ -14,7 +14,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 3`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 3`] = `
 Object {
   "name": "friends",
   "parentType": "Droid",
@@ -22,7 +22,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 4`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 4`] = `
 Object {
   "name": "friendsConnection",
   "parentType": "Droid",
@@ -30,7 +30,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 5`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 5`] = `
 Object {
   "name": "id",
   "parentType": "Droid",
@@ -38,7 +38,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 6`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 6`] = `
 Object {
   "name": "name",
   "parentType": "Droid",
@@ -46,7 +46,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 7`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 7`] = `
 Object {
   "name": "primaryFunction",
   "parentType": "Droid",
@@ -54,13 +54,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 8`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 8`] = `
 Object {
   "name": "FriendsConnection",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 9`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 9`] = `
 Object {
   "name": "edges",
   "parentType": "FriendsConnection",
@@ -68,7 +68,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 10`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 10`] = `
 Object {
   "name": "friends",
   "parentType": "FriendsConnection",
@@ -76,7 +76,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 11`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 11`] = `
 Object {
   "name": "pageInfo",
   "parentType": "FriendsConnection",
@@ -84,7 +84,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 12`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 12`] = `
 Object {
   "name": "totalCount",
   "parentType": "FriendsConnection",
@@ -92,13 +92,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 13`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 13`] = `
 Object {
   "name": "FriendsEdge",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 14`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 14`] = `
 Object {
   "name": "cursor",
   "parentType": "FriendsEdge",
@@ -106,7 +106,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 15`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 15`] = `
 Object {
   "name": "node",
   "parentType": "FriendsEdge",
@@ -114,13 +114,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 16`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 16`] = `
 Object {
   "name": "Human",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 17`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 17`] = `
 Object {
   "name": "appearsIn",
   "parentType": "Human",
@@ -128,7 +128,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 18`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 18`] = `
 Object {
   "name": "friends",
   "parentType": "Human",
@@ -136,7 +136,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 19`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 19`] = `
 Object {
   "name": "friendsConnection",
   "parentType": "Human",
@@ -144,7 +144,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 20`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 20`] = `
 Object {
   "name": "height",
   "parentType": "Human",
@@ -152,7 +152,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 21`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 21`] = `
 Object {
   "name": "homePlanet",
   "parentType": "Human",
@@ -160,7 +160,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 22`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 22`] = `
 Object {
   "name": "id",
   "parentType": "Human",
@@ -168,7 +168,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 23`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 23`] = `
 Object {
   "name": "mass",
   "parentType": "Human",
@@ -176,7 +176,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 24`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 24`] = `
 Object {
   "name": "name",
   "parentType": "Human",
@@ -184,7 +184,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 25`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 25`] = `
 Object {
   "name": "starships",
   "parentType": "Human",
@@ -192,13 +192,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 26`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 26`] = `
 Object {
   "name": "Mutation",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 27`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 27`] = `
 Object {
   "name": "createReview",
   "parentType": "Mutation",
@@ -206,13 +206,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 28`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 28`] = `
 Object {
   "name": "PageInfo",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 29`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 29`] = `
 Object {
   "name": "endCursor",
   "parentType": "PageInfo",
@@ -220,7 +220,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 30`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 30`] = `
 Object {
   "name": "hasNextPage",
   "parentType": "PageInfo",
@@ -228,7 +228,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 31`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 31`] = `
 Object {
   "name": "startCursor",
   "parentType": "PageInfo",
@@ -236,13 +236,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 32`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 32`] = `
 Object {
   "name": "Query",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 33`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 33`] = `
 Object {
   "name": "character",
   "parentType": "Query",
@@ -250,7 +250,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 34`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 34`] = `
 Object {
   "name": "droid",
   "parentType": "Query",
@@ -258,7 +258,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 35`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 35`] = `
 Object {
   "name": "hero",
   "parentType": "Query",
@@ -266,21 +266,21 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 36`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 36`] = `
 Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
   "rootNodeName": "findGraphQLTagsQuery",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 37`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 37`] = `
 Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
   "rootNodeName": "findGraphQLTagsQuery",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 38`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 38`] = `
 Object {
   "name": "human",
   "parentType": "Query",
@@ -288,7 +288,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 39`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 39`] = `
 Object {
   "name": "reviews",
   "parentType": "Query",
@@ -296,7 +296,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 40`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 40`] = `
 Object {
   "name": "search",
   "parentType": "Query",
@@ -304,7 +304,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 41`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 41`] = `
 Object {
   "name": "starship",
   "parentType": "Query",
@@ -312,13 +312,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 42`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 42`] = `
 Object {
   "name": "Review",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 43`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 43`] = `
 Object {
   "name": "commentary",
   "parentType": "Review",
@@ -326,7 +326,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 44`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 44`] = `
 Object {
   "name": "stars",
   "parentType": "Review",
@@ -334,13 +334,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 45`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 45`] = `
 Object {
   "name": "Starship",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 46`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 46`] = `
 Object {
   "name": "coordinates",
   "parentType": "Starship",
@@ -348,7 +348,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 47`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 47`] = `
 Object {
   "name": "id",
   "parentType": "Starship",
@@ -356,7 +356,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 48`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 48`] = `
 Object {
   "name": "length",
   "parentType": "Starship",
@@ -364,7 +364,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 49`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 49`] = `
 Object {
   "name": "name",
   "parentType": "Starship",
@@ -372,13 +372,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 50`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 50`] = `
 Object {
   "name": "__Directive",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 51`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 51`] = `
 Object {
   "name": "args",
   "parentType": "__Directive",
@@ -386,7 +386,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 52`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 52`] = `
 Object {
   "name": "description",
   "parentType": "__Directive",
@@ -394,7 +394,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 53`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 53`] = `
 Object {
   "name": "locations",
   "parentType": "__Directive",
@@ -402,7 +402,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 54`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 54`] = `
 Object {
   "name": "name",
   "parentType": "__Directive",
@@ -410,13 +410,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 55`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 55`] = `
 Object {
   "name": "__EnumValue",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 56`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 56`] = `
 Object {
   "name": "deprecationReason",
   "parentType": "__EnumValue",
@@ -424,7 +424,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 57`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 57`] = `
 Object {
   "name": "description",
   "parentType": "__EnumValue",
@@ -432,7 +432,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 58`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 58`] = `
 Object {
   "name": "isDeprecated",
   "parentType": "__EnumValue",
@@ -440,7 +440,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 59`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 59`] = `
 Object {
   "name": "name",
   "parentType": "__EnumValue",
@@ -448,13 +448,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 60`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 60`] = `
 Object {
   "name": "__Field",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 61`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 61`] = `
 Object {
   "name": "args",
   "parentType": "__Field",
@@ -462,7 +462,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 62`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 62`] = `
 Object {
   "name": "deprecationReason",
   "parentType": "__Field",
@@ -470,7 +470,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 63`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 63`] = `
 Object {
   "name": "description",
   "parentType": "__Field",
@@ -478,7 +478,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 64`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 64`] = `
 Object {
   "name": "isDeprecated",
   "parentType": "__Field",
@@ -486,7 +486,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 65`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 65`] = `
 Object {
   "name": "name",
   "parentType": "__Field",
@@ -494,7 +494,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 66`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 66`] = `
 Object {
   "name": "type",
   "parentType": "__Field",
@@ -502,13 +502,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 67`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 67`] = `
 Object {
   "name": "__InputValue",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 68`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 68`] = `
 Object {
   "name": "defaultValue",
   "parentType": "__InputValue",
@@ -516,7 +516,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 69`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 69`] = `
 Object {
   "name": "description",
   "parentType": "__InputValue",
@@ -524,7 +524,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 70`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 70`] = `
 Object {
   "name": "name",
   "parentType": "__InputValue",
@@ -532,7 +532,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 71`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 71`] = `
 Object {
   "name": "type",
   "parentType": "__InputValue",
@@ -540,13 +540,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 72`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 72`] = `
 Object {
   "name": "__Schema",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 73`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 73`] = `
 Object {
   "name": "directives",
   "parentType": "__Schema",
@@ -554,7 +554,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 74`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 74`] = `
 Object {
   "name": "mutationType",
   "parentType": "__Schema",
@@ -562,7 +562,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 75`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 75`] = `
 Object {
   "name": "queryType",
   "parentType": "__Schema",
@@ -570,7 +570,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 76`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 76`] = `
 Object {
   "name": "subscriptionType",
   "parentType": "__Schema",
@@ -578,7 +578,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 77`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 77`] = `
 Object {
   "name": "types",
   "parentType": "__Schema",
@@ -586,13 +586,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 78`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 78`] = `
 Object {
   "name": "__Type",
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 79`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 79`] = `
 Object {
   "name": "description",
   "parentType": "__Type",
@@ -600,7 +600,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 80`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 80`] = `
 Object {
   "name": "enumValues",
   "parentType": "__Type",
@@ -608,7 +608,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 81`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 81`] = `
 Object {
   "name": "fields",
   "parentType": "__Type",
@@ -616,7 +616,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 82`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 82`] = `
 Object {
   "name": "inputFields",
   "parentType": "__Type",
@@ -624,7 +624,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 83`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 83`] = `
 Object {
   "name": "interfaces",
   "parentType": "__Type",
@@ -632,7 +632,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 84`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 84`] = `
 Object {
   "name": "kind",
   "parentType": "__Type",
@@ -640,7 +640,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 85`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 85`] = `
 Object {
   "name": "name",
   "parentType": "__Type",
@@ -648,7 +648,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 86`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 86`] = `
 Object {
   "name": "ofType",
   "parentType": "__Type",
@@ -656,7 +656,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .graphql GraphQL schema 87`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 87`] = `
 Object {
   "name": "possibleTypes",
   "parentType": "__Type",
@@ -664,13 +664,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 1`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 1`] = `
 Object {
   "name": "Droid",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 2`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 2`] = `
 Object {
   "name": "appearsIn",
   "parentType": "Droid",
@@ -678,7 +678,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 3`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 3`] = `
 Object {
   "name": "friends",
   "parentType": "Droid",
@@ -686,7 +686,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 4`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 4`] = `
 Object {
   "name": "friendsConnection",
   "parentType": "Droid",
@@ -694,7 +694,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 5`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 5`] = `
 Object {
   "name": "id",
   "parentType": "Droid",
@@ -702,7 +702,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 6`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 6`] = `
 Object {
   "name": "name",
   "parentType": "Droid",
@@ -710,7 +710,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 7`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 7`] = `
 Object {
   "name": "primaryFunction",
   "parentType": "Droid",
@@ -718,13 +718,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 8`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 8`] = `
 Object {
   "name": "FriendsConnection",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 9`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 9`] = `
 Object {
   "name": "edges",
   "parentType": "FriendsConnection",
@@ -732,7 +732,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 10`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 10`] = `
 Object {
   "name": "friends",
   "parentType": "FriendsConnection",
@@ -740,7 +740,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 11`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 11`] = `
 Object {
   "name": "pageInfo",
   "parentType": "FriendsConnection",
@@ -748,7 +748,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 12`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 12`] = `
 Object {
   "name": "totalCount",
   "parentType": "FriendsConnection",
@@ -756,13 +756,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 13`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 13`] = `
 Object {
   "name": "FriendsEdge",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 14`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 14`] = `
 Object {
   "name": "cursor",
   "parentType": "FriendsEdge",
@@ -770,7 +770,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 15`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 15`] = `
 Object {
   "name": "node",
   "parentType": "FriendsEdge",
@@ -778,13 +778,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 16`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 16`] = `
 Object {
   "name": "Human",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 17`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 17`] = `
 Object {
   "name": "appearsIn",
   "parentType": "Human",
@@ -792,7 +792,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 18`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 18`] = `
 Object {
   "name": "friends",
   "parentType": "Human",
@@ -800,7 +800,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 19`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 19`] = `
 Object {
   "name": "friendsConnection",
   "parentType": "Human",
@@ -808,7 +808,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 20`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 20`] = `
 Object {
   "name": "height",
   "parentType": "Human",
@@ -816,7 +816,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 21`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 21`] = `
 Object {
   "name": "homePlanet",
   "parentType": "Human",
@@ -824,7 +824,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 22`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 22`] = `
 Object {
   "name": "id",
   "parentType": "Human",
@@ -832,7 +832,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 23`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 23`] = `
 Object {
   "name": "mass",
   "parentType": "Human",
@@ -840,7 +840,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 24`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 24`] = `
 Object {
   "name": "name",
   "parentType": "Human",
@@ -848,7 +848,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 25`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 25`] = `
 Object {
   "name": "starships",
   "parentType": "Human",
@@ -856,13 +856,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 26`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 26`] = `
 Object {
   "name": "Mutation",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 27`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 27`] = `
 Object {
   "name": "createReview",
   "parentType": "Mutation",
@@ -870,13 +870,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 28`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 28`] = `
 Object {
   "name": "PageInfo",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 29`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 29`] = `
 Object {
   "name": "endCursor",
   "parentType": "PageInfo",
@@ -884,7 +884,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 30`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 30`] = `
 Object {
   "name": "hasNextPage",
   "parentType": "PageInfo",
@@ -892,7 +892,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 31`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 31`] = `
 Object {
   "name": "startCursor",
   "parentType": "PageInfo",
@@ -900,13 +900,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 32`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 32`] = `
 Object {
   "name": "Query",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 33`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 33`] = `
 Object {
   "name": "character",
   "parentType": "Query",
@@ -914,7 +914,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 34`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 34`] = `
 Object {
   "name": "droid",
   "parentType": "Query",
@@ -922,7 +922,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 35`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 35`] = `
 Object {
   "name": "hero",
   "parentType": "Query",
@@ -930,21 +930,21 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 36`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 36`] = `
 Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
   "rootNodeName": "findGraphQLTagsQuery",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 37`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 37`] = `
 Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-stats\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
   "rootNodeName": "findGraphQLTagsQuery",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 38`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 38`] = `
 Object {
   "name": "human",
   "parentType": "Query",
@@ -952,7 +952,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 39`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 39`] = `
 Object {
   "name": "reviews",
   "parentType": "Query",
@@ -960,7 +960,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 40`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 40`] = `
 Object {
   "name": "search",
   "parentType": "Query",
@@ -968,7 +968,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 41`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 41`] = `
 Object {
   "name": "starship",
   "parentType": "Query",
@@ -976,13 +976,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 42`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 42`] = `
 Object {
   "name": "Review",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 43`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 43`] = `
 Object {
   "name": "commentary",
   "parentType": "Review",
@@ -990,7 +990,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 44`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 44`] = `
 Object {
   "name": "stars",
   "parentType": "Review",
@@ -998,13 +998,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 45`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 45`] = `
 Object {
   "name": "Starship",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 46`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 46`] = `
 Object {
   "name": "coordinates",
   "parentType": "Starship",
@@ -1012,7 +1012,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 47`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 47`] = `
 Object {
   "name": "id",
   "parentType": "Starship",
@@ -1020,7 +1020,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 48`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 48`] = `
 Object {
   "name": "length",
   "parentType": "Starship",
@@ -1028,7 +1028,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 49`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 49`] = `
 Object {
   "name": "name",
   "parentType": "Starship",
@@ -1036,13 +1036,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 50`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 50`] = `
 Object {
   "name": "__Directive",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 51`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 51`] = `
 Object {
   "name": "args",
   "parentType": "__Directive",
@@ -1050,7 +1050,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 52`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 52`] = `
 Object {
   "name": "description",
   "parentType": "__Directive",
@@ -1058,7 +1058,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 53`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 53`] = `
 Object {
   "name": "locations",
   "parentType": "__Directive",
@@ -1066,7 +1066,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 54`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 54`] = `
 Object {
   "name": "name",
   "parentType": "__Directive",
@@ -1074,13 +1074,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 55`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 55`] = `
 Object {
   "name": "__EnumValue",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 56`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 56`] = `
 Object {
   "name": "deprecationReason",
   "parentType": "__EnumValue",
@@ -1088,7 +1088,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 57`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 57`] = `
 Object {
   "name": "description",
   "parentType": "__EnumValue",
@@ -1096,7 +1096,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 58`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 58`] = `
 Object {
   "name": "isDeprecated",
   "parentType": "__EnumValue",
@@ -1104,7 +1104,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 59`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 59`] = `
 Object {
   "name": "name",
   "parentType": "__EnumValue",
@@ -1112,13 +1112,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 60`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 60`] = `
 Object {
   "name": "__Field",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 61`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 61`] = `
 Object {
   "name": "args",
   "parentType": "__Field",
@@ -1126,7 +1126,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 62`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 62`] = `
 Object {
   "name": "deprecationReason",
   "parentType": "__Field",
@@ -1134,7 +1134,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 63`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 63`] = `
 Object {
   "name": "description",
   "parentType": "__Field",
@@ -1142,7 +1142,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 64`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 64`] = `
 Object {
   "name": "isDeprecated",
   "parentType": "__Field",
@@ -1150,7 +1150,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 65`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 65`] = `
 Object {
   "name": "name",
   "parentType": "__Field",
@@ -1158,7 +1158,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 66`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 66`] = `
 Object {
   "name": "type",
   "parentType": "__Field",
@@ -1166,13 +1166,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 67`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 67`] = `
 Object {
   "name": "__InputValue",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 68`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 68`] = `
 Object {
   "name": "defaultValue",
   "parentType": "__InputValue",
@@ -1180,7 +1180,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 69`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 69`] = `
 Object {
   "name": "description",
   "parentType": "__InputValue",
@@ -1188,7 +1188,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 70`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 70`] = `
 Object {
   "name": "name",
   "parentType": "__InputValue",
@@ -1196,7 +1196,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 71`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 71`] = `
 Object {
   "name": "type",
   "parentType": "__InputValue",
@@ -1204,13 +1204,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 72`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 72`] = `
 Object {
   "name": "__Schema",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 73`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 73`] = `
 Object {
   "name": "directives",
   "parentType": "__Schema",
@@ -1218,7 +1218,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 74`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 74`] = `
 Object {
   "name": "mutationType",
   "parentType": "__Schema",
@@ -1226,7 +1226,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 75`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 75`] = `
 Object {
   "name": "queryType",
   "parentType": "__Schema",
@@ -1234,7 +1234,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 76`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 76`] = `
 Object {
   "name": "subscriptionType",
   "parentType": "__Schema",
@@ -1242,7 +1242,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 77`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 77`] = `
 Object {
   "name": "types",
   "parentType": "__Schema",
@@ -1250,13 +1250,13 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 78`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 78`] = `
 Object {
   "name": "__Type",
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 79`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 79`] = `
 Object {
   "name": "description",
   "parentType": "__Type",
@@ -1264,7 +1264,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 80`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 80`] = `
 Object {
   "name": "enumValues",
   "parentType": "__Type",
@@ -1272,7 +1272,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 81`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 81`] = `
 Object {
   "name": "fields",
   "parentType": "__Type",
@@ -1280,7 +1280,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 82`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 82`] = `
 Object {
   "name": "inputFields",
   "parentType": "__Type",
@@ -1288,7 +1288,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 83`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 83`] = `
 Object {
   "name": "interfaces",
   "parentType": "__Type",
@@ -1296,7 +1296,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 84`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 84`] = `
 Object {
   "name": "kind",
   "parentType": "__Type",
@@ -1304,7 +1304,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 85`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 85`] = `
 Object {
   "name": "name",
   "parentType": "__Type",
@@ -1312,7 +1312,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 86`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 86`] = `
 Object {
   "name": "ofType",
   "parentType": "__Type",
@@ -1320,7 +1320,7 @@ Object {
 }
 `;
 
-exports[`graphql-stats writes a file given a .json GraphQL schema 87`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 87`] = `
 Object {
   "name": "possibleTypes",
   "parentType": "__Type",

@@ -70,7 +70,7 @@ const resolveFiles = (opts: { [testPath: string]: string }) => {
   return files;
 };
 
-describe("graphql-stats", () => {
+describe("graphql-usage", () => {
   test
     .register("fs", setupFS)
     .fs(
@@ -134,7 +134,7 @@ function assertOutputMatchesSnapshot(output: {
       field.occurrences.map((occurence: any) => {
         expect(occurence).toMatchSnapshot({
           filename: expect.stringMatching(
-            /^https:\/\/github.com\/CDThomas\/graphql-stats\/tree\/.*\.js#L\d$/
+            /^https:\/\/github.com\/CDThomas\/graphql-usage\/tree\/.*\.js#L\d$/
           )
         });
       });
