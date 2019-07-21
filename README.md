@@ -30,14 +30,14 @@
 - [x] Git integration to generate links to source on git
 - [x] Add UI
 - [x] Support schemas as both .json and .graphql files
-- [ ] Add CI
-- [ ] Rename project
+- [x] Add CI
+- [x] Rename project
+- [x] Rewrite sync code as async to improve perf and DX
+- [x] Use [listr](https://github.com/SamVerschueren/listr) or something similar
 - [ ] Publish to NPM
-- [ ] Rewrite sync code as async to improve perf and DX
-- [ ] Use [listr](https://github.com/SamVerschueren/listr) or something similar
 - [ ] Support for analyzing TS files
 - [ ] Support for `graphql-tag` rather than just Relay tags
 - [ ] Show usage for input types
 - [ ] Improve usage info for abstract types
 - [ ] Improve usage info for object types (e.g. whether the type is used rather than individual fields)
-- [ ] Remove --gitRoot flag
+- [ ] Remove --gitRoot flag (will also add npm 12 support)
