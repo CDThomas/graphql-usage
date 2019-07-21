@@ -22,29 +22,36 @@ import { buildReport, Report } from "./report";
 import createServer from "./server";
 
 class GraphqlStats extends Command {
-  static description = "describe the command here";
+  static description =
+    "Analyzes JS source files and generates a report on GraphQL field usage.";
+
+  static examples = ["$ graphql-usage ./schema.json ./src/ --gitDir ./"];
 
   static flags = {
     version: flags.version({ char: "v" }),
     help: flags.help({ char: "h" }),
-    schema: flags.string({ char: "s", description: "GraphQL schema" }),
     gitDir: flags.string({
       char: "g",
       description: "Path to Git project root",
       required: true
     }),
     json: flags.boolean({
-      description: "Output report as JSON rather than starting the app"
+      description: "Output report as JSON rather than starting the app",
+      hidden: true
     })
   };
 
-  static args = [{ name: "sourceDir", required: true }];
+  static args = [
+    { name: "schema", required: true },
+    { name: "sourceDir", required: true }
+  ];
 
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
+    const { schema, sourceDir } = args;
     const { gitDir, json } = flags;
 
-    const schemaFile = flags.schema || "schema.json";
+    const schemaFile = schema || "schema.json";
 
     const uiBuildPath = path.resolve(__dirname, "../graphql-usage-ui/build");
     const isUIBuilt = await exists(uiBuildPath);
@@ -52,7 +59,7 @@ class GraphqlStats extends Command {
     const analyzeFilesTask = {
       title: "Analyzing source files ",
       task: async (ctx: { report: Report | undefined }) => {
-        ctx.report = await analyzeFiles(schemaFile, gitDir, args.sourceDir);
+        ctx.report = await analyzeFiles(schemaFile, gitDir, sourceDir);
       }
     };
 

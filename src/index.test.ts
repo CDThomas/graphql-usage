@@ -80,14 +80,7 @@ describe("graphql-usage", () => {
       })
     )
     .do(() =>
-      cmd.run([
-        "./testSrc",
-        "--schema",
-        "./schema.json",
-        "--gitDir",
-        "../",
-        "--json"
-      ])
+      cmd.run(["./schema.json", "./testSrc", "--gitDir", "../", "--json"])
     )
     .it("writes a file given a .json GraphQL schema", () => {
       const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
@@ -105,14 +98,7 @@ describe("graphql-usage", () => {
       })
     )
     .do(() =>
-      cmd.run([
-        "./testSrc",
-        "--schema",
-        "./schema.graphql",
-        "--gitDir",
-        "../",
-        "--json"
-      ])
+      cmd.run(["./schema.graphql", "./testSrc", "--gitDir", "../", "--json"])
     )
     .it("writes a file given a .graphql GraphQL schema", () => {
       const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
