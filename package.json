@@ -1,6 +1,6 @@
 {
   "name": "graphql-usage",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": " @CDThomas",
   "bin": {
     "graphql-usage": "./bin/run"
