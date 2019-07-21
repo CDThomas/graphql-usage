@@ -1,11 +1,11 @@
 {
-  "name": "graphql-stats",
+  "name": "graphql-usage",
   "version": "0.0.0",
   "author": " @CDThomas",
   "bin": {
-    "graphql-stats": "./bin/run"
+    "graphql-usage": "./bin/run"
   },
-  "bugs": "https://github.com/CDThomas/graphql-stats/issues",
+  "bugs": "https://github.com/CDThomas/graphql-usage/issues",
   "dependencies": {
     "@babel/parser": "^7.4.5",
     "@oclif/command": "^1",
@@ -46,16 +46,16 @@
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/CDThomas/graphql-stats",
+  "homepage": "https://github.com/CDThomas/graphql-usage",
   "keywords": [
     "oclif"
   ],
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "graphql-stats"
+    "bin": "graphql-usage"
   },
-  "repository": "CDThomas/graphql-stats",
+  "repository": "CDThomas/graphql-usage",
   "scripts": {
     "posttest": "tslint -p . -t stylish",
     "prepack": "rm -rf lib && tsc -b",

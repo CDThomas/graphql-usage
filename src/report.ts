@@ -1,7 +1,8 @@
+import { GraphQLSchema, isObjectType } from "graphql";
 import R from "ramda";
+
 import flatten from "./flatten";
 import { FieldInfo } from "./getFieldInfo";
-import { isObjectType, GraphQLSchema } from "graphql";
 
 interface Report {
   data: {

@@ -1,13 +1,14 @@
 import express from "express";
-import { Report } from "./report";
 import path from "path";
+
+import { Report } from "./report";
 
 function createServer(stats: Report) {
   const app = express();
 
-  app.use(express.static(path.resolve(__dirname, "../graphql-stats-ui/build")));
+  app.use(express.static(path.resolve(__dirname, "../graphql-usage-ui/build")));
 
-  app.get("/stats", (req, res) => {
+  app.get("/stats", (_req, res) => {
     res.json(stats);
   });
 

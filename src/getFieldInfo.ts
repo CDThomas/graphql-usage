@@ -1,11 +1,12 @@
 import {
   getLocation,
   parse,
-  visit,
-  visitWithTypeInfo,
   Source,
-  TypeInfo
+  TypeInfo,
+  visit,
+  visitWithTypeInfo
 } from "graphql";
+
 import { GraphQLTag } from "./findGraphQLTags";
 
 export interface FieldInfo {

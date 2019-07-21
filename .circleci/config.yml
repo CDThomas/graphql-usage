@@ -43,9 +43,10 @@ jobs:
 
 workflows:
   version: 2
-  "graphql-stats":
+  "graphql-usage":
     jobs:
-      - node-latest
+      # FIXME: enable once nodegit supports node 12 or nodegit is removed as a dep
+      # - node-latest
       - node-8
       - node-10
       - cache:
