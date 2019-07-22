@@ -1,5 +1,4 @@
 import { Command, flags } from "@oclif/command";
-import { exec } from "child_process";
 import fs from "fs";
 import {
   buildClientSchema,
@@ -53,9 +52,6 @@ class GraphqlStats extends Command {
 
     const schemaFile = schema || "schema.json";
 
-    const uiBuildPath = path.resolve(__dirname, "../graphql-usage-ui/build");
-    const isUIBuilt = await exists(uiBuildPath);
-
     const analyzeFilesTask = {
       title: "Analyzing source files ",
       task: async (ctx: { report: Report | undefined }) => {
@@ -73,27 +69,8 @@ class GraphqlStats extends Command {
       }
     ]);
 
-    const concurrentTasks = new Listr(
-      [
-        {
-          title: "Building static assets",
-          skip: () => {
-            if (isUIBuilt) return "Already built";
-          },
-          task: async () => {
-            await buildStaticAssets();
-          }
-        },
-        analyzeFilesTask
-      ],
-      { concurrent: true }
-    );
-
     const appTasks = new Listr([
-      {
-        title: "Building report",
-        task: () => concurrentTasks
-      },
+      analyzeFilesTask,
       {
         title: "Starting server at http://localhost:3001",
         task: ({ report }: { report: Report }) => {
@@ -164,11 +141,6 @@ async function analyzeFiles(
   return buildReport(flatten(resolved), schema);
 }
 
-async function buildStaticAssets() {
-  const uiPath = path.resolve(__dirname, "../graphql-usage-ui");
-  await promisify(exec)("yarn && yarn build", { cwd: uiPath });
-}
-
 function writeJSON(report: Report): void {
   const OUTPUT_FILE = "./report.json";
 
@@ -185,16 +157,6 @@ function startServer(report: Report): void {
     // tslint:disable-next-line:no-http-string
     await open(`http://localhost:${port}`);
   });
-}
-
-async function exists(path: string): Promise<boolean> {
-  try {
-    await promisify(fs.access)(path, fs.constants.R_OK);
-  } catch (error) {
-    if (error.code === "ENOENT") return false;
-    throw error;
-  }
-  return true;
 }
 
 export = GraphqlStats;
