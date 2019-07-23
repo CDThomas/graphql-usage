@@ -7,38 +7,35 @@
 [![Downloads/week](https://img.shields.io/npm/dw/graphql-usage.svg)](https://npmjs.org/package/graphql-usage)
 [![License](https://img.shields.io/npm/l/graphql-usage.svg)](https://github.com/CDThomas/graphql-usage/blob/master/package.json)
 
-<!-- toc -->
-
 # Usage
 
-<!-- usage -->
+```bash
+$ graphql-usage SCHEMA SOURCEDIR
+```
 
-# Commands
+## Arguments:
 
-<!-- commands -->
+- SCHEMA: Path to the Graphql schema to report usage info for. Can be either a `.json` or `.graphql` file.
+- SOURCEDIR: Path to the source directory to analyze.
 
-# Resources
+## Options:
 
-- [oclif docs](https://github.com/oclif/oclif)
-- [Apollo CLI](https://github.com/apollographql/apollo-tooling/tree/master/packages/apollo)
+- `-g`, `--gitDir=gitDir`: (required) Path to Git project root
+- `-h`, `--help`: show CLI help
+- `-v`, `--version`: show CLI version
 
-# TODO
+## Example:
 
-- [x] Parse JS source files into JS ASTs for `graphql` tags
-- [x] Parse content of `graphql` tags into GraphQL ASTs
-- [x] Generate stats from GraphQL ASTs
-- [x] Git integration to generate links to source on git
-- [x] Add UI
-- [x] Support schemas as both .json and .graphql files
-- [x] Add CI
-- [x] Rename project
-- [x] Rewrite sync code as async to improve perf and DX
-- [x] Use [listr](https://github.com/SamVerschueren/listr) or something similar
-- [ ] Publish to NPM
-- [ ] Support for analyzing TS files
-- [ ] Support for `graphql-tag` rather than just Relay tags
+```bash
+$ graphql-usage ./schema.graphql ./src/ --gitDir ./
+```
+
+# TODO:
+
+- [ ] Remove --gitRoot flag (will also add npm 12 support)
 - [ ] Show usage for input types
 - [ ] Improve usage info for abstract types
 - [ ] Improve usage info for object types (e.g. whether the type is used rather than individual fields)
-- [ ] Remove --gitRoot flag (will also add npm 12 support)
+- [ ] Support for `graphql-tag` rather than just Relay tags
+- [ ] Support for analyzing TS files
 - [ ] Windows support
