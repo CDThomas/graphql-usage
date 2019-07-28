@@ -1,25 +1,32 @@
-import NodeGit from "nodegit";
+import { exec } from "child_process";
+import { promisify } from "util";
 
-async function getGitHubBaseURL(gitDir: string): Promise<string> {
-  const { refName, remoteURL } = await NodeGit.Repository.open(gitDir).then(
-    async repo => {
-      const refName = await repo.getCurrentBranch().then(ref => {
-        return ref.name();
-      });
+async function getGitHubBaseURL(): Promise<string> {
+  // TODO: improve error handling
+  // TODO: check it branch exists in remote and default link to master if not
 
-      const remoteURL = await repo.getRemote("origin").then(remote => {
-        return remote.url();
-      });
+  const branchOutput = await promisify(exec)("git rev-parse --abbrev-ref HEAD");
+  const branchName = branchOutput.stdout.toString().trim();
 
-      return { refName, remoteURL };
-    }
+  if (!branchName) {
+    throw new Error("Error getting current branch name");
+  }
+
+  const remoteURLOutput = await promisify(exec)(
+    "git config --get remote.origin.url"
   );
-
-  const branchNameRegEx = /^refs\/heads\/(.*)/;
   const repoBasePathRegEx = /^git@github\.com:(.*)\.git$/;
+  const matches = remoteURLOutput.stdout
+    .toString()
+    .trim()
+    .match(repoBasePathRegEx);
 
-  const branchName = refName.match(branchNameRegEx)[1];
-  const repoBasePath = remoteURL.match(repoBasePathRegEx)[1];
+  if (!matches || !matches[1]) {
+    throw new Error("Error getting remote URL");
+  }
+
+  const repoBasePath = matches[1];
+
   return `https://github.com/${repoBasePath}/tree/${branchName}`;
 }
 

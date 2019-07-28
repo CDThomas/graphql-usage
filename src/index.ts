@@ -101,7 +101,7 @@ async function analyzeFiles(
 ): Promise<Report> {
   const schema = await readSchema(schemaFile);
 
-  const gitHubBaseURL = await getGitHubBaseURL(gitDir);
+  const gitHubBaseURL = await getGitHubBaseURL();
 
   const extensions = ["js", "jsx"];
   const defaultExclude = [
