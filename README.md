@@ -1,9 +1,7 @@
 # graphql-usage
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/graphql-usage.svg)](https://npmjs.org/package/graphql-usage)
 [![CircleCI](https://circleci.com/gh/CDThomas/graphql-usage/tree/master.svg?style=shield)](https://circleci.com/gh/CDThomas/graphql-usage/tree/master)
-[![Downloads/week](https://img.shields.io/npm/dw/graphql-usage.svg)](https://npmjs.org/package/graphql-usage)
 [![License](https://img.shields.io/npm/l/graphql-usage.svg)](https://github.com/CDThomas/graphql-usage/blob/master/package.json)
 
 🛠 A tool for refactoring GraphQL APIs.
