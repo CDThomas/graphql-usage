@@ -97,7 +97,7 @@ async function analyzeFiles(
   schemaFile: string,
   gitDir: string,
   sourceDir: string,
-  exclude: string[] | undefined
+  exclude?: string[]
 ): Promise<Report> {
   const schema = await readSchema(schemaFile);
 
