@@ -6,7 +6,7 @@
 [![Downloads/week](https://img.shields.io/npm/dw/graphql-usage.svg)](https://npmjs.org/package/graphql-usage)
 [![License](https://img.shields.io/npm/l/graphql-usage.svg)](https://github.com/CDThomas/graphql-usage/blob/master/package.json)
 
-🛠 A tool for refactoring GraphQL APIs
+🛠 A tool for refactoring GraphQL APIs.
 
 ![](/demo.gif)
 
