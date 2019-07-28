@@ -3,9 +3,26 @@
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/graphql-usage.svg)](https://npmjs.org/package/graphql-usage)
 [![CircleCI](https://circleci.com/gh/CDThomas/graphql-usage/tree/master.svg?style=shield)](https://circleci.com/gh/CDThomas/graphql-usage/tree/master)
-[![Codecov](https://codecov.io/gh/CDThomas/graphql-usage/branch/master/graph/badge.svg)](https://codecov.io/gh/CDThomas/graphql-usage)
 [![Downloads/week](https://img.shields.io/npm/dw/graphql-usage.svg)](https://npmjs.org/package/graphql-usage)
 [![License](https://img.shields.io/npm/l/graphql-usage.svg)](https://github.com/CDThomas/graphql-usage/blob/master/package.json)
+
+🛠 A tool for refactoring GraphQL APIs
+
+![](/demo.gif)
+
+# Installation
+
+NPM:
+
+```bash
+$ npm install --save-dev graphql-usage
+```
+
+Yarn:
+
+```bash
+$ yarn add -D graphql-usage
+```
 
 # Usage
 
