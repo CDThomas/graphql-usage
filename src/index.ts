@@ -34,7 +34,7 @@ class GraphqlStats extends Command {
       required: true
     }),
 
-    // Non-required flags
+    // Optional flags
     exclude: flags.string({
       // Default provided in `run` method
       description: "Directories to ignore under src",
