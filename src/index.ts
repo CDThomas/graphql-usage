@@ -1,4 +1,5 @@
 import { Command, flags } from "@oclif/command";
+import glob from "fast-glob";
 import fs from "fs";
 import {
   buildClientSchema,
@@ -16,7 +17,6 @@ import findGraphQLTags from "./findGraphQLTags";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
 import getGitHubBaseURL from "./getGitHubBaseURL";
-import readFiles from "./readFiles";
 import { buildReport, Report } from "./report";
 import createServer from "./server";
 
@@ -27,13 +27,25 @@ class GraphqlStats extends Command {
   static examples = ["$ graphql-usage ./schema.json ./src/ --gitDir ./"];
 
   static flags = {
-    version: flags.version({ char: "v" }),
-    help: flags.help({ char: "h" }),
+    // Required flags
     gitDir: flags.string({
       char: "g",
       description: "Path to Git project root",
       required: true
     }),
+
+    // Non-required flags
+    exclude: flags.string({
+      // Default provided in `run` method
+      description: "Directories to ignore under src",
+      multiple: true
+    }),
+
+    // Meta flags
+    help: flags.help({ char: "h" }),
+    version: flags.version({ char: "v" }),
+
+    // Hidden flags
     json: flags.boolean({
       description: "Output report as JSON rather than starting the app",
       hidden: true
@@ -48,14 +60,12 @@ class GraphqlStats extends Command {
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
     const { schema, sourceDir } = args;
-    const { gitDir, json } = flags;
-
-    const schemaFile = schema || "schema.json";
+    const { gitDir, json, exclude } = flags;
 
     const analyzeFilesTask = {
       title: "Analyzing source files ",
       task: async (ctx: { report: Report | undefined }) => {
-        ctx.report = await analyzeFiles(schemaFile, gitDir, sourceDir);
+        ctx.report = await analyzeFiles(schema, gitDir, sourceDir, exclude);
       }
     };
 
@@ -83,6 +93,54 @@ class GraphqlStats extends Command {
   }
 }
 
+async function analyzeFiles(
+  schemaFile: string,
+  gitDir: string,
+  sourceDir: string,
+  exclude: string[] | undefined
+): Promise<Report> {
+  const schema = await readSchema(schemaFile);
+
+  const gitHubBaseURL = await getGitHubBaseURL(gitDir);
+
+  const extensions = ["js", "jsx"];
+  const defaultExclude = [
+    // Node modules
+    "**/node_modules/**",
+    // Relay compiler artifacts
+    "**/__generated__/**",
+    // Test files
+    "**/__mocks__/**",
+    "**/__tests__/**",
+    "**/*.test.js"
+  ];
+  const files = await glob(`**/*.+(${extensions.join("|")})`, {
+    cwd: sourceDir,
+    ignore: exclude || defaultExclude
+  });
+
+  const summaryFields: Promise<FieldInfo[]>[] = files.map(async filepath => {
+    const fullPath = path.resolve(process.cwd(), sourceDir, filepath);
+    const content = await promisify(fs.readFile)(fullPath, {
+      encoding: "utf-8"
+    });
+
+    const tags = findGraphQLTags(content);
+    const typeInfo = new TypeInfo(schema);
+
+    const gitHubFileURL = fullPath.replace(path.resolve(gitDir), gitHubBaseURL);
+
+    const fields: FieldInfo[][] = tags.map(
+      unary(partialRight(getFeildInfo, [typeInfo, gitHubFileURL]))
+    );
+
+    return flatten(fields);
+  });
+  const resolved = await Promise.all(summaryFields);
+
+  return buildReport(flatten(resolved), schema);
+}
+
 async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
   const extension = path.extname(schemaFile);
 
@@ -102,43 +160,6 @@ async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
   throw new Error(
     "Invalid schema file. Please provide a .json or .graphql GraphQL schema."
   );
-}
-
-async function analyzeFiles(
-  schemaFile: string,
-  gitDir: string,
-  sourceDir: string
-): Promise<Report> {
-  const schema = await readSchema(schemaFile);
-
-  const gitHubBaseURL = await getGitHubBaseURL(gitDir);
-
-  const files = await readFiles(sourceDir);
-
-  const summaryFields: Promise<FieldInfo[]>[] = files
-    .filter(({ ext }) => ext === ".js")
-    .map(async ({ filepath }) => {
-      const content = await promisify(fs.readFile)(filepath, {
-        encoding: "utf-8"
-      });
-
-      const tags = findGraphQLTags(content);
-      const typeInfo = new TypeInfo(schema);
-
-      const gitHubFileURL = filepath.replace(
-        path.resolve(gitDir),
-        gitHubBaseURL
-      );
-
-      const fields: FieldInfo[][] = tags.map(
-        unary(partialRight(getFeildInfo, [typeInfo, gitHubFileURL]))
-      );
-
-      return flatten(fields);
-    });
-  const resolved = await Promise.all(summaryFields);
-
-  return buildReport(flatten(resolved), schema);
 }
 
 function writeJSON(report: Report): void {

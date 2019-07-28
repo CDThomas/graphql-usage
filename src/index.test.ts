@@ -105,6 +105,75 @@ describe("graphql-usage", () => {
 
       assertOutputMatchesSnapshot(output);
     });
+
+  test
+    .register("fs", setupFS)
+    .fs(
+      resolveFiles({
+        "./schema.graphql": "../__fixtures__/schema.graphql",
+        "./testSrc/node_modules/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/__mocks__/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/__generated__/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/__tests__/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/foo.test.js": "../__fixtures__/testSrc/foo.js"
+      })
+    )
+    .do(() =>
+      cmd.run(["./schema.graphql", "./testSrc", "--gitDir", "../", "--json"])
+    )
+    .it("provides default exclude", () => {
+      const output = fs.readFileSync("./report.json", "utf-8");
+
+      [
+        "node_modules",
+        "__mocks__",
+        "__generated__",
+        "__tests__",
+        ".test.js"
+      ].forEach(exclude => {
+        expect(output).not.toContain(exclude);
+      });
+    });
+
+  test
+    .register("fs", setupFS)
+    .fs(
+      resolveFiles({
+        "./schema.graphql": "../__fixtures__/schema.graphql",
+        "./testSrc/node_modules/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/__mocks__/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/__generated__/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/__tests__/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/foo.test.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/other_dir/foo.js": "../__fixtures__/testSrc/foo.js"
+      })
+    )
+    .do(() =>
+      cmd.run([
+        "./schema.graphql",
+        "./testSrc",
+        "--gitDir",
+        "../",
+        "--json",
+        "--exclude",
+        "**/other_dir/**"
+      ])
+    )
+    .it("uses provided exclude over defaults", () => {
+      const output = fs.readFileSync("./report.json", "utf-8");
+
+      [
+        "node_modules",
+        "__mocks__",
+        "__generated__",
+        "__tests__",
+        ".test.js"
+      ].forEach(exclude => {
+        expect(output).toContain(exclude);
+      });
+
+      expect(output).not.toContain("other_dir");
+    });
 });
 
 function assertOutputMatchesSnapshot(output: {
