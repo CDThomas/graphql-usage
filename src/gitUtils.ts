@@ -1,11 +1,17 @@
 import { exec } from "child_process";
+import path from "path";
 import { promisify } from "util";
 
-async function getGitHubBaseURL(): Promise<string> {
+async function getGitHubBaseURL(sourceDir: string): Promise<string> {
   // TODO: improve error handling
   // TODO: check it branch exists in remote and default link to master if not
 
-  const branchOutput = await promisify(exec)("git rev-parse --abbrev-ref HEAD");
+  const branchOutput = await promisify(exec)(
+    "git rev-parse --abbrev-ref HEAD",
+    {
+      cwd: path.resolve(sourceDir)
+    }
+  );
   const branchName = branchOutput.stdout.toString().trim();
 
   if (!branchName) {
@@ -13,7 +19,8 @@ async function getGitHubBaseURL(): Promise<string> {
   }
 
   const remoteURLOutput = await promisify(exec)(
-    "git config --get remote.origin.url"
+    "git config --get remote.origin.url",
+    { cwd: path.resolve(sourceDir) }
   );
   const repoBasePathRegEx = /^git@github\.com:(.*)\.git$/;
   const matches = remoteURLOutput.stdout
@@ -30,4 +37,19 @@ async function getGitHubBaseURL(): Promise<string> {
   return `https://github.com/${repoBasePath}/tree/${branchName}`;
 }
 
-export default getGitHubBaseURL;
+async function getGitProjectRoot(sourceDir: string): Promise<string> {
+  const projectRootOutput = await promisify(exec)(
+    "git rev-parse --show-toplevel",
+    { cwd: path.resolve(sourceDir) }
+  );
+
+  const projectRoot = projectRootOutput.stdout.toString().trim();
+
+  if (!projectRoot) {
+    throw new Error("Error getting Git project root");
+  }
+
+  return projectRoot;
+}
+
+export { getGitHubBaseURL, getGitProjectRoot };
