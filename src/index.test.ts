@@ -79,7 +79,7 @@ describe("graphql-usage", () => {
         "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
       })
     )
-    .do(() => cmd.run(["./schema.json", "./testSrc", "--json"]))
+    .do(() => cmd.run(["./schema.json", "./testSrc", "--json", "--quiet"]))
     .it("writes a file given a .json GraphQL schema", () => {
       const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
 
@@ -95,7 +95,7 @@ describe("graphql-usage", () => {
         "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
       })
     )
-    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json"]))
+    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
     .it("writes a file given a .graphql GraphQL schema", () => {
       const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
 
@@ -114,7 +114,7 @@ describe("graphql-usage", () => {
         "./testSrc/foo.test.js": "../__fixtures__/testSrc/foo.js"
       })
     )
-    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json"]))
+    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
     .it("provides default exclude", () => {
       const output = fs.readFileSync("./report.json", "utf-8");
 
@@ -147,6 +147,7 @@ describe("graphql-usage", () => {
         "./schema.graphql",
         "./testSrc",
         "--json",
+        "--quiet",
         "--exclude",
         "**/other_dir/**"
       ])
