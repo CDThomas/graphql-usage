@@ -65,8 +65,8 @@ class GraphqlStats extends Command {
       analyzeFilesTask,
       {
         title: "Writing JSON",
-        task: ({ report }: { report: Report }) => {
-          writeJSON(report);
+        task: async ({ report }: { report: Report }) => {
+          await writeJSON(report);
         }
       }
     ]);
@@ -154,14 +154,14 @@ async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
   );
 }
 
-function writeJSON(report: Report): void {
+function writeJSON(report: Report): Promise<void> {
   const OUTPUT_FILE = "./report.json";
 
-  fs.writeFile(OUTPUT_FILE, JSON.stringify(report, null, 2), "utf-8", err => {
-    if (err) {
-      throw err;
-    }
-  });
+  return promisify(fs.writeFile)(
+    OUTPUT_FILE,
+    JSON.stringify(report, null, 2),
+    "utf-8"
+  );
 }
 
 function startServer(report: Report): void {
