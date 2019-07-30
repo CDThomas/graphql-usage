@@ -16,7 +16,7 @@ import { promisify } from "util";
 import findGraphQLTags from "./findGraphQLTags";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
-import getGitHubBaseURL from "./getGitHubBaseURL";
+import { getGitHubBaseURL, getGitProjectRoot } from "./gitUtils";
 import { buildReport, Report } from "./report";
 import createServer from "./server";
 
@@ -24,17 +24,9 @@ class GraphqlStats extends Command {
   static description =
     "Analyzes JS source files and generates a report on GraphQL field usage.";
 
-  static examples = ["$ graphql-usage ./schema.json ./src/ --gitDir ./"];
+  static examples = ["$ graphql-usage ./schema.json ./src/"];
 
   static flags = {
-    // Required flags
-    gitDir: flags.string({
-      char: "g",
-      description: "Path to Git project root",
-      required: true
-    }),
-
-    // Optional flags
     exclude: flags.string({
       // Default provided in `run` method
       description: "Directories to ignore under src",
@@ -60,12 +52,12 @@ class GraphqlStats extends Command {
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
     const { schema, sourceDir } = args;
-    const { gitDir, json, exclude } = flags;
+    const { json, exclude } = flags;
 
     const analyzeFilesTask = {
       title: "Analyzing source files ",
       task: async (ctx: { report: Report | undefined }) => {
-        ctx.report = await analyzeFiles(schema, gitDir, sourceDir, exclude);
+        ctx.report = await analyzeFiles(schema, sourceDir, exclude);
       }
     };
 
@@ -73,8 +65,8 @@ class GraphqlStats extends Command {
       analyzeFilesTask,
       {
         title: "Writing JSON",
-        task: ({ report }: { report: Report }) => {
-          writeJSON(report);
+        task: async ({ report }: { report: Report }) => {
+          await writeJSON(report);
         }
       }
     ]);
@@ -95,13 +87,13 @@ class GraphqlStats extends Command {
 
 async function analyzeFiles(
   schemaFile: string,
-  gitDir: string,
   sourceDir: string,
   exclude?: string[]
 ): Promise<Report> {
   const schema = await readSchema(schemaFile);
 
-  const gitHubBaseURL = await getGitHubBaseURL(gitDir);
+  const gitHubBaseURL = await getGitHubBaseURL(sourceDir);
+  const gitDir = await getGitProjectRoot(sourceDir);
 
   const extensions = ["js", "jsx"];
   const defaultExclude = [
@@ -162,14 +154,14 @@ async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
   );
 }
 
-function writeJSON(report: Report): void {
+function writeJSON(report: Report): Promise<void> {
   const OUTPUT_FILE = "./report.json";
 
-  fs.writeFile(OUTPUT_FILE, JSON.stringify(report, null, 2), "utf-8", err => {
-    if (err) {
-      throw err;
-    }
-  });
+  return promisify(fs.writeFile)(
+    OUTPUT_FILE,
+    JSON.stringify(report, null, 2),
+    "utf-8"
+  );
 }
 
 function startServer(report: Report): void {

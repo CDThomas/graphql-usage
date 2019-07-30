@@ -35,14 +35,13 @@ $ graphql-usage SCHEMA SOURCEDIR
 
 ## Options:
 
-- `-g`, `--gitDir=gitDir`: (required) Path to Git project root
 - `-h`, `--help`: show CLI help
 - `-v`, `--version`: show CLI version
 
 ## Example:
 
 ```bash
-$ graphql-usage ./schema.graphql ./src/ --gitDir ./
+$ graphql-usage ./schema.graphql ./src/
 ```
 
 # TODO:
