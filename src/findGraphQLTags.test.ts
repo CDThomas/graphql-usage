@@ -83,4 +83,21 @@ describe("findGraphQLTags", () => {
       }
     ]);
   });
+
+  test("returns GraphQL tags for graphql-tag tags", () => {
+    const js = `
+      import gql from "graphql-tag";
+      const query = gql\`query findGraphQLTagsQuery { hero { id } }\`
+    `;
+
+    expect(findGraphQLTags(js)).toEqual([
+      {
+        sourceLocationOffset: {
+          column: 25,
+          line: 3
+        },
+        template: "query findGraphQLTagsQuery { hero { id } }"
+      }
+    ]);
+  });
 });

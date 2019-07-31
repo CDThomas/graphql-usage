@@ -92,7 +92,9 @@ function find(text: string): Array<GraphQLTag> {
 }
 
 function isGraphQLTag(tag: any): boolean {
-  return tag.type === "Identifier" && tag.name === "graphql";
+  return (
+    tag.type === "Identifier" && (tag.name === "graphql" || tag.name === "gql")
+  );
 }
 
 function getTemplateNode(quasi: any) {
