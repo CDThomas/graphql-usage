@@ -1,13 +1,12 @@
-/* tslint:disable:no-banned-terms triple-equals no-for-in*/
-
 import parser = require("@babel/parser");
 import traverse, { NodePath } from "@babel/traverse";
-import { TaggedTemplateExpression } from "@babel/types";
+import {
+  Expression,
+  TaggedTemplateExpression,
+  TemplateElement,
+  TemplateLiteral
+} from "@babel/types";
 import util from "util";
-
-// TODO: Add better types.
-//       Reference for types:
-//       https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/babel-types/index.d.ts
 
 // https://github.com/facebook/relay/blob/master/packages/relay-compiler/language/RelayLanguagePluginInterface.js
 export interface GraphQLTag {
@@ -50,7 +49,6 @@ const plugins: parser.ParserPlugin[] = [
   ["decorators", { decoratorsBeforeExport: true }],
   "doExpressions",
   "dynamicImport",
-  // "exportExtensions", // This seems to be an invalid opt in the latest version of Babel
   "flow",
   "functionBind",
   "functionSent",
@@ -91,30 +89,40 @@ function find(text: string): Array<GraphQLTag> {
   return result;
 }
 
-function isGraphQLTag(tag: any): boolean {
+function isGraphQLTag(tag: Expression): boolean {
   return (
     tag.type === "Identifier" && (tag.name === "graphql" || tag.name === "gql")
   );
 }
 
-function getTemplateNode(quasi: any) {
+function getTemplateNode(quasi: TemplateLiteral): TemplateElement {
   const quasis = quasi.quasis;
   invariant(
     quasis && quasis.length === 1,
-    "FindGraphQLTags: Substitutions are not allowed in graphql tags."
+    "findGraphQLTags: Substitutions are not allowed in graphql tags."
   );
   return quasis[0];
 }
 
-function getSourceLocationOffset(quasi: any) {
-  const loc = getTemplateNode(quasi).loc.start;
+function getSourceLocationOffset(
+  quasi: TemplateLiteral
+): { line: number; column: number } {
+  const loc = getTemplateNode(quasi).loc;
+
+  if (!loc) {
+    throw new Error(
+      "findGraphQLTags: Expects template element to have a location"
+    );
+  }
+
+  const start = loc.start;
   return {
-    line: loc.line,
-    column: loc.column + 1 // babylon is 0-indexed, graphql expects 1-indexed
+    line: start.line,
+    column: start.column + 1 // babylon is 0-indexed, graphql expects 1-indexed
   };
 }
 
-function invariant(condition: boolean, msg: string, ...args: any) {
+function invariant(condition: boolean, msg: string, ...args: any[]) {
   if (!condition) {
     throw new Error(util.format(msg, ...args));
   }
