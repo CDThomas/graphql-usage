@@ -1,4 +1,6 @@
 import {
+  ASTNode,
+  FieldNode,
   getLocation,
   parse,
   Source,
@@ -23,7 +25,6 @@ function getFeildInfo(
   githubBaseURL: string
 ) {
   const fields: FieldInfo[] = [];
-  let operationName: string | undefined;
   const ast = parse(template);
 
   visit(
@@ -31,19 +32,56 @@ function getFeildInfo(
     visitWithTypeInfo(typeInfo, {
       OperationDefinition(graphqlNode) {
         if (graphqlNode.name) {
-          operationName = graphqlNode.name.value;
+          visitFields(
+            graphqlNode,
+            graphqlNode.name.value,
+            typeInfo,
+            fields,
+            template,
+            sourceLocationOffset,
+            githubBaseURL
+          );
         } else {
           throw new Error(`No name for OperationDefinition`);
         }
       },
       FragmentDefinition(graphqlNode) {
         if (graphqlNode.name) {
-          operationName = graphqlNode.name.value;
+          visitFields(
+            graphqlNode,
+            graphqlNode.name.value,
+            typeInfo,
+            fields,
+            template,
+            sourceLocationOffset,
+            githubBaseURL
+          );
         } else {
           throw new Error(`No name for FragmentDefinition`);
         }
-      },
+      }
+    })
+  );
+
+  return fields;
+}
+
+function visitFields(
+  node: ASTNode,
+  operationOrFragmentName: string,
+  typeInfo: TypeInfo,
+  fields: FieldInfo[],
+  template: string,
+  sourceLocationOffset: { line: number; column: number },
+  githubBaseURL: string
+) {
+  visit(
+    node,
+    visitWithTypeInfo(typeInfo, {
       Field(graphqlNode) {
+        // Discard client only fields, but don't throw an error
+        if (isClientOnlyField(graphqlNode)) return;
+
         const parentType = typeInfo.getParentType();
         const nodeType = typeInfo.getType();
         const nodeName = graphqlNode.name.value;
@@ -70,22 +108,21 @@ function getFeildInfo(
           type: nodeType.toString(),
           parentType: parentType.toString(),
           link: `${githubBaseURL}#L${line}`,
-          rootNodeName: ""
+          rootNodeName: operationOrFragmentName
         });
       }
     })
   );
+}
 
-  return fields.map(field => {
-    if (!operationName) {
-      throw new Error("No operation name");
-    }
+function isClientOnlyField(field: FieldNode): boolean {
+  if (!field.directives) return false;
 
-    return {
-      ...field,
-      rootNodeName: operationName
-    };
+  const clientOnlyDirective = field.directives.find(directive => {
+    return directive.name.value === "client";
   });
+
+  return !!clientOnlyDirective;
 }
 
 export default getFeildInfo;

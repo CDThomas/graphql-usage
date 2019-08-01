@@ -9,6 +9,7 @@
   "bugs": "https://github.com/CDThomas/graphql-usage/issues",
   "dependencies": {
     "@babel/parser": "^7.4.5",
+    "@babel/traverse": "^7.5.5",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",

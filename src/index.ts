@@ -32,6 +32,10 @@ class GraphqlStats extends Command {
       description: "Directories to ignore under src",
       multiple: true
     }),
+    quiet: flags.boolean({
+      description: "No output to stdout",
+      default: false
+    }),
 
     // Meta flags
     help: flags.help({ char: "h" }),
@@ -52,7 +56,8 @@ class GraphqlStats extends Command {
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
     const { schema, sourceDir } = args;
-    const { json, exclude } = flags;
+    const { json, exclude, quiet } = flags;
+    const renderer = quiet ? "silent" : "default";
 
     const analyzeFilesTask = {
       title: "Analyzing source files ",
@@ -61,25 +66,31 @@ class GraphqlStats extends Command {
       }
     };
 
-    const jsonTasks = new Listr([
-      analyzeFilesTask,
-      {
-        title: "Writing JSON",
-        task: async ({ report }: { report: Report }) => {
-          await writeJSON(report);
+    const jsonTasks = new Listr(
+      [
+        analyzeFilesTask,
+        {
+          title: "Writing JSON",
+          task: async ({ report }: { report: Report }) => {
+            await writeJSON(report);
+          }
         }
-      }
-    ]);
+      ],
+      { renderer }
+    );
 
-    const appTasks = new Listr([
-      analyzeFilesTask,
-      {
-        title: "Starting server at http://localhost:3001",
-        task: ({ report }: { report: Report }) => {
-          startServer(report);
+    const appTasks = new Listr(
+      [
+        analyzeFilesTask,
+        {
+          title: "Starting server at http://localhost:3001",
+          task: ({ report }: { report: Report }) => {
+            startServer(report);
+          }
         }
-      }
-    ]);
+      ],
+      { renderer }
+    );
 
     await (json ? jsonTasks : appTasks).run();
   }
