@@ -3,10 +3,8 @@ import traverse, { NodePath } from "@babel/traverse";
 import {
   Expression,
   TaggedTemplateExpression,
-  TemplateElement,
   TemplateLiteral
 } from "@babel/types";
-import util from "util";
 
 // https://github.com/facebook/relay/blob/master/packages/relay-compiler/language/RelayLanguagePluginInterface.js
 export interface GraphQLTag {
@@ -95,19 +93,10 @@ function isGraphQLTag(tag: Expression): boolean {
   );
 }
 
-function getTemplateNode(quasi: TemplateLiteral): TemplateElement {
-  const quasis = quasi.quasis;
-  invariant(
-    quasis && quasis.length === 1,
-    "findGraphQLTags: Substitutions are not allowed in graphql tags."
-  );
-  return quasis[0];
-}
-
 function getSourceLocationOffset(
   quasi: TemplateLiteral
 ): { line: number; column: number } {
-  const loc = getTemplateNode(quasi).loc;
+  const loc = quasi.quasis[0].loc;
 
   if (!loc) {
     throw new Error(
@@ -120,12 +109,6 @@ function getSourceLocationOffset(
     line: start.line,
     column: start.column + 1 // babylon is 0-indexed, graphql expects 1-indexed
   };
-}
-
-function invariant(condition: boolean, msg: string, ...args: any[]) {
-  if (!condition) {
-    throw new Error(util.format(msg, ...args));
-  }
 }
 
 export default find;

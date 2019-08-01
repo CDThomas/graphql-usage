@@ -100,4 +100,135 @@ describe("findGraphQLTags", () => {
       }
     ]);
   });
+
+  test("returns GraphQL tags for Apollo-style fragments", () => {
+    const js = `
+      export const COMMENT_QUERY = gql\`
+        query Comment($repoName: String!) {
+          entry(repoFullName: $repoName) {
+            comments {
+              ...CommentsPageComment
+            }
+          }
+        }
+        \${CommentsPage.fragments.comment}
+      \`;
+    `;
+
+    expect(findGraphQLTags(js)).toEqual([
+      {
+        sourceLocationOffset: {
+          column: 40,
+          line: 2
+        },
+        template: `
+        query Comment($repoName: String!) {
+          entry(repoFullName: $repoName) {
+            comments {
+              ...CommentsPageComment
+            }
+          }
+        }
+        `
+      }
+    ]);
+  });
+
+  test("returns GraphQL tags for nested Apollo-style fragments", () => {
+    const js = `
+      FeedEntry.fragments = {
+        entry: gql\`
+          fragment FeedEntry on Entry {
+            commentCount
+            repository {
+              full_name
+              html_url
+              owner {
+                avatar_url
+              }
+            }
+            ...VoteButtons
+            ...RepoInfo
+          }
+          \${VoteButtons.fragments.entry}
+          \${RepoInfo.fragments.entry}
+        \`,
+      };
+    `;
+
+    expect(findGraphQLTags(js)).toEqual([
+      {
+        sourceLocationOffset: {
+          column: 20,
+          line: 3
+        },
+        template: `
+          fragment FeedEntry on Entry {
+            commentCount
+            repository {
+              full_name
+              html_url
+              owner {
+                avatar_url
+              }
+            }
+            ...VoteButtons
+            ...RepoInfo
+          }
+          `
+      }
+    ]);
+  });
+
+  test("returns GraphQL tags for tags containing both a query and fragment", () => {
+    const js = `
+      export const COMMENT_QUERY = gql\`
+        query Comment($repoName: String!) {
+          entry(repoFullName: $repoName) {
+            comments {
+              ...CommentsPageComment
+            }
+          }
+        }
+
+        fragment CommentsPageComment on Comment {
+          id
+          postedBy {
+            login
+            html_url
+          }
+          createdAt
+          content
+        }
+      \`;
+  `;
+
+    expect(findGraphQLTags(js)).toEqual([
+      {
+        sourceLocationOffset: {
+          column: 40,
+          line: 2
+        },
+        template: `
+        query Comment($repoName: String!) {
+          entry(repoFullName: $repoName) {
+            comments {
+              ...CommentsPageComment
+            }
+          }
+        }
+
+        fragment CommentsPageComment on Comment {
+          id
+          postedBy {
+            login
+            html_url
+          }
+          createdAt
+          content
+        }
+      `
+      }
+    ]);
+  });
 });
