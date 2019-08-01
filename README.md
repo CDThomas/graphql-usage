@@ -50,4 +50,5 @@ $ graphql-usage ./schema.graphql ./src/
 - [ ] Improve usage info for abstract types
 - [ ] Improve usage info for object types (e.g. whether the type is used rather than individual fields)
 - [ ] Support for analyzing TS files
+- [ ] Better support for client-only fields and client-side schemas
 - [ ] Windows support

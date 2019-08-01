@@ -1,5 +1,6 @@
 import {
   ASTNode,
+  FieldNode,
   getLocation,
   parse,
   Source,
@@ -78,6 +79,9 @@ function visitFields(
     node,
     visitWithTypeInfo(typeInfo, {
       Field(graphqlNode) {
+        // Discard client only fields, but don't throw an error
+        if (isClientOnlyField(graphqlNode)) return;
+
         const parentType = typeInfo.getParentType();
         const nodeType = typeInfo.getType();
         const nodeName = graphqlNode.name.value;
@@ -109,6 +113,16 @@ function visitFields(
       }
     })
   );
+}
+
+function isClientOnlyField(field: FieldNode): boolean {
+  if (!field.directives) return false;
+
+  const clientOnlyDirective = field.directives.find(directive => {
+    return directive.name.value === "client";
+  });
+
+  return !!clientOnlyDirective;
 }
 
 export default getFeildInfo;
