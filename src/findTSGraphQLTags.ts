@@ -14,6 +14,8 @@ import {
 
 import { GraphQLTag } from "./types";
 
+// https://github.com/relay-tools/relay-compiler-language-typescript/blob/d3c7af5d5558569def7c46d485b7fc64c6a94ccb/src/FindGraphQLTags.ts
+
 function visit(node: Node, addGraphQLTag: (tag: GraphQLTag) => void): void {
   function visitNode(node: Node) {
     switch (node.kind) {
