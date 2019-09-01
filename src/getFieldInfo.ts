@@ -9,7 +9,7 @@ import {
   visitWithTypeInfo
 } from "graphql";
 
-import { GraphQLTag } from "./findGraphQLTags";
+import { GraphQLTag } from "./types";
 
 export interface FieldInfo {
   name: string;

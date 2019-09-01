@@ -1,13 +1,13 @@
-import findGraphQLTags from "./findGraphQLTags";
+import findTSGraphQLTags from "./findTSGraphQLTags";
 
-describe("findGraphQLTags", () => {
+describe("findTSGraphQLTags", () => {
   test("returns GraphQL tags given JS source code", () => {
-    const js = `
+    const ts = `
       import { graphql } from 'react-relay';
       const query = graphql\`query findGraphQLTagsQuery { hero { id } }\`
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 29,
@@ -19,7 +19,7 @@ describe("findGraphQLTags", () => {
   });
 
   test("returns GraphQL tags containing fragments", () => {
-    const js = `
+    const ts = `
     import {createFragmentContainer, graphql} from 'react-relay';
     import TodoItem from './TodoItem'
 
@@ -28,7 +28,7 @@ describe("findGraphQLTags", () => {
     });
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 21,
@@ -40,14 +40,14 @@ describe("findGraphQLTags", () => {
   });
 
   test("returns GraphQL tags containing mutations", () => {
-    const js = `
+    const ts = `
     import {commitMutation, graphql} from 'react-relay';
 
     const mutation =
       graphql\`mutation TestMutation($input: ReviewInput!) { createReview(review: $input) { commentary } }\`;
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 15,
@@ -60,13 +60,13 @@ describe("findGraphQLTags", () => {
   });
 
   test("returns GraphQL tags given source code with multiple tags", () => {
-    const js = `
+    const ts = `
       import { graphql } from 'react-relay';
       const queryOne = graphql\`query firstQuery { hero { id } }\`
       const queryTwo = graphql\`query secondQuery { hero { name } }\`
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 32,
@@ -85,12 +85,12 @@ describe("findGraphQLTags", () => {
   });
 
   test("returns GraphQL tags for graphql-tag tags", () => {
-    const js = `
+    const ts = `
       import gql from "graphql-tag";
       const query = gql\`query findGraphQLTagsQuery { hero { id } }\`
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 25,
@@ -102,7 +102,7 @@ describe("findGraphQLTags", () => {
   });
 
   test("returns GraphQL tags for Apollo-style fragments", () => {
-    const js = `
+    const ts = `
       export const COMMENT_QUERY = gql\`
         query Comment($repoName: String!) {
           entry(repoFullName: $repoName) {
@@ -115,7 +115,7 @@ describe("findGraphQLTags", () => {
       \`;
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 40,
@@ -135,7 +135,7 @@ describe("findGraphQLTags", () => {
   });
 
   test("returns GraphQL tags for nested Apollo-style fragments", () => {
-    const js = `
+    const ts = `
       FeedEntry.fragments = {
         entry: gql\`
           fragment FeedEntry on Entry {
@@ -156,7 +156,7 @@ describe("findGraphQLTags", () => {
       };
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 20,
@@ -181,7 +181,7 @@ describe("findGraphQLTags", () => {
   });
 
   test("returns GraphQL tags for tags containing both a query and fragment", () => {
-    const js = `
+    const ts = `
       export const COMMENT_QUERY = gql\`
         query Comment($repoName: String!) {
           entry(repoFullName: $repoName) {
@@ -203,7 +203,7 @@ describe("findGraphQLTags", () => {
       \`;
   `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findTSGraphQLTags(ts, "Component.tsx")).toEqual([
       {
         sourceLocationOffset: {
           column: 40,

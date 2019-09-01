@@ -13,12 +13,14 @@ import path from "path";
 import { partialRight, unary } from "ramda";
 import { promisify } from "util";
 
-import findGraphQLTags from "./findGraphQLTags";
+import findGraphQLTags from "./findJSGraphQLTags";
+import findTSGraphQLTags from "./findTSGraphQLTags";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
 import { getGitHubBaseURL, getGitProjectRoot } from "./gitUtils";
 import { buildReport, Report } from "./report";
 import createServer from "./server";
+import { GraphQLTag } from "./types";
 
 class GraphqlStats extends Command {
   static description =
@@ -106,7 +108,7 @@ async function analyzeFiles(
   const gitHubBaseURL = await getGitHubBaseURL(sourceDir);
   const gitDir = await getGitProjectRoot(sourceDir);
 
-  const extensions = ["js", "jsx"];
+  const extensions = ["js", "jsx", "ts", "tsx"];
   const defaultExclude = [
     // Node modules
     "**/node_modules/**",
@@ -115,7 +117,7 @@ async function analyzeFiles(
     // Test files
     "**/__mocks__/**",
     "**/__tests__/**",
-    "**/*.test.js"
+    "**/*.test.(js|jsx|ts|tsx)"
   ];
   const files = await glob(`**/*.+(${extensions.join("|")})`, {
     cwd: sourceDir,
@@ -124,11 +126,23 @@ async function analyzeFiles(
 
   const summaryFields: Promise<FieldInfo[]>[] = files.map(async filepath => {
     const fullPath = path.resolve(process.cwd(), sourceDir, filepath);
+    const extname = path.extname(filepath);
     const content = await promisify(fs.readFile)(fullPath, {
       encoding: "utf-8"
     });
 
-    const tags = findGraphQLTags(content);
+    let tags: GraphQLTag[] | undefined;
+    if (extname === ".js" || extname === ".jsx") {
+      tags = findGraphQLTags(content);
+    }
+    if (extname === ".ts" || extname === ".tsx") {
+      tags = findTSGraphQLTags(content, filepath);
+    }
+
+    if (!tags) {
+      throw new Error("run: analyzeFiles expects a js, jsx, tx, or tsx file");
+    }
+
     const typeInfo = new TypeInfo(schema);
 
     const gitHubFileURL = fullPath.replace(path.resolve(gitDir), gitHubBaseURL);
