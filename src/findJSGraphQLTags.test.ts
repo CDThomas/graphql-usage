@@ -1,19 +1,19 @@
-import findGraphQLTags from "./findGraphQLTags";
+import findJSGraphQLTags from "./findJSGraphQLTags";
 
-describe("findGraphQLTags", () => {
+describe("findJSGraphQLTags", () => {
   test("returns GraphQL tags given JS source code", () => {
     const js = `
       import { graphql } from 'react-relay';
-      const query = graphql\`query findGraphQLTagsQuery { hero { id } }\`
+      const query = graphql\`query findJSGraphQLTagsQuery { hero { id } }\`
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 29,
           line: 3
         },
-        template: "query findGraphQLTagsQuery { hero { id } }"
+        template: "query findJSGraphQLTagsQuery { hero { id } }"
       }
     ]);
   });
@@ -28,7 +28,7 @@ describe("findGraphQLTags", () => {
     });
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 21,
@@ -47,7 +47,7 @@ describe("findGraphQLTags", () => {
       graphql\`mutation TestMutation($input: ReviewInput!) { createReview(review: $input) { commentary } }\`;
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 15,
@@ -66,7 +66,7 @@ describe("findGraphQLTags", () => {
       const queryTwo = graphql\`query secondQuery { hero { name } }\`
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 32,
@@ -87,16 +87,16 @@ describe("findGraphQLTags", () => {
   test("returns GraphQL tags for graphql-tag tags", () => {
     const js = `
       import gql from "graphql-tag";
-      const query = gql\`query findGraphQLTagsQuery { hero { id } }\`
+      const query = gql\`query findJSGraphQLTagsQuery { hero { id } }\`
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 25,
           line: 3
         },
-        template: "query findGraphQLTagsQuery { hero { id } }"
+        template: "query findJSGraphQLTagsQuery { hero { id } }"
       }
     ]);
   });
@@ -115,7 +115,7 @@ describe("findGraphQLTags", () => {
       \`;
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 40,
@@ -156,7 +156,7 @@ describe("findGraphQLTags", () => {
       };
     `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 20,
@@ -203,7 +203,7 @@ describe("findGraphQLTags", () => {
       \`;
   `;
 
-    expect(findGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js)).toEqual([
       {
         sourceLocationOffset: {
           column: 40,

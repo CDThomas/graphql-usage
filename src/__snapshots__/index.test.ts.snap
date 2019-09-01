@@ -1,5 +1,2640 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`graphql-usage reports on files in nested directories 1`] = `
+Object {
+  "name": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 2`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Droid",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 3`] = `
+Object {
+  "name": "friends",
+  "parentType": "Droid",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 4`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Droid",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 5`] = `
+Object {
+  "name": "id",
+  "parentType": "Droid",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 6`] = `
+Object {
+  "name": "name",
+  "parentType": "Droid",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 7`] = `
+Object {
+  "name": "primaryFunction",
+  "parentType": "Droid",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 8`] = `
+Object {
+  "name": "FriendsConnection",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 9`] = `
+Object {
+  "name": "edges",
+  "parentType": "FriendsConnection",
+  "type": "[FriendsEdge]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 10`] = `
+Object {
+  "name": "friends",
+  "parentType": "FriendsConnection",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 11`] = `
+Object {
+  "name": "pageInfo",
+  "parentType": "FriendsConnection",
+  "type": "PageInfo!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 12`] = `
+Object {
+  "name": "totalCount",
+  "parentType": "FriendsConnection",
+  "type": "Int",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 13`] = `
+Object {
+  "name": "FriendsEdge",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 14`] = `
+Object {
+  "name": "cursor",
+  "parentType": "FriendsEdge",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 15`] = `
+Object {
+  "name": "node",
+  "parentType": "FriendsEdge",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 16`] = `
+Object {
+  "name": "Human",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 17`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Human",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 18`] = `
+Object {
+  "name": "friends",
+  "parentType": "Human",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 19`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Human",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 20`] = `
+Object {
+  "name": "height",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 21`] = `
+Object {
+  "name": "homePlanet",
+  "parentType": "Human",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 22`] = `
+Object {
+  "name": "id",
+  "parentType": "Human",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 23`] = `
+Object {
+  "name": "mass",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 24`] = `
+Object {
+  "name": "name",
+  "parentType": "Human",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 25`] = `
+Object {
+  "name": "starships",
+  "parentType": "Human",
+  "type": "[Starship]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 26`] = `
+Object {
+  "name": "Mutation",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 27`] = `
+Object {
+  "name": "createReview",
+  "parentType": "Mutation",
+  "type": "Review",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 28`] = `
+Object {
+  "name": "PageInfo",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 29`] = `
+Object {
+  "name": "endCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 30`] = `
+Object {
+  "name": "hasNextPage",
+  "parentType": "PageInfo",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 31`] = `
+Object {
+  "name": "startCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 32`] = `
+Object {
+  "name": "Query",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 33`] = `
+Object {
+  "name": "character",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 34`] = `
+Object {
+  "name": "droid",
+  "parentType": "Query",
+  "type": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 35`] = `
+Object {
+  "name": "hero",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 36`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 37`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 38`] = `
+Object {
+  "name": "human",
+  "parentType": "Query",
+  "type": "Human",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 39`] = `
+Object {
+  "name": "reviews",
+  "parentType": "Query",
+  "type": "[Review]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 40`] = `
+Object {
+  "name": "search",
+  "parentType": "Query",
+  "type": "[SearchResult]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 41`] = `
+Object {
+  "name": "starship",
+  "parentType": "Query",
+  "type": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 42`] = `
+Object {
+  "name": "Review",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 43`] = `
+Object {
+  "name": "commentary",
+  "parentType": "Review",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 44`] = `
+Object {
+  "name": "stars",
+  "parentType": "Review",
+  "type": "Int!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 45`] = `
+Object {
+  "name": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 46`] = `
+Object {
+  "name": "coordinates",
+  "parentType": "Starship",
+  "type": "[[Float!]!]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 47`] = `
+Object {
+  "name": "id",
+  "parentType": "Starship",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 48`] = `
+Object {
+  "name": "length",
+  "parentType": "Starship",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 49`] = `
+Object {
+  "name": "name",
+  "parentType": "Starship",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 50`] = `
+Object {
+  "name": "__Directive",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 51`] = `
+Object {
+  "name": "args",
+  "parentType": "__Directive",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 52`] = `
+Object {
+  "name": "description",
+  "parentType": "__Directive",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 53`] = `
+Object {
+  "name": "locations",
+  "parentType": "__Directive",
+  "type": "[__DirectiveLocation!]!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 54`] = `
+Object {
+  "name": "name",
+  "parentType": "__Directive",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 55`] = `
+Object {
+  "name": "__EnumValue",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 56`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 57`] = `
+Object {
+  "name": "description",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 58`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__EnumValue",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 59`] = `
+Object {
+  "name": "name",
+  "parentType": "__EnumValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 60`] = `
+Object {
+  "name": "__Field",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 61`] = `
+Object {
+  "name": "args",
+  "parentType": "__Field",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 62`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 63`] = `
+Object {
+  "name": "description",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 64`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__Field",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 65`] = `
+Object {
+  "name": "name",
+  "parentType": "__Field",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 66`] = `
+Object {
+  "name": "type",
+  "parentType": "__Field",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 67`] = `
+Object {
+  "name": "__InputValue",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 68`] = `
+Object {
+  "name": "defaultValue",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 69`] = `
+Object {
+  "name": "description",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 70`] = `
+Object {
+  "name": "name",
+  "parentType": "__InputValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 71`] = `
+Object {
+  "name": "type",
+  "parentType": "__InputValue",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 72`] = `
+Object {
+  "name": "__Schema",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 73`] = `
+Object {
+  "name": "directives",
+  "parentType": "__Schema",
+  "type": "[__Directive!]!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 74`] = `
+Object {
+  "name": "mutationType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 75`] = `
+Object {
+  "name": "queryType",
+  "parentType": "__Schema",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 76`] = `
+Object {
+  "name": "subscriptionType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 77`] = `
+Object {
+  "name": "types",
+  "parentType": "__Schema",
+  "type": "[__Type!]!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 78`] = `
+Object {
+  "name": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 79`] = `
+Object {
+  "name": "description",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 80`] = `
+Object {
+  "name": "enumValues",
+  "parentType": "__Type",
+  "type": "[__EnumValue!]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 81`] = `
+Object {
+  "name": "fields",
+  "parentType": "__Type",
+  "type": "[__Field!]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 82`] = `
+Object {
+  "name": "inputFields",
+  "parentType": "__Type",
+  "type": "[__InputValue!]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 83`] = `
+Object {
+  "name": "interfaces",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 84`] = `
+Object {
+  "name": "kind",
+  "parentType": "__Type",
+  "type": "__TypeKind!",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 85`] = `
+Object {
+  "name": "name",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 86`] = `
+Object {
+  "name": "ofType",
+  "parentType": "__Type",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on files in nested directories 87`] = `
+Object {
+  "name": "possibleTypes",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 1`] = `
+Object {
+  "name": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 2`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Droid",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 3`] = `
+Object {
+  "name": "friends",
+  "parentType": "Droid",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 4`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Droid",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 5`] = `
+Object {
+  "name": "id",
+  "parentType": "Droid",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 6`] = `
+Object {
+  "name": "name",
+  "parentType": "Droid",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 7`] = `
+Object {
+  "name": "primaryFunction",
+  "parentType": "Droid",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 8`] = `
+Object {
+  "name": "FriendsConnection",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 9`] = `
+Object {
+  "name": "edges",
+  "parentType": "FriendsConnection",
+  "type": "[FriendsEdge]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 10`] = `
+Object {
+  "name": "friends",
+  "parentType": "FriendsConnection",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 11`] = `
+Object {
+  "name": "pageInfo",
+  "parentType": "FriendsConnection",
+  "type": "PageInfo!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 12`] = `
+Object {
+  "name": "totalCount",
+  "parentType": "FriendsConnection",
+  "type": "Int",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 13`] = `
+Object {
+  "name": "FriendsEdge",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 14`] = `
+Object {
+  "name": "cursor",
+  "parentType": "FriendsEdge",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 15`] = `
+Object {
+  "name": "node",
+  "parentType": "FriendsEdge",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 16`] = `
+Object {
+  "name": "Human",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 17`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Human",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 18`] = `
+Object {
+  "name": "friends",
+  "parentType": "Human",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 19`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Human",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 20`] = `
+Object {
+  "name": "height",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 21`] = `
+Object {
+  "name": "homePlanet",
+  "parentType": "Human",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 22`] = `
+Object {
+  "name": "id",
+  "parentType": "Human",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 23`] = `
+Object {
+  "name": "mass",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 24`] = `
+Object {
+  "name": "name",
+  "parentType": "Human",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 25`] = `
+Object {
+  "name": "starships",
+  "parentType": "Human",
+  "type": "[Starship]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 26`] = `
+Object {
+  "name": "Mutation",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 27`] = `
+Object {
+  "name": "createReview",
+  "parentType": "Mutation",
+  "type": "Review",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 28`] = `
+Object {
+  "name": "PageInfo",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 29`] = `
+Object {
+  "name": "endCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 30`] = `
+Object {
+  "name": "hasNextPage",
+  "parentType": "PageInfo",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 31`] = `
+Object {
+  "name": "startCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 32`] = `
+Object {
+  "name": "Query",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 33`] = `
+Object {
+  "name": "character",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 34`] = `
+Object {
+  "name": "droid",
+  "parentType": "Query",
+  "type": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 35`] = `
+Object {
+  "name": "hero",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 36`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 37`] = `
+Object {
+  "name": "human",
+  "parentType": "Query",
+  "type": "Human",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 38`] = `
+Object {
+  "name": "reviews",
+  "parentType": "Query",
+  "type": "[Review]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 39`] = `
+Object {
+  "name": "search",
+  "parentType": "Query",
+  "type": "[SearchResult]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 40`] = `
+Object {
+  "name": "starship",
+  "parentType": "Query",
+  "type": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 41`] = `
+Object {
+  "name": "Review",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 42`] = `
+Object {
+  "name": "commentary",
+  "parentType": "Review",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 43`] = `
+Object {
+  "name": "stars",
+  "parentType": "Review",
+  "type": "Int!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 44`] = `
+Object {
+  "name": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 45`] = `
+Object {
+  "name": "coordinates",
+  "parentType": "Starship",
+  "type": "[[Float!]!]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 46`] = `
+Object {
+  "name": "id",
+  "parentType": "Starship",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 47`] = `
+Object {
+  "name": "length",
+  "parentType": "Starship",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 48`] = `
+Object {
+  "name": "name",
+  "parentType": "Starship",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 49`] = `
+Object {
+  "name": "__Directive",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 50`] = `
+Object {
+  "name": "args",
+  "parentType": "__Directive",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 51`] = `
+Object {
+  "name": "description",
+  "parentType": "__Directive",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 52`] = `
+Object {
+  "name": "locations",
+  "parentType": "__Directive",
+  "type": "[__DirectiveLocation!]!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 53`] = `
+Object {
+  "name": "name",
+  "parentType": "__Directive",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 54`] = `
+Object {
+  "name": "__EnumValue",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 55`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 56`] = `
+Object {
+  "name": "description",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 57`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__EnumValue",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 58`] = `
+Object {
+  "name": "name",
+  "parentType": "__EnumValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 59`] = `
+Object {
+  "name": "__Field",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 60`] = `
+Object {
+  "name": "args",
+  "parentType": "__Field",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 61`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 62`] = `
+Object {
+  "name": "description",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 63`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__Field",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 64`] = `
+Object {
+  "name": "name",
+  "parentType": "__Field",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 65`] = `
+Object {
+  "name": "type",
+  "parentType": "__Field",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 66`] = `
+Object {
+  "name": "__InputValue",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 67`] = `
+Object {
+  "name": "defaultValue",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 68`] = `
+Object {
+  "name": "description",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 69`] = `
+Object {
+  "name": "name",
+  "parentType": "__InputValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 70`] = `
+Object {
+  "name": "type",
+  "parentType": "__InputValue",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 71`] = `
+Object {
+  "name": "__Schema",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 72`] = `
+Object {
+  "name": "directives",
+  "parentType": "__Schema",
+  "type": "[__Directive!]!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 73`] = `
+Object {
+  "name": "mutationType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 74`] = `
+Object {
+  "name": "queryType",
+  "parentType": "__Schema",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 75`] = `
+Object {
+  "name": "subscriptionType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 76`] = `
+Object {
+  "name": "types",
+  "parentType": "__Schema",
+  "type": "[__Type!]!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 77`] = `
+Object {
+  "name": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 78`] = `
+Object {
+  "name": "description",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 79`] = `
+Object {
+  "name": "enumValues",
+  "parentType": "__Type",
+  "type": "[__EnumValue!]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 80`] = `
+Object {
+  "name": "fields",
+  "parentType": "__Type",
+  "type": "[__Field!]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 81`] = `
+Object {
+  "name": "inputFields",
+  "parentType": "__Type",
+  "type": "[__InputValue!]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 82`] = `
+Object {
+  "name": "interfaces",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 83`] = `
+Object {
+  "name": "kind",
+  "parentType": "__Type",
+  "type": "__TypeKind!",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 84`] = `
+Object {
+  "name": "name",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 85`] = `
+Object {
+  "name": "ofType",
+  "parentType": "__Type",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on jsx files 86`] = `
+Object {
+  "name": "possibleTypes",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 1`] = `
+Object {
+  "name": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on ts files 2`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Droid",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 3`] = `
+Object {
+  "name": "friends",
+  "parentType": "Droid",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 4`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Droid",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 5`] = `
+Object {
+  "name": "id",
+  "parentType": "Droid",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 6`] = `
+Object {
+  "name": "name",
+  "parentType": "Droid",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 7`] = `
+Object {
+  "name": "primaryFunction",
+  "parentType": "Droid",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 8`] = `
+Object {
+  "name": "FriendsConnection",
+}
+`;
+
+exports[`graphql-usage reports on ts files 9`] = `
+Object {
+  "name": "edges",
+  "parentType": "FriendsConnection",
+  "type": "[FriendsEdge]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 10`] = `
+Object {
+  "name": "friends",
+  "parentType": "FriendsConnection",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 11`] = `
+Object {
+  "name": "pageInfo",
+  "parentType": "FriendsConnection",
+  "type": "PageInfo!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 12`] = `
+Object {
+  "name": "totalCount",
+  "parentType": "FriendsConnection",
+  "type": "Int",
+}
+`;
+
+exports[`graphql-usage reports on ts files 13`] = `
+Object {
+  "name": "FriendsEdge",
+}
+`;
+
+exports[`graphql-usage reports on ts files 14`] = `
+Object {
+  "name": "cursor",
+  "parentType": "FriendsEdge",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 15`] = `
+Object {
+  "name": "node",
+  "parentType": "FriendsEdge",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on ts files 16`] = `
+Object {
+  "name": "Human",
+}
+`;
+
+exports[`graphql-usage reports on ts files 17`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Human",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 18`] = `
+Object {
+  "name": "friends",
+  "parentType": "Human",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 19`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Human",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 20`] = `
+Object {
+  "name": "height",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on ts files 21`] = `
+Object {
+  "name": "homePlanet",
+  "parentType": "Human",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 22`] = `
+Object {
+  "name": "id",
+  "parentType": "Human",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 23`] = `
+Object {
+  "name": "mass",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on ts files 24`] = `
+Object {
+  "name": "name",
+  "parentType": "Human",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 25`] = `
+Object {
+  "name": "starships",
+  "parentType": "Human",
+  "type": "[Starship]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 26`] = `
+Object {
+  "name": "Mutation",
+}
+`;
+
+exports[`graphql-usage reports on ts files 27`] = `
+Object {
+  "name": "createReview",
+  "parentType": "Mutation",
+  "type": "Review",
+}
+`;
+
+exports[`graphql-usage reports on ts files 28`] = `
+Object {
+  "name": "PageInfo",
+}
+`;
+
+exports[`graphql-usage reports on ts files 29`] = `
+Object {
+  "name": "endCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on ts files 30`] = `
+Object {
+  "name": "hasNextPage",
+  "parentType": "PageInfo",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 31`] = `
+Object {
+  "name": "startCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on ts files 32`] = `
+Object {
+  "name": "Query",
+}
+`;
+
+exports[`graphql-usage reports on ts files 33`] = `
+Object {
+  "name": "character",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on ts files 34`] = `
+Object {
+  "name": "droid",
+  "parentType": "Query",
+  "type": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on ts files 35`] = `
+Object {
+  "name": "hero",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on ts files 36`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-usage reports on ts files 37`] = `
+Object {
+  "name": "human",
+  "parentType": "Query",
+  "type": "Human",
+}
+`;
+
+exports[`graphql-usage reports on ts files 38`] = `
+Object {
+  "name": "reviews",
+  "parentType": "Query",
+  "type": "[Review]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 39`] = `
+Object {
+  "name": "search",
+  "parentType": "Query",
+  "type": "[SearchResult]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 40`] = `
+Object {
+  "name": "starship",
+  "parentType": "Query",
+  "type": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on ts files 41`] = `
+Object {
+  "name": "Review",
+}
+`;
+
+exports[`graphql-usage reports on ts files 42`] = `
+Object {
+  "name": "commentary",
+  "parentType": "Review",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 43`] = `
+Object {
+  "name": "stars",
+  "parentType": "Review",
+  "type": "Int!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 44`] = `
+Object {
+  "name": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on ts files 45`] = `
+Object {
+  "name": "coordinates",
+  "parentType": "Starship",
+  "type": "[[Float!]!]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 46`] = `
+Object {
+  "name": "id",
+  "parentType": "Starship",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 47`] = `
+Object {
+  "name": "length",
+  "parentType": "Starship",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on ts files 48`] = `
+Object {
+  "name": "name",
+  "parentType": "Starship",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 49`] = `
+Object {
+  "name": "__Directive",
+}
+`;
+
+exports[`graphql-usage reports on ts files 50`] = `
+Object {
+  "name": "args",
+  "parentType": "__Directive",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 51`] = `
+Object {
+  "name": "description",
+  "parentType": "__Directive",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 52`] = `
+Object {
+  "name": "locations",
+  "parentType": "__Directive",
+  "type": "[__DirectiveLocation!]!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 53`] = `
+Object {
+  "name": "name",
+  "parentType": "__Directive",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 54`] = `
+Object {
+  "name": "__EnumValue",
+}
+`;
+
+exports[`graphql-usage reports on ts files 55`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 56`] = `
+Object {
+  "name": "description",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 57`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__EnumValue",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 58`] = `
+Object {
+  "name": "name",
+  "parentType": "__EnumValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 59`] = `
+Object {
+  "name": "__Field",
+}
+`;
+
+exports[`graphql-usage reports on ts files 60`] = `
+Object {
+  "name": "args",
+  "parentType": "__Field",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 61`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 62`] = `
+Object {
+  "name": "description",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 63`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__Field",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 64`] = `
+Object {
+  "name": "name",
+  "parentType": "__Field",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 65`] = `
+Object {
+  "name": "type",
+  "parentType": "__Field",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 66`] = `
+Object {
+  "name": "__InputValue",
+}
+`;
+
+exports[`graphql-usage reports on ts files 67`] = `
+Object {
+  "name": "defaultValue",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 68`] = `
+Object {
+  "name": "description",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 69`] = `
+Object {
+  "name": "name",
+  "parentType": "__InputValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 70`] = `
+Object {
+  "name": "type",
+  "parentType": "__InputValue",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 71`] = `
+Object {
+  "name": "__Schema",
+}
+`;
+
+exports[`graphql-usage reports on ts files 72`] = `
+Object {
+  "name": "directives",
+  "parentType": "__Schema",
+  "type": "[__Directive!]!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 73`] = `
+Object {
+  "name": "mutationType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on ts files 74`] = `
+Object {
+  "name": "queryType",
+  "parentType": "__Schema",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 75`] = `
+Object {
+  "name": "subscriptionType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on ts files 76`] = `
+Object {
+  "name": "types",
+  "parentType": "__Schema",
+  "type": "[__Type!]!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 77`] = `
+Object {
+  "name": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on ts files 78`] = `
+Object {
+  "name": "description",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 79`] = `
+Object {
+  "name": "enumValues",
+  "parentType": "__Type",
+  "type": "[__EnumValue!]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 80`] = `
+Object {
+  "name": "fields",
+  "parentType": "__Type",
+  "type": "[__Field!]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 81`] = `
+Object {
+  "name": "inputFields",
+  "parentType": "__Type",
+  "type": "[__InputValue!]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 82`] = `
+Object {
+  "name": "interfaces",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-usage reports on ts files 83`] = `
+Object {
+  "name": "kind",
+  "parentType": "__Type",
+  "type": "__TypeKind!",
+}
+`;
+
+exports[`graphql-usage reports on ts files 84`] = `
+Object {
+  "name": "name",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on ts files 85`] = `
+Object {
+  "name": "ofType",
+  "parentType": "__Type",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on ts files 86`] = `
+Object {
+  "name": "possibleTypes",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 1`] = `
+Object {
+  "name": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 2`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Droid",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 3`] = `
+Object {
+  "name": "friends",
+  "parentType": "Droid",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 4`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Droid",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 5`] = `
+Object {
+  "name": "id",
+  "parentType": "Droid",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 6`] = `
+Object {
+  "name": "name",
+  "parentType": "Droid",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 7`] = `
+Object {
+  "name": "primaryFunction",
+  "parentType": "Droid",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 8`] = `
+Object {
+  "name": "FriendsConnection",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 9`] = `
+Object {
+  "name": "edges",
+  "parentType": "FriendsConnection",
+  "type": "[FriendsEdge]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 10`] = `
+Object {
+  "name": "friends",
+  "parentType": "FriendsConnection",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 11`] = `
+Object {
+  "name": "pageInfo",
+  "parentType": "FriendsConnection",
+  "type": "PageInfo!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 12`] = `
+Object {
+  "name": "totalCount",
+  "parentType": "FriendsConnection",
+  "type": "Int",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 13`] = `
+Object {
+  "name": "FriendsEdge",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 14`] = `
+Object {
+  "name": "cursor",
+  "parentType": "FriendsEdge",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 15`] = `
+Object {
+  "name": "node",
+  "parentType": "FriendsEdge",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 16`] = `
+Object {
+  "name": "Human",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 17`] = `
+Object {
+  "name": "appearsIn",
+  "parentType": "Human",
+  "type": "[Episode]!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 18`] = `
+Object {
+  "name": "friends",
+  "parentType": "Human",
+  "type": "[Character]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 19`] = `
+Object {
+  "name": "friendsConnection",
+  "parentType": "Human",
+  "type": "FriendsConnection!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 20`] = `
+Object {
+  "name": "height",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 21`] = `
+Object {
+  "name": "homePlanet",
+  "parentType": "Human",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 22`] = `
+Object {
+  "name": "id",
+  "parentType": "Human",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 23`] = `
+Object {
+  "name": "mass",
+  "parentType": "Human",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 24`] = `
+Object {
+  "name": "name",
+  "parentType": "Human",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 25`] = `
+Object {
+  "name": "starships",
+  "parentType": "Human",
+  "type": "[Starship]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 26`] = `
+Object {
+  "name": "Mutation",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 27`] = `
+Object {
+  "name": "createReview",
+  "parentType": "Mutation",
+  "type": "Review",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 28`] = `
+Object {
+  "name": "PageInfo",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 29`] = `
+Object {
+  "name": "endCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 30`] = `
+Object {
+  "name": "hasNextPage",
+  "parentType": "PageInfo",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 31`] = `
+Object {
+  "name": "startCursor",
+  "parentType": "PageInfo",
+  "type": "ID",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 32`] = `
+Object {
+  "name": "Query",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 33`] = `
+Object {
+  "name": "character",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 34`] = `
+Object {
+  "name": "droid",
+  "parentType": "Query",
+  "type": "Droid",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 35`] = `
+Object {
+  "name": "hero",
+  "parentType": "Query",
+  "type": "Character",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 36`] = `
+Object {
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)#L\\\\d\\$/,
+  "rootNodeName": "findGraphQLTagsQuery",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 37`] = `
+Object {
+  "name": "human",
+  "parentType": "Query",
+  "type": "Human",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 38`] = `
+Object {
+  "name": "reviews",
+  "parentType": "Query",
+  "type": "[Review]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 39`] = `
+Object {
+  "name": "search",
+  "parentType": "Query",
+  "type": "[SearchResult]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 40`] = `
+Object {
+  "name": "starship",
+  "parentType": "Query",
+  "type": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 41`] = `
+Object {
+  "name": "Review",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 42`] = `
+Object {
+  "name": "commentary",
+  "parentType": "Review",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 43`] = `
+Object {
+  "name": "stars",
+  "parentType": "Review",
+  "type": "Int!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 44`] = `
+Object {
+  "name": "Starship",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 45`] = `
+Object {
+  "name": "coordinates",
+  "parentType": "Starship",
+  "type": "[[Float!]!]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 46`] = `
+Object {
+  "name": "id",
+  "parentType": "Starship",
+  "type": "ID!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 47`] = `
+Object {
+  "name": "length",
+  "parentType": "Starship",
+  "type": "Float",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 48`] = `
+Object {
+  "name": "name",
+  "parentType": "Starship",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 49`] = `
+Object {
+  "name": "__Directive",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 50`] = `
+Object {
+  "name": "args",
+  "parentType": "__Directive",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 51`] = `
+Object {
+  "name": "description",
+  "parentType": "__Directive",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 52`] = `
+Object {
+  "name": "locations",
+  "parentType": "__Directive",
+  "type": "[__DirectiveLocation!]!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 53`] = `
+Object {
+  "name": "name",
+  "parentType": "__Directive",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 54`] = `
+Object {
+  "name": "__EnumValue",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 55`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 56`] = `
+Object {
+  "name": "description",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 57`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__EnumValue",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 58`] = `
+Object {
+  "name": "name",
+  "parentType": "__EnumValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 59`] = `
+Object {
+  "name": "__Field",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 60`] = `
+Object {
+  "name": "args",
+  "parentType": "__Field",
+  "type": "[__InputValue!]!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 61`] = `
+Object {
+  "name": "deprecationReason",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 62`] = `
+Object {
+  "name": "description",
+  "parentType": "__Field",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 63`] = `
+Object {
+  "name": "isDeprecated",
+  "parentType": "__Field",
+  "type": "Boolean!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 64`] = `
+Object {
+  "name": "name",
+  "parentType": "__Field",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 65`] = `
+Object {
+  "name": "type",
+  "parentType": "__Field",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 66`] = `
+Object {
+  "name": "__InputValue",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 67`] = `
+Object {
+  "name": "defaultValue",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 68`] = `
+Object {
+  "name": "description",
+  "parentType": "__InputValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 69`] = `
+Object {
+  "name": "name",
+  "parentType": "__InputValue",
+  "type": "String!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 70`] = `
+Object {
+  "name": "type",
+  "parentType": "__InputValue",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 71`] = `
+Object {
+  "name": "__Schema",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 72`] = `
+Object {
+  "name": "directives",
+  "parentType": "__Schema",
+  "type": "[__Directive!]!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 73`] = `
+Object {
+  "name": "mutationType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 74`] = `
+Object {
+  "name": "queryType",
+  "parentType": "__Schema",
+  "type": "__Type!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 75`] = `
+Object {
+  "name": "subscriptionType",
+  "parentType": "__Schema",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 76`] = `
+Object {
+  "name": "types",
+  "parentType": "__Schema",
+  "type": "[__Type!]!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 77`] = `
+Object {
+  "name": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 78`] = `
+Object {
+  "name": "description",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 79`] = `
+Object {
+  "name": "enumValues",
+  "parentType": "__Type",
+  "type": "[__EnumValue!]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 80`] = `
+Object {
+  "name": "fields",
+  "parentType": "__Type",
+  "type": "[__Field!]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 81`] = `
+Object {
+  "name": "inputFields",
+  "parentType": "__Type",
+  "type": "[__InputValue!]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 82`] = `
+Object {
+  "name": "interfaces",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 83`] = `
+Object {
+  "name": "kind",
+  "parentType": "__Type",
+  "type": "__TypeKind!",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 84`] = `
+Object {
+  "name": "name",
+  "parentType": "__Type",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 85`] = `
+Object {
+  "name": "ofType",
+  "parentType": "__Type",
+  "type": "__Type",
+}
+`;
+
+exports[`graphql-usage reports on tsx files 86`] = `
+Object {
+  "name": "possibleTypes",
+  "parentType": "__Type",
+  "type": "[__Type!]",
+}
+`;
+
 exports[`graphql-usage writes a file given a .graphql GraphQL schema 1`] = `
 Object {
   "name": "Droid",
@@ -268,19 +2903,12 @@ Object {
 
 exports[`graphql-usage writes a file given a .graphql GraphQL schema 36`] = `
 Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)#L\\\\d\\$/,
   "rootNodeName": "findGraphQLTagsQuery",
 }
 `;
 
 exports[`graphql-usage writes a file given a .graphql GraphQL schema 37`] = `
-Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
-  "rootNodeName": "findGraphQLTagsQuery",
-}
-`;
-
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 38`] = `
 Object {
   "name": "human",
   "parentType": "Query",
@@ -288,7 +2916,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 39`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 38`] = `
 Object {
   "name": "reviews",
   "parentType": "Query",
@@ -296,7 +2924,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 40`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 39`] = `
 Object {
   "name": "search",
   "parentType": "Query",
@@ -304,7 +2932,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 41`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 40`] = `
 Object {
   "name": "starship",
   "parentType": "Query",
@@ -312,13 +2940,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 42`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 41`] = `
 Object {
   "name": "Review",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 43`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 42`] = `
 Object {
   "name": "commentary",
   "parentType": "Review",
@@ -326,7 +2954,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 44`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 43`] = `
 Object {
   "name": "stars",
   "parentType": "Review",
@@ -334,13 +2962,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 45`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 44`] = `
 Object {
   "name": "Starship",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 46`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 45`] = `
 Object {
   "name": "coordinates",
   "parentType": "Starship",
@@ -348,7 +2976,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 47`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 46`] = `
 Object {
   "name": "id",
   "parentType": "Starship",
@@ -356,7 +2984,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 48`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 47`] = `
 Object {
   "name": "length",
   "parentType": "Starship",
@@ -364,7 +2992,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 49`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 48`] = `
 Object {
   "name": "name",
   "parentType": "Starship",
@@ -372,13 +3000,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 50`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 49`] = `
 Object {
   "name": "__Directive",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 51`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 50`] = `
 Object {
   "name": "args",
   "parentType": "__Directive",
@@ -386,7 +3014,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 52`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 51`] = `
 Object {
   "name": "description",
   "parentType": "__Directive",
@@ -394,7 +3022,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 53`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 52`] = `
 Object {
   "name": "locations",
   "parentType": "__Directive",
@@ -402,7 +3030,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 54`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 53`] = `
 Object {
   "name": "name",
   "parentType": "__Directive",
@@ -410,15 +3038,23 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 55`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 54`] = `
 Object {
   "name": "__EnumValue",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 56`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 55`] = `
 Object {
   "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 56`] = `
+Object {
+  "name": "description",
   "parentType": "__EnumValue",
   "type": "String",
 }
@@ -426,21 +3062,13 @@ Object {
 
 exports[`graphql-usage writes a file given a .graphql GraphQL schema 57`] = `
 Object {
-  "name": "description",
-  "parentType": "__EnumValue",
-  "type": "String",
-}
-`;
-
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 58`] = `
-Object {
   "name": "isDeprecated",
   "parentType": "__EnumValue",
   "type": "Boolean!",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 59`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 58`] = `
 Object {
   "name": "name",
   "parentType": "__EnumValue",
@@ -448,13 +3076,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 60`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 59`] = `
 Object {
   "name": "__Field",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 61`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 60`] = `
 Object {
   "name": "args",
   "parentType": "__Field",
@@ -462,7 +3090,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 62`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 61`] = `
 Object {
   "name": "deprecationReason",
   "parentType": "__Field",
@@ -470,7 +3098,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 63`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 62`] = `
 Object {
   "name": "description",
   "parentType": "__Field",
@@ -478,7 +3106,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 64`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 63`] = `
 Object {
   "name": "isDeprecated",
   "parentType": "__Field",
@@ -486,7 +3114,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 65`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 64`] = `
 Object {
   "name": "name",
   "parentType": "__Field",
@@ -494,7 +3122,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 66`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 65`] = `
 Object {
   "name": "type",
   "parentType": "__Field",
@@ -502,13 +3130,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 67`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 66`] = `
 Object {
   "name": "__InputValue",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 68`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 67`] = `
 Object {
   "name": "defaultValue",
   "parentType": "__InputValue",
@@ -516,7 +3144,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 69`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 68`] = `
 Object {
   "name": "description",
   "parentType": "__InputValue",
@@ -524,7 +3152,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 70`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 69`] = `
 Object {
   "name": "name",
   "parentType": "__InputValue",
@@ -532,7 +3160,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 71`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 70`] = `
 Object {
   "name": "type",
   "parentType": "__InputValue",
@@ -540,13 +3168,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 72`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 71`] = `
 Object {
   "name": "__Schema",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 73`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 72`] = `
 Object {
   "name": "directives",
   "parentType": "__Schema",
@@ -554,7 +3182,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 74`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 73`] = `
 Object {
   "name": "mutationType",
   "parentType": "__Schema",
@@ -562,7 +3190,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 75`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 74`] = `
 Object {
   "name": "queryType",
   "parentType": "__Schema",
@@ -570,7 +3198,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 76`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 75`] = `
 Object {
   "name": "subscriptionType",
   "parentType": "__Schema",
@@ -578,7 +3206,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 77`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 76`] = `
 Object {
   "name": "types",
   "parentType": "__Schema",
@@ -586,13 +3214,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 78`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 77`] = `
 Object {
   "name": "__Type",
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 79`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 78`] = `
 Object {
   "name": "description",
   "parentType": "__Type",
@@ -600,7 +3228,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 80`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 79`] = `
 Object {
   "name": "enumValues",
   "parentType": "__Type",
@@ -608,7 +3236,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 81`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 80`] = `
 Object {
   "name": "fields",
   "parentType": "__Type",
@@ -616,7 +3244,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 82`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 81`] = `
 Object {
   "name": "inputFields",
   "parentType": "__Type",
@@ -624,7 +3252,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 83`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 82`] = `
 Object {
   "name": "interfaces",
   "parentType": "__Type",
@@ -632,7 +3260,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 84`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 83`] = `
 Object {
   "name": "kind",
   "parentType": "__Type",
@@ -640,7 +3268,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 85`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 84`] = `
 Object {
   "name": "name",
   "parentType": "__Type",
@@ -648,7 +3276,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 86`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 85`] = `
 Object {
   "name": "ofType",
   "parentType": "__Type",
@@ -656,7 +3284,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .graphql GraphQL schema 87`] = `
+exports[`graphql-usage writes a file given a .graphql GraphQL schema 86`] = `
 Object {
   "name": "possibleTypes",
   "parentType": "__Type",
@@ -932,19 +3560,12 @@ Object {
 
 exports[`graphql-usage writes a file given a .json GraphQL schema 36`] = `
 Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
+  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.\\(js\\|jsx\\|ts\\|tsx\\)#L\\\\d\\$/,
   "rootNodeName": "findGraphQLTagsQuery",
 }
 `;
 
 exports[`graphql-usage writes a file given a .json GraphQL schema 37`] = `
-Object {
-  "filename": StringMatching /\\^https:\\\\/\\\\/github\\.com\\\\/CDThomas\\\\/graphql-usage\\\\/tree\\\\/\\.\\*\\\\\\.js#L\\\\d\\$/,
-  "rootNodeName": "findGraphQLTagsQuery",
-}
-`;
-
-exports[`graphql-usage writes a file given a .json GraphQL schema 38`] = `
 Object {
   "name": "human",
   "parentType": "Query",
@@ -952,7 +3573,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 39`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 38`] = `
 Object {
   "name": "reviews",
   "parentType": "Query",
@@ -960,7 +3581,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 40`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 39`] = `
 Object {
   "name": "search",
   "parentType": "Query",
@@ -968,7 +3589,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 41`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 40`] = `
 Object {
   "name": "starship",
   "parentType": "Query",
@@ -976,13 +3597,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 42`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 41`] = `
 Object {
   "name": "Review",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 43`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 42`] = `
 Object {
   "name": "commentary",
   "parentType": "Review",
@@ -990,7 +3611,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 44`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 43`] = `
 Object {
   "name": "stars",
   "parentType": "Review",
@@ -998,13 +3619,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 45`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 44`] = `
 Object {
   "name": "Starship",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 46`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 45`] = `
 Object {
   "name": "coordinates",
   "parentType": "Starship",
@@ -1012,7 +3633,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 47`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 46`] = `
 Object {
   "name": "id",
   "parentType": "Starship",
@@ -1020,7 +3641,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 48`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 47`] = `
 Object {
   "name": "length",
   "parentType": "Starship",
@@ -1028,7 +3649,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 49`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 48`] = `
 Object {
   "name": "name",
   "parentType": "Starship",
@@ -1036,13 +3657,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 50`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 49`] = `
 Object {
   "name": "__Directive",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 51`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 50`] = `
 Object {
   "name": "args",
   "parentType": "__Directive",
@@ -1050,7 +3671,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 52`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 51`] = `
 Object {
   "name": "description",
   "parentType": "__Directive",
@@ -1058,7 +3679,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 53`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 52`] = `
 Object {
   "name": "locations",
   "parentType": "__Directive",
@@ -1066,7 +3687,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 54`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 53`] = `
 Object {
   "name": "name",
   "parentType": "__Directive",
@@ -1074,15 +3695,23 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 55`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 54`] = `
 Object {
   "name": "__EnumValue",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 56`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 55`] = `
 Object {
   "name": "deprecationReason",
+  "parentType": "__EnumValue",
+  "type": "String",
+}
+`;
+
+exports[`graphql-usage writes a file given a .json GraphQL schema 56`] = `
+Object {
+  "name": "description",
   "parentType": "__EnumValue",
   "type": "String",
 }
@@ -1090,21 +3719,13 @@ Object {
 
 exports[`graphql-usage writes a file given a .json GraphQL schema 57`] = `
 Object {
-  "name": "description",
-  "parentType": "__EnumValue",
-  "type": "String",
-}
-`;
-
-exports[`graphql-usage writes a file given a .json GraphQL schema 58`] = `
-Object {
   "name": "isDeprecated",
   "parentType": "__EnumValue",
   "type": "Boolean!",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 59`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 58`] = `
 Object {
   "name": "name",
   "parentType": "__EnumValue",
@@ -1112,13 +3733,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 60`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 59`] = `
 Object {
   "name": "__Field",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 61`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 60`] = `
 Object {
   "name": "args",
   "parentType": "__Field",
@@ -1126,7 +3747,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 62`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 61`] = `
 Object {
   "name": "deprecationReason",
   "parentType": "__Field",
@@ -1134,7 +3755,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 63`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 62`] = `
 Object {
   "name": "description",
   "parentType": "__Field",
@@ -1142,7 +3763,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 64`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 63`] = `
 Object {
   "name": "isDeprecated",
   "parentType": "__Field",
@@ -1150,7 +3771,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 65`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 64`] = `
 Object {
   "name": "name",
   "parentType": "__Field",
@@ -1158,7 +3779,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 66`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 65`] = `
 Object {
   "name": "type",
   "parentType": "__Field",
@@ -1166,13 +3787,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 67`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 66`] = `
 Object {
   "name": "__InputValue",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 68`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 67`] = `
 Object {
   "name": "defaultValue",
   "parentType": "__InputValue",
@@ -1180,7 +3801,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 69`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 68`] = `
 Object {
   "name": "description",
   "parentType": "__InputValue",
@@ -1188,7 +3809,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 70`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 69`] = `
 Object {
   "name": "name",
   "parentType": "__InputValue",
@@ -1196,7 +3817,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 71`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 70`] = `
 Object {
   "name": "type",
   "parentType": "__InputValue",
@@ -1204,13 +3825,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 72`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 71`] = `
 Object {
   "name": "__Schema",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 73`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 72`] = `
 Object {
   "name": "directives",
   "parentType": "__Schema",
@@ -1218,7 +3839,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 74`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 73`] = `
 Object {
   "name": "mutationType",
   "parentType": "__Schema",
@@ -1226,7 +3847,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 75`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 74`] = `
 Object {
   "name": "queryType",
   "parentType": "__Schema",
@@ -1234,7 +3855,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 76`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 75`] = `
 Object {
   "name": "subscriptionType",
   "parentType": "__Schema",
@@ -1242,7 +3863,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 77`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 76`] = `
 Object {
   "name": "types",
   "parentType": "__Schema",
@@ -1250,13 +3871,13 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 78`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 77`] = `
 Object {
   "name": "__Type",
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 79`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 78`] = `
 Object {
   "name": "description",
   "parentType": "__Type",
@@ -1264,7 +3885,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 80`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 79`] = `
 Object {
   "name": "enumValues",
   "parentType": "__Type",
@@ -1272,7 +3893,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 81`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 80`] = `
 Object {
   "name": "fields",
   "parentType": "__Type",
@@ -1280,7 +3901,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 82`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 81`] = `
 Object {
   "name": "inputFields",
   "parentType": "__Type",
@@ -1288,7 +3909,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 83`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 82`] = `
 Object {
   "name": "interfaces",
   "parentType": "__Type",
@@ -1296,7 +3917,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 84`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 83`] = `
 Object {
   "name": "kind",
   "parentType": "__Type",
@@ -1304,7 +3925,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 85`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 84`] = `
 Object {
   "name": "name",
   "parentType": "__Type",
@@ -1312,7 +3933,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 86`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 85`] = `
 Object {
   "name": "ofType",
   "parentType": "__Type",
@@ -1320,7 +3941,7 @@ Object {
 }
 `;
 
-exports[`graphql-usage writes a file given a .json GraphQL schema 87`] = `
+exports[`graphql-usage writes a file given a .json GraphQL schema 86`] = `
 Object {
   "name": "possibleTypes",
   "parentType": "__Type",
