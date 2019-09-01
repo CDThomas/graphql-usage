@@ -66,9 +66,10 @@ function getGraphQLText(quasi: TaggedTemplateExpression) {
 function getSourceLocationOffset(quasi: TaggedTemplateExpression) {
   const pos = quasi.template.pos;
   const loc = quasi.getSourceFile().getLineAndCharacterOfPosition(pos);
+
   return {
     line: loc.line + 1,
-    column: loc.character + 2 // TODO: This seems questionable...
+    column: loc.character + 2
   };
 }
 

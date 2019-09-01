@@ -75,8 +75,7 @@ describe("graphql-usage", () => {
     .fs(
       resolveFiles({
         "./schema.json": "../__fixtures__/schema.json",
-        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js",
-        "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
+        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js"
       })
     )
     .do(() => cmd.run(["./schema.json", "./testSrc", "--json", "--quiet"]))
@@ -91,8 +90,7 @@ describe("graphql-usage", () => {
     .fs(
       resolveFiles({
         "./schema.graphql": "../__fixtures__/schema.graphql",
-        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js",
-        "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
+        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js"
       })
     )
     .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
@@ -107,11 +105,75 @@ describe("graphql-usage", () => {
     .fs(
       resolveFiles({
         "./schema.graphql": "../__fixtures__/schema.graphql",
+        "./testSrc/foo.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/nestedDir/bar.js": "../__fixtures__/testSrc/foo.js"
+      })
+    )
+    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
+    .it("reports on files in nested directories", () => {
+      const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
+
+      assertOutputMatchesSnapshot(output);
+    });
+
+  test
+    .register("fs", setupFS)
+    .fs(
+      resolveFiles({
+        "./schema.graphql": "../__fixtures__/schema.graphql",
+        "./testSrc/foo.jsx": "../__fixtures__/testSrc/foo.js"
+      })
+    )
+    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
+    .it("reports on jsx files", () => {
+      const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
+
+      assertOutputMatchesSnapshot(output);
+    });
+
+  test
+    .register("fs", setupFS)
+    .fs(
+      resolveFiles({
+        "./schema.graphql": "../__fixtures__/schema.graphql",
+        "./testSrc/foo.ts": "../__fixtures__/testSrc/foo.js"
+      })
+    )
+    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
+    .it("reports on ts files", () => {
+      const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
+
+      assertOutputMatchesSnapshot(output);
+    });
+
+  test
+    .register("fs", setupFS)
+    .fs(
+      resolveFiles({
+        "./schema.graphql": "../__fixtures__/schema.graphql",
+        "./testSrc/foo.tsx": "../__fixtures__/testSrc/foo.js"
+      })
+    )
+    .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
+    .it("reports on tsx files", () => {
+      const output = JSON.parse(fs.readFileSync("./report.json", "utf-8"));
+
+      assertOutputMatchesSnapshot(output);
+    });
+
+  test
+    .register("fs", setupFS)
+    .fs(
+      resolveFiles({
+        "./schema.graphql": "../__fixtures__/schema.graphql",
         "./testSrc/node_modules/foo.js": "../__fixtures__/testSrc/foo.js",
         "./testSrc/__mocks__/foo.js": "../__fixtures__/testSrc/foo.js",
         "./testSrc/__generated__/foo.js": "../__fixtures__/testSrc/foo.js",
         "./testSrc/__tests__/foo.js": "../__fixtures__/testSrc/foo.js",
-        "./testSrc/foo.test.js": "../__fixtures__/testSrc/foo.js"
+        "./testSrc/foo.test.js": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/foo.test.jsx": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/foo.test.ts": "../__fixtures__/testSrc/foo.js",
+        "./testSrc/foo.test.tsx": "../__fixtures__/testSrc/foo.js"
       })
     )
     .do(() => cmd.run(["./schema.graphql", "./testSrc", "--json", "--quiet"]))
@@ -123,7 +185,10 @@ describe("graphql-usage", () => {
         "__mocks__",
         "__generated__",
         "__tests__",
-        ".test.js"
+        ".test.js",
+        ".test.jsx",
+        ".test.ts",
+        ".test.tsx"
       ].forEach(exclude => {
         expect(output).not.toContain(exclude);
       });
@@ -181,7 +246,7 @@ function assertOutputMatchesSnapshot(output: {
       field.occurrences.map((occurence: any) => {
         expect(occurence).toMatchSnapshot({
           filename: expect.stringMatching(
-            /^https:\/\/github.com\/CDThomas\/graphql-usage\/tree\/.*\.js#L\d$/
+            /^https:\/\/github.com\/CDThomas\/graphql-usage\/tree\/.*\.(js|jsx|ts|tsx)#L\d$/
           )
         });
       });
