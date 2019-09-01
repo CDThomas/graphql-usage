@@ -1,7 +1,7 @@
 import findTSGraphQLTags from "./findTSGraphQLTags";
 
 describe("findTSGraphQLTags", () => {
-  test("returns GraphQL tags given JS source code", () => {
+  test("returns GraphQL tags given TS source code", () => {
     const ts = `
       import { graphql } from 'react-relay';
       const query = graphql\`query findGraphQLTagsQuery { hero { id } }\`

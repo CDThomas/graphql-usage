@@ -13,7 +13,7 @@ import path from "path";
 import { partialRight, unary } from "ramda";
 import { promisify } from "util";
 
-import findGraphQLTags from "./findJSGraphQLTags";
+import findJSGraphQLTags from "./findJSGraphQLTags";
 import findTSGraphQLTags from "./findTSGraphQLTags";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
@@ -133,7 +133,7 @@ async function analyzeFiles(
 
     let tags: GraphQLTag[] | undefined;
     if (extname === ".js" || extname === ".jsx") {
-      tags = findGraphQLTags(content);
+      tags = findJSGraphQLTags(content);
     }
     if (extname === ".ts" || extname === ".tsx") {
       tags = findTSGraphQLTags(content, filepath);
