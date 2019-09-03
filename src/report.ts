@@ -20,7 +20,16 @@ interface ReportField {
   type: string;
   name: string;
   occurrences: ReportOccurrence[];
+  // args: ReportArg[];
 }
+
+// Key: FieldPartentTypeName.fieldName.argName
+// // e.g. AvailabilityV2.events.after
+// interface ReportArg {
+//   name: string;
+//   type: string;
+//   occurrences: ReportOccurrence[];
+// }
 
 interface ReportOccurrence {
   filename: string;
@@ -47,6 +56,7 @@ function buildReport(
 
       return Object.values(type.getFields()).map(
         (field): ReportField => {
+          // Need to also map over the args here...
           return {
             parentType: type.name,
             type: field.type.toString(),

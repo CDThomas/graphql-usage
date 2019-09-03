@@ -124,38 +124,18 @@ async function analyzeFiles(
     ignore: exclude || defaultExclude
   });
 
-  const summaryFields: Promise<FieldInfo[]>[] = files.map(async filepath => {
-    const fullPath = path.resolve(process.cwd(), sourceDir, filepath);
-    const extname = path.extname(filepath);
-    const content = await promisify(fs.readFile)(fullPath, {
-      encoding: "utf-8"
-    });
+  const data = await Promise.all<{
+    fullPath: string;
+    extname: string;
+    content: string;
+  }>(files.map(unary(partialRight(readFiles, [sourceDir]))));
+  let tags = flatten(data.map(findGraphQLTags));
 
-    let tags: GraphQLTag[] | undefined;
-    if (extname === ".js" || extname === ".jsx") {
-      tags = findJSGraphQLTags(content);
-    }
-    if (extname === ".ts" || extname === ".tsx") {
-      tags = findTSGraphQLTags(content, filepath);
-    }
+  const info: FieldInfo[] = [];
+  const cb = (d: FieldInfo) => info.push(d);
+  findFields(schema, gitDir, gitHubBaseURL, tags, cb);
 
-    if (!tags) {
-      throw new Error("run: analyzeFiles expects a js, jsx, tx, or tsx file");
-    }
-
-    const typeInfo = new TypeInfo(schema);
-
-    const gitHubFileURL = fullPath.replace(path.resolve(gitDir), gitHubBaseURL);
-
-    const fields: FieldInfo[][] = tags.map(
-      unary(partialRight(getFeildInfo, [typeInfo, gitHubFileURL]))
-    );
-
-    return flatten(fields);
-  });
-  const resolved = await Promise.all(summaryFields);
-
-  return buildReport(flatten(resolved), schema);
+  return buildReport(info, schema);
 }
 
 async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
@@ -194,6 +174,56 @@ function startServer(report: Report): void {
   createServer(report).listen(port, async () => {
     // tslint:disable-next-line:no-http-string
     await open(`http://localhost:${port}`);
+  });
+}
+
+async function readFiles(filepath: string, sourceDir: string) {
+  const fullPath = path.resolve(process.cwd(), sourceDir, filepath);
+  const extname = path.extname(filepath);
+  const content = await promisify(fs.readFile)(fullPath, {
+    encoding: "utf-8"
+  });
+
+  return { fullPath, extname, content };
+}
+
+function findGraphQLTags({
+  fullPath,
+  extname,
+  content
+}: {
+  fullPath: string;
+  extname: string;
+  content: string;
+}): Array<{ tag: GraphQLTag; fullPath: string }> {
+  let tags: GraphQLTag[] | undefined;
+  if (extname === ".js" || extname === ".jsx") {
+    tags = findJSGraphQLTags(content);
+  }
+  if (extname === ".ts" || extname === ".tsx") {
+    tags = findTSGraphQLTags(content, fullPath);
+  }
+
+  if (!tags) {
+    throw new Error("run: analyzeFiles expects a js, jsx, tx, or tsx file");
+  }
+
+  return tags.map(tag => ({ tag, fullPath }));
+}
+
+function findFields(
+  schema: GraphQLSchema,
+  gitDir: string,
+  gitHubBaseURL: string,
+  tags: Array<{ tag: GraphQLTag; fullPath: string }>,
+  cb: (data: FieldInfo) => void
+): void {
+  const typeInfo = new TypeInfo(schema);
+
+  tags.forEach((tag: { tag: GraphQLTag; fullPath: string }) => {
+    const fullPath = tag.fullPath;
+    const gitHubFileURL = fullPath.replace(path.resolve(gitDir), gitHubBaseURL);
+    getFeildInfo(tag.tag, typeInfo, gitHubFileURL, cb);
   });
 }
 
