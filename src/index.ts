@@ -130,9 +130,7 @@ async function analyzeFiles(
   let tags = flatten(data.map(findGraphQLTags));
 
   const info: FieldInfo[] = [];
-  const cb = (fieldInfo: FieldInfo) => {
-    info.push(fieldInfo);
-  };
+  const cb = (fieldInfo: FieldInfo) => info.push(fieldInfo);
   findFields(schema, tags, cb);
 
   return buildReport(info, schema, gitDir, gitHubBaseURL);
@@ -184,11 +182,11 @@ interface SourceFile {
 }
 
 async function readFiles(
-  filepath: string,
+  filePath: string,
   sourceDir: string
 ): Promise<SourceFile> {
-  const fullPath = path.resolve(process.cwd(), sourceDir, filepath);
-  const extname = path.extname(filepath);
+  const fullPath = path.resolve(process.cwd(), sourceDir, filePath);
+  const extname = path.extname(filePath);
   const content = await promisify(fs.readFile)(fullPath, {
     encoding: "utf-8"
   });
@@ -200,10 +198,10 @@ function findGraphQLTags({
   fullPath,
   extname,
   content
-}: SourceFile): Array<{ tag: GraphQLTag; fullPath: string }> {
+}: SourceFile): GraphQLTag[] {
   let tags: GraphQLTag[] | undefined;
   if (extname === ".js" || extname === ".jsx") {
-    tags = findJSGraphQLTags(content);
+    tags = findJSGraphQLTags(content, fullPath);
   }
   if (extname === ".ts" || extname === ".tsx") {
     tags = findTSGraphQLTags(content, fullPath);
@@ -213,19 +211,18 @@ function findGraphQLTags({
     throw new Error("run: analyzeFiles expects a js, jsx, tx, or tsx file");
   }
 
-  return tags.map(tag => ({ tag, fullPath }));
+  return tags;
 }
 
 function findFields(
   schema: GraphQLSchema,
-  tags: Array<{ tag: GraphQLTag; fullPath: string }>,
+  tags: GraphQLTag[],
   cb: (data: FieldInfo) => void
 ): void {
   const typeInfo = new TypeInfo(schema);
 
-  tags.forEach((tag: { tag: GraphQLTag; fullPath: string }) => {
-    const fullPath = tag.fullPath;
-    getFeildInfo(tag.tag, typeInfo, fullPath, cb);
+  tags.forEach((tag: GraphQLTag) => {
+    getFeildInfo(tag, typeInfo, cb);
   });
 }
 

@@ -30,4 +30,9 @@ export interface GraphQLTag {
      */
     column: number;
   };
+
+  /**
+   * Absolute path to the local source file
+   */
+  filePath: string;
 }

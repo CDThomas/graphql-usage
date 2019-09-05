@@ -50,5 +50,6 @@ $ graphql-usage ./schema.graphql ./src/
 - [ ] Improve usage info for enum types
 - [ ] Improve usage info for abstract types
 - [ ] Improve usage info for object types (e.g. whether the type is used rather than individual fields)
+- [ ] Warn when Git branch is out of date or not on remote
 - [ ] Better support for client-only fields and client-side schemas
 - [ ] Windows support

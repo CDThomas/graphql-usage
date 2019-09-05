@@ -17,14 +17,13 @@ export interface FieldInfo {
   parentType: string;
   type: string;
   rootNodeName: string;
-  fullpath: string;
+  filePath: string;
 }
 
 // TODO: getUsageInfo? and this would work for fields and args?
 function getFeildInfo(
-  { template, sourceLocationOffset }: GraphQLTag,
+  { template, sourceLocationOffset, filePath }: GraphQLTag,
   typeInfo: TypeInfo,
-  fullpath: string,
   cb: (fieldInfo: FieldInfo) => void
 ) {
   const ast = parse(template);
@@ -40,7 +39,7 @@ function getFeildInfo(
             typeInfo,
             template,
             sourceLocationOffset,
-            fullpath,
+            filePath,
             cb
           );
         } else {
@@ -55,7 +54,7 @@ function getFeildInfo(
             typeInfo,
             template,
             sourceLocationOffset,
-            fullpath,
+            filePath,
             cb
           );
         } else {
@@ -72,7 +71,7 @@ function visitFields(
   typeInfo: TypeInfo,
   template: string,
   sourceLocationOffset: { line: number; column: number },
-  fullpath: string,
+  filePath: string,
   cb: (fieldInfo: FieldInfo) => void
 ) {
   visit(
@@ -108,7 +107,7 @@ function visitFields(
           type: nodeType.toString(),
           parentType: parentType.toString(),
           rootNodeName: operationOrFragmentName,
-          fullpath,
+          filePath,
           line
         });
       }

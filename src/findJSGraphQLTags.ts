@@ -35,7 +35,7 @@ const PARSER_OPTIONS: parser.ParserOptions = {
   strictMode: false
 };
 
-function find(text: string): Array<GraphQLTag> {
+function find(text: string, filePath: string): Array<GraphQLTag> {
   const result: Array<GraphQLTag> = [];
   const ast = parser.parse(text, PARSER_OPTIONS);
 
@@ -46,7 +46,8 @@ function find(text: string): Array<GraphQLTag> {
       if (isGraphQLTag(node.tag)) {
         result.push({
           template: node.quasi.quasis[0].value.raw,
-          sourceLocationOffset: getSourceLocationOffset(node.quasi)
+          sourceLocationOffset: getSourceLocationOffset(node.quasi),
+          filePath
         });
       }
     }

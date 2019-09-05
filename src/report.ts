@@ -80,7 +80,7 @@ function buildReport(
     // TODO: should probably include concrete type occurences here for interface fields
     // TODO: how to handle unions?
     const occurrences = summaryFields.map(summaryField => {
-      const gitHubFileURL = summaryField.fullpath.replace(
+      const gitHubFileURL = summaryField.filePath.replace(
         path.resolve(gitDir),
         gitHubBaseURL
       );

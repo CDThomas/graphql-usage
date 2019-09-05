@@ -13,7 +13,8 @@ describe("findTSGraphQLTags", () => {
           column: 29,
           line: 3
         },
-        template: "query findGraphQLTagsQuery { hero { id } }"
+        template: "query findGraphQLTagsQuery { hero { id } }",
+        filePath: "Component.tsx"
       }
     ]);
   });
@@ -34,7 +35,8 @@ describe("findTSGraphQLTags", () => {
           column: 21,
           line: 6
         },
-        template: "fragment Hero_hero on Hero { id }"
+        template: "fragment Hero_hero on Hero { id }",
+        filePath: "Component.tsx"
       }
     ]);
   });
@@ -54,7 +56,8 @@ describe("findTSGraphQLTags", () => {
           line: 5
         },
         template:
-          "mutation TestMutation($input: ReviewInput!) { createReview(review: $input) { commentary } }"
+          "mutation TestMutation($input: ReviewInput!) { createReview(review: $input) { commentary } }",
+        filePath: "Component.tsx"
       }
     ]);
   });
@@ -72,14 +75,16 @@ describe("findTSGraphQLTags", () => {
           column: 32,
           line: 3
         },
-        template: "query firstQuery { hero { id } }"
+        template: "query firstQuery { hero { id } }",
+        filePath: "Component.tsx"
       },
       {
         sourceLocationOffset: {
           column: 32,
           line: 4
         },
-        template: "query secondQuery { hero { name } }"
+        template: "query secondQuery { hero { name } }",
+        filePath: "Component.tsx"
       }
     ]);
   });
@@ -96,7 +101,8 @@ describe("findTSGraphQLTags", () => {
           column: 25,
           line: 3
         },
-        template: "query findGraphQLTagsQuery { hero { id } }"
+        template: "query findGraphQLTagsQuery { hero { id } }",
+        filePath: "Component.tsx"
       }
     ]);
   });
@@ -129,7 +135,8 @@ describe("findTSGraphQLTags", () => {
             }
           }
         }
-        `
+        `,
+        filePath: "Component.tsx"
       }
     ]);
   });
@@ -175,7 +182,8 @@ describe("findTSGraphQLTags", () => {
             ...VoteButtons
             ...RepoInfo
           }
-          `
+          `,
+        filePath: "Component.tsx"
       }
     ]);
   });
@@ -227,7 +235,8 @@ describe("findTSGraphQLTags", () => {
           createdAt
           content
         }
-      `
+      `,
+        filePath: "Component.tsx"
       }
     ]);
   });
