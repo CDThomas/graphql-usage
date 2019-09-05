@@ -124,18 +124,18 @@ async function analyzeFiles(
     ignore: exclude || defaultExclude
   });
 
-  const data = await Promise.all<{
-    fullPath: string;
-    extname: string;
-    content: string;
-  }>(files.map(unary(partialRight(readFiles, [sourceDir]))));
+  const data = await Promise.all<SourceFile>(
+    files.map(unary(partialRight(readFiles, [sourceDir])))
+  );
   let tags = flatten(data.map(findGraphQLTags));
 
   const info: FieldInfo[] = [];
-  const cb = (d: FieldInfo) => info.push(d);
-  findFields(schema, gitDir, gitHubBaseURL, tags, cb);
+  const cb = (fieldInfo: FieldInfo) => {
+    info.push(fieldInfo);
+  };
+  findFields(schema, tags, cb);
 
-  return buildReport(info, schema);
+  return buildReport(info, schema, gitDir, gitHubBaseURL);
 }
 
 async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
@@ -177,7 +177,16 @@ function startServer(report: Report): void {
   });
 }
 
-async function readFiles(filepath: string, sourceDir: string) {
+interface SourceFile {
+  content: string;
+  extname: string;
+  fullPath: string;
+}
+
+async function readFiles(
+  filepath: string,
+  sourceDir: string
+): Promise<SourceFile> {
   const fullPath = path.resolve(process.cwd(), sourceDir, filepath);
   const extname = path.extname(filepath);
   const content = await promisify(fs.readFile)(fullPath, {
@@ -191,11 +200,7 @@ function findGraphQLTags({
   fullPath,
   extname,
   content
-}: {
-  fullPath: string;
-  extname: string;
-  content: string;
-}): Array<{ tag: GraphQLTag; fullPath: string }> {
+}: SourceFile): Array<{ tag: GraphQLTag; fullPath: string }> {
   let tags: GraphQLTag[] | undefined;
   if (extname === ".js" || extname === ".jsx") {
     tags = findJSGraphQLTags(content);
@@ -213,8 +218,6 @@ function findGraphQLTags({
 
 function findFields(
   schema: GraphQLSchema,
-  gitDir: string,
-  gitHubBaseURL: string,
   tags: Array<{ tag: GraphQLTag; fullPath: string }>,
   cb: (data: FieldInfo) => void
 ): void {
@@ -222,8 +225,7 @@ function findFields(
 
   tags.forEach((tag: { tag: GraphQLTag; fullPath: string }) => {
     const fullPath = tag.fullPath;
-    const gitHubFileURL = fullPath.replace(path.resolve(gitDir), gitHubBaseURL);
-    getFeildInfo(tag.tag, typeInfo, gitHubFileURL, cb);
+    getFeildInfo(tag.tag, typeInfo, fullPath, cb);
   });
 }
 

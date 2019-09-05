@@ -1,4 +1,5 @@
 import { GraphQLSchema, isObjectType } from "graphql";
+import path from "path";
 import R from "ramda";
 
 import flatten from "./flatten";
@@ -38,7 +39,9 @@ interface ReportOccurrence {
 
 function buildReport(
   summaryFields: FieldInfo[],
-  schema: GraphQLSchema
+  schema: GraphQLSchema,
+  gitDir: string,
+  gitHubBaseURL: string
 ): Report {
   const byName = R.groupBy((summaryField: FieldInfo) => {
     return `${summaryField.parentType}.${summaryField.name}`;
@@ -77,8 +80,14 @@ function buildReport(
     // TODO: should probably include concrete type occurences here for interface fields
     // TODO: how to handle unions?
     const occurrences = summaryFields.map(summaryField => {
+      const gitHubFileURL = summaryField.fullpath.replace(
+        path.resolve(gitDir),
+        gitHubBaseURL
+      );
+      const link = `${gitHubFileURL}#L${summaryField.line}`;
+
       return {
-        filename: summaryField.link,
+        filename: link,
         rootNodeName: summaryField.rootNodeName
       };
     });

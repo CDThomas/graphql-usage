@@ -13,17 +13,18 @@ import { GraphQLTag } from "./types";
 
 export interface FieldInfo {
   name: string;
-  link: string;
+  line: number;
   parentType: string;
   type: string;
   rootNodeName: string;
+  fullpath: string;
 }
 
 // TODO: getUsageInfo? and this would work for fields and args?
 function getFeildInfo(
   { template, sourceLocationOffset }: GraphQLTag,
   typeInfo: TypeInfo,
-  githubBaseURL: string,
+  fullpath: string,
   cb: (fieldInfo: FieldInfo) => void
 ) {
   const ast = parse(template);
@@ -39,7 +40,7 @@ function getFeildInfo(
             typeInfo,
             template,
             sourceLocationOffset,
-            githubBaseURL,
+            fullpath,
             cb
           );
         } else {
@@ -54,7 +55,7 @@ function getFeildInfo(
             typeInfo,
             template,
             sourceLocationOffset,
-            githubBaseURL,
+            fullpath,
             cb
           );
         } else {
@@ -71,7 +72,7 @@ function visitFields(
   typeInfo: TypeInfo,
   template: string,
   sourceLocationOffset: { line: number; column: number },
-  githubBaseURL: string,
+  fullpath: string,
   cb: (fieldInfo: FieldInfo) => void
 ) {
   visit(
@@ -106,8 +107,9 @@ function visitFields(
           name: nodeName,
           type: nodeType.toString(),
           parentType: parentType.toString(),
-          link: `${githubBaseURL}#L${line}`,
-          rootNodeName: operationOrFragmentName
+          rootNodeName: operationOrFragmentName,
+          fullpath,
+          line
         });
       }
     })
