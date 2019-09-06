@@ -35,6 +35,7 @@
     "chai": "^4.2.0",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
+    "semantic-release": "^15.13.24",
     "ts-jest": "^24.0.2",
     "ts-node": "^8",
     "tslint": "^5",
@@ -63,9 +64,19 @@
     "ui:build": "cd ./graphql-usage-ui && rm -rf build && yarn build",
     "ui:copy": "rm -rf ./build && cp -R ./graphql-usage-ui/build ./build",
     "posttest": "tslint -p . -t stylish",
-    "prepack": "rm -rf lib && rm tsconfig.tsbuildinfo && tsc -b && yarn ui:build && yarn ui:copy",
+    "prepack": "rm -rf lib && tsc -b && yarn ui:build && yarn ui:copy",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "cm": "git-cz"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "optionalDependencies": {
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2"
+  }
 }
