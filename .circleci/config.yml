@@ -49,7 +49,7 @@ jobs:
       - run: *install_dependencies
       - run:
           name: Release package
-          command: npx semantic-release --dry-run --branch add-semantic-release
+          command: npx semantic-release --dry-run
 
 workflows:
   version: 2
@@ -69,6 +69,6 @@ workflows:
             - node-8
             - node-10
             - node-latest
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
