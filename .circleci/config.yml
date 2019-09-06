@@ -45,7 +45,7 @@ jobs:
       - image: node:10
     steps:
       - checkout
-      - restore_cache: *restoreCache
+      - restore_cache: *restore_cache
       - run: *install_dependencies
       - run:
           name: Release package
