@@ -11,7 +11,7 @@ jobs:
           keys:
             - v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
             - v1-npm-{{checksum ".circleci/config.yml"}}
-      - run:
+      - run: &install_dependencies
           name: Install dependencies
           command: yarn
       - run: ./bin/run --version
@@ -40,6 +40,16 @@ jobs:
             - ~/cli/node_modules
             - /usr/local/share/.cache/yarn
             - /usr/local/share/.config/yarn
+  release:
+    docker:
+      - image: node:10
+    steps:
+      - checkout
+      - restore_cache: *restoreCache
+      - run: *install_dependencies
+      - run:
+          name: Release package
+          command: npx semantic-release --dry-run --branch add-semantic-release
 
 workflows:
   version: 2
@@ -54,3 +64,11 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
+      - release:
+          requires:
+            - node-8
+            - node-10
+            - node-latest
+          # filters:
+          #   branches:
+          #     only: master
