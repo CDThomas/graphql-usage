@@ -20,7 +20,6 @@ export interface FieldInfo {
   filePath: string;
 }
 
-// TODO: getUsageInfo? and this would work for fields and args?
 function getFeildInfo(
   { template, sourceLocationOffset, filePath }: GraphQLTag,
   typeInfo: TypeInfo,

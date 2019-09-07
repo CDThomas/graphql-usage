@@ -50,7 +50,6 @@ function buildReport(
 
       return Object.values(type.getFields()).map(
         (field): ReportField => {
-          // Need to also map over the args here...
           return {
             parentType: type.name,
             type: field.type.toString(),
