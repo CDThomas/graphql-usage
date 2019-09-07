@@ -21,16 +21,7 @@ interface ReportField {
   type: string;
   name: string;
   occurrences: ReportOccurrence[];
-  // args: ReportArg[];
 }
-
-// Key: FieldPartentTypeName.fieldName.argName
-// // e.g. AvailabilityV2.events.after
-// interface ReportArg {
-//   name: string;
-//   type: string;
-//   occurrences: ReportOccurrence[];
-// }
 
 interface ReportOccurrence {
   filename: string;
