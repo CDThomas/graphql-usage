@@ -7,13 +7,14 @@ describe("findJSGraphQLTags", () => {
       const query = graphql\`query findJSGraphQLTagsQuery { hero { id } }\`
     `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 29,
           line: 3
         },
-        template: "query findJSGraphQLTagsQuery { hero { id } }"
+        template: "query findJSGraphQLTagsQuery { hero { id } }",
+        filePath: "Component.js"
       }
     ]);
   });
@@ -28,13 +29,14 @@ describe("findJSGraphQLTags", () => {
     });
     `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 21,
           line: 6
         },
-        template: "fragment Hero_hero on Hero { id }"
+        template: "fragment Hero_hero on Hero { id }",
+        filePath: "Component.js"
       }
     ]);
   });
@@ -47,14 +49,15 @@ describe("findJSGraphQLTags", () => {
       graphql\`mutation TestMutation($input: ReviewInput!) { createReview(review: $input) { commentary } }\`;
     `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 15,
           line: 5
         },
         template:
-          "mutation TestMutation($input: ReviewInput!) { createReview(review: $input) { commentary } }"
+          "mutation TestMutation($input: ReviewInput!) { createReview(review: $input) { commentary } }",
+        filePath: "Component.js"
       }
     ]);
   });
@@ -66,20 +69,22 @@ describe("findJSGraphQLTags", () => {
       const queryTwo = graphql\`query secondQuery { hero { name } }\`
     `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 32,
           line: 3
         },
-        template: "query firstQuery { hero { id } }"
+        template: "query firstQuery { hero { id } }",
+        filePath: "Component.js"
       },
       {
         sourceLocationOffset: {
           column: 32,
           line: 4
         },
-        template: "query secondQuery { hero { name } }"
+        template: "query secondQuery { hero { name } }",
+        filePath: "Component.js"
       }
     ]);
   });
@@ -90,13 +95,14 @@ describe("findJSGraphQLTags", () => {
       const query = gql\`query findJSGraphQLTagsQuery { hero { id } }\`
     `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 25,
           line: 3
         },
-        template: "query findJSGraphQLTagsQuery { hero { id } }"
+        template: "query findJSGraphQLTagsQuery { hero { id } }",
+        filePath: "Component.js"
       }
     ]);
   });
@@ -115,7 +121,7 @@ describe("findJSGraphQLTags", () => {
       \`;
     `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 40,
@@ -129,7 +135,8 @@ describe("findJSGraphQLTags", () => {
             }
           }
         }
-        `
+        `,
+        filePath: "Component.js"
       }
     ]);
   });
@@ -156,7 +163,7 @@ describe("findJSGraphQLTags", () => {
       };
     `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 20,
@@ -175,7 +182,8 @@ describe("findJSGraphQLTags", () => {
             ...VoteButtons
             ...RepoInfo
           }
-          `
+          `,
+        filePath: "Component.js"
       }
     ]);
   });
@@ -203,7 +211,7 @@ describe("findJSGraphQLTags", () => {
       \`;
   `;
 
-    expect(findJSGraphQLTags(js)).toEqual([
+    expect(findJSGraphQLTags(js, "Component.js")).toEqual([
       {
         sourceLocationOffset: {
           column: 40,
@@ -227,7 +235,8 @@ describe("findJSGraphQLTags", () => {
           createdAt
           content
         }
-      `
+      `,
+        filePath: "Component.js"
       }
     ]);
   });

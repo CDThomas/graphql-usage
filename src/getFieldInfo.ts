@@ -13,18 +13,18 @@ import { GraphQLTag } from "./types";
 
 export interface FieldInfo {
   name: string;
-  link: string;
+  line: number;
   parentType: string;
   type: string;
   rootNodeName: string;
+  filePath: string;
 }
 
 function getFeildInfo(
-  { template, sourceLocationOffset }: GraphQLTag,
+  { template, sourceLocationOffset, filePath }: GraphQLTag,
   typeInfo: TypeInfo,
-  githubBaseURL: string
+  cb: (fieldInfo: FieldInfo) => void
 ) {
-  const fields: FieldInfo[] = [];
   const ast = parse(template);
 
   visit(
@@ -36,10 +36,10 @@ function getFeildInfo(
             graphqlNode,
             graphqlNode.name.value,
             typeInfo,
-            fields,
             template,
             sourceLocationOffset,
-            githubBaseURL
+            filePath,
+            cb
           );
         } else {
           throw new Error(`No name for OperationDefinition`);
@@ -51,10 +51,10 @@ function getFeildInfo(
             graphqlNode,
             graphqlNode.name.value,
             typeInfo,
-            fields,
             template,
             sourceLocationOffset,
-            githubBaseURL
+            filePath,
+            cb
           );
         } else {
           throw new Error(`No name for FragmentDefinition`);
@@ -62,18 +62,16 @@ function getFeildInfo(
       }
     })
   );
-
-  return fields;
 }
 
 function visitFields(
   node: ASTNode,
   operationOrFragmentName: string,
   typeInfo: TypeInfo,
-  fields: FieldInfo[],
   template: string,
   sourceLocationOffset: { line: number; column: number },
-  githubBaseURL: string
+  filePath: string,
+  cb: (fieldInfo: FieldInfo) => void
 ) {
   visit(
     node,
@@ -103,12 +101,13 @@ function visitFields(
         const templateStart = getLocation(source, loc.start);
         const line = sourceLocationOffset.line + templateStart.line - 1;
 
-        fields.push({
+        cb({
           name: nodeName,
           type: nodeType.toString(),
           parentType: parentType.toString(),
-          link: `${githubBaseURL}#L${line}`,
-          rootNodeName: operationOrFragmentName
+          rootNodeName: operationOrFragmentName,
+          filePath,
+          line
         });
       }
     })
