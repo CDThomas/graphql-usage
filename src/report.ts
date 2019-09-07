@@ -1,9 +1,66 @@
-import { GraphQLSchema, isObjectType } from "graphql";
+import {
+  GraphQLNamedType,
+  GraphQLObjectType,
+  GraphQLSchema,
+  isObjectType
+  // isScalarType,
+  // isInterfaceType,
+  // isUnionType,
+  // isEnumType,
+  // isInputObjectType,
+} from "graphql";
 import path from "path";
 import R from "ramda";
 
 import flatten from "./flatten";
 import { FieldInfo } from "./getFieldInfo";
+
+interface ReportAccumulator {
+  types: ReportAccumulatorTypeMap;
+  // directives: ReportAccumulatorDirectiveMap;
+}
+
+interface ReportAccumulatorTypeMap {
+  [key: string]: ReportAccumulatorType;
+}
+
+// Each of these types should probably get their own interface and
+// ReportAccumulatorType would become a union of those. `kind` would then
+// be a string literal (e.g. "Scalar") on each of those interfaces.
+// Probably just need named types (both input and output)
+
+const enum TypeKind {
+  Scalar = "Scalar",
+  Object = "Object",
+  Interface = "Interface",
+  Union = "Union",
+  Enum = "Enum",
+  InputObject = "InputObject"
+}
+
+// TODO: consider making this a union of other types (e.g. ObjectType | EnumType)
+interface ReportAccumulatorType {
+  name: string;
+  fields: ReportAccumulatorFieldMap; // TODO: should this be nullable rather than empty?
+  kind: TypeKind;
+}
+
+interface ReportAccumulatorFieldMap {
+  [key: string]: ReportAccumulatorField;
+}
+
+interface ReportAccumulatorField {
+  name: string;
+  // occurences: ReportOccurrence;
+  // type: ReportAccumulatorOfType;
+  // args: ReportAccumulatorArgs;
+}
+
+// interface ReportAccumulatorOfType {
+//   kind: TypeKind;
+//   name: string;
+//   ofType: ReportAccumulatorOfType | null; // TODO: Maybe<T>?
+// }
 
 interface Report {
   data: {
@@ -26,6 +83,47 @@ interface ReportField {
 interface ReportOccurrence {
   filename: string;
   rootNodeName: string;
+}
+
+function buildInitialState(schema: GraphQLSchema): ReportAccumulator {
+  const types = schema.toConfig().types.reduce((typeMap, type) => {
+    // TODO: non-object types
+    return isObjectType(type)
+      ? {
+          ...typeMap,
+          [type.name]: buildType(type)
+        }
+      : typeMap;
+  }, {});
+
+  return {
+    types
+  };
+}
+
+function buildType(type: GraphQLNamedType): ReportAccumulatorType {
+  if (isObjectType(type)) {
+    const fields = buildFields(type);
+
+    return {
+      name: type.name,
+      kind: TypeKind.Object,
+      fields
+    };
+  }
+
+  throw new Error("report: buildType expects a GraphQLNamedType");
+}
+
+function buildFields(type: GraphQLObjectType): ReportAccumulatorFieldMap {
+  return Object.values(type.getFields()).reduce((fieldMap, currentField) => {
+    return {
+      ...fieldMap,
+      [currentField.name]: {
+        name: currentField.name
+      }
+    };
+  }, {});
 }
 
 function buildReport(
@@ -105,4 +203,4 @@ function buildReport(
   };
 }
 
-export { buildReport, Report };
+export { buildReport, buildInitialState, Report };
