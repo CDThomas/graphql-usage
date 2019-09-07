@@ -53,6 +53,18 @@ describe("buildInitialState", () => {
     const initialState = buildInitialState(testSchema);
     const field = initialState.types.Book.fields.title;
 
-    expect(field.name).toBe("title");
+    expect(field).toEqual({
+      name: "title",
+      occurences: [],
+      type: {
+        kind: "NonNull",
+        name: null,
+        ofType: {
+          kind: "Scalar",
+          name: "String",
+          ofType: null
+        }
+      }
+    });
   });
 });

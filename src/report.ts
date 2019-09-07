@@ -1,13 +1,18 @@
 import {
+  GraphQLField,
   GraphQLNamedType,
   GraphQLObjectType,
   GraphQLSchema,
-  isObjectType
-  // isScalarType,
-  // isInterfaceType,
-  // isUnionType,
-  // isEnumType,
-  // isInputObjectType,
+  GraphQLType,
+  isEnumType,
+  isInterfaceType,
+  isListType,
+  isNamedType,
+  isNonNullType,
+  isObjectType,
+  isScalarType,
+  isUnionType,
+  isWrappingType
 } from "graphql";
 import path from "path";
 import R from "ramda";
@@ -24,25 +29,23 @@ interface ReportAccumulatorTypeMap {
   [key: string]: ReportAccumulatorType;
 }
 
-// Each of these types should probably get their own interface and
-// ReportAccumulatorType would become a union of those. `kind` would then
-// be a string literal (e.g. "Scalar") on each of those interfaces.
-// Probably just need named types (both input and output)
-
 const enum TypeKind {
   Scalar = "Scalar",
   Object = "Object",
   Interface = "Interface",
   Union = "Union",
   Enum = "Enum",
-  InputObject = "InputObject"
+  InputObject = "InputObject",
+  List = "List",
+  NonNull = "NonNull"
 }
 
-// TODO: consider making this a union of other types (e.g. ObjectType | EnumType)
-interface ReportAccumulatorType {
+type ReportAccumulatorType = ReportObjectType;
+
+interface ReportObjectType {
+  fields: ReportAccumulatorFieldMap;
+  kind: TypeKind.Object;
   name: string;
-  fields: ReportAccumulatorFieldMap; // TODO: should this be nullable rather than empty?
-  kind: TypeKind;
 }
 
 interface ReportAccumulatorFieldMap {
@@ -51,16 +54,16 @@ interface ReportAccumulatorFieldMap {
 
 interface ReportAccumulatorField {
   name: string;
-  // occurences: ReportOccurrence;
-  // type: ReportAccumulatorOfType;
+  occurences: ReportOccurrence[];
+  type: ReportAccumulatorOfType;
   // args: ReportAccumulatorArgs;
 }
 
-// interface ReportAccumulatorOfType {
-//   kind: TypeKind;
-//   name: string;
-//   ofType: ReportAccumulatorOfType | null; // TODO: Maybe<T>?
-// }
+interface ReportAccumulatorOfType {
+  kind: TypeKind;
+  name: string | null;
+  ofType: ReportAccumulatorOfType | null;
+}
 
 interface Report {
   data: {
@@ -102,28 +105,56 @@ function buildInitialState(schema: GraphQLSchema): ReportAccumulator {
 }
 
 function buildType(type: GraphQLNamedType): ReportAccumulatorType {
-  if (isObjectType(type)) {
-    const fields = buildFields(type);
-
-    return {
-      name: type.name,
-      kind: TypeKind.Object,
-      fields
-    };
-  }
+  if (isObjectType(type)) return buildObjectType(type);
 
   throw new Error("report: buildType expects a GraphQLNamedType");
+}
+
+function buildObjectType(type: GraphQLObjectType): ReportObjectType {
+  return {
+    fields: buildFields(type),
+    kind: TypeKind.Object,
+    name: type.name
+  };
 }
 
 function buildFields(type: GraphQLObjectType): ReportAccumulatorFieldMap {
   return Object.values(type.getFields()).reduce((fieldMap, currentField) => {
     return {
       ...fieldMap,
-      [currentField.name]: {
-        name: currentField.name
-      }
+      [currentField.name]: buildField(currentField)
     };
   }, {});
+}
+
+function buildField(field: GraphQLField<any, any>): ReportAccumulatorField {
+  const { type } = field;
+  return {
+    name: field.name,
+    occurences: [],
+    type: buildOfType(type)
+  };
+}
+
+function getTypeKind(type: GraphQLType): TypeKind {
+  if (isScalarType(type)) return TypeKind.Scalar;
+  if (isObjectType(type)) return TypeKind.Object;
+  if (isInterfaceType(type)) return TypeKind.Interface;
+  if (isUnionType(type)) return TypeKind.Union;
+  if (isEnumType(type)) return TypeKind.Enum;
+  if (isListType(type)) return TypeKind.List;
+  if (isNonNullType(type)) return TypeKind.NonNull;
+  // TODO: add input types?
+
+  throw new Error("report: getTypeKind expects a GraphQLType");
+}
+
+function buildOfType(type: GraphQLType): ReportAccumulatorOfType {
+  return {
+    kind: getTypeKind(type),
+    name: isNamedType(type) ? type.name : null,
+    ofType: isWrappingType(type) ? buildOfType(type.ofType) : null
+  };
 }
 
 function buildReport(
