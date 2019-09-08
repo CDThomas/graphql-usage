@@ -70,7 +70,7 @@ describe("buildInitialState", () => {
 });
 
 describe("addOccurrence", () => {
-  test("works", () => {
+  test("adds an occurrence to the given field", () => {
     const state = buildInitialState(testSchema);
 
     addOccurrence(state, "Book", "title", {
