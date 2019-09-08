@@ -54,7 +54,7 @@ interface ReportAccumulatorFieldMap {
 
 interface ReportAccumulatorField {
   name: string;
-  occurences: ReportOccurrence[];
+  occurrences: ReportOccurrence[];
   type: ReportAccumulatorOfType;
   // args: ReportAccumulatorArgs;
 }
@@ -131,7 +131,7 @@ function buildField(field: GraphQLField<any, any>): ReportAccumulatorField {
   const { type } = field;
   return {
     name: field.name,
-    occurences: [],
+    occurrences: [],
     type: buildOfType(type)
   };
 }
@@ -155,6 +155,18 @@ function buildOfType(type: GraphQLType): ReportAccumulatorOfType {
     name: isNamedType(type) ? type.name : null,
     ofType: isWrappingType(type) ? buildOfType(type.ofType) : null
   };
+}
+
+function addOccurrence(
+  state: ReportAccumulator,
+  typeName: string,
+  fieldName: string,
+  occurrence: ReportOccurrence
+): ReportAccumulator {
+  // TODO: handle invalid type/field names.
+  // TODO: why doesn't TS warn about potentially null values here?
+  state.types[typeName].fields[fieldName].occurrences.push(occurrence);
+  return state;
 }
 
 function buildReport(
@@ -196,7 +208,7 @@ function buildReport(
 
     if (!summaryFields) return field;
 
-    // TODO: should probably include concrete type occurences here for interface fields
+    // TODO: should probably include concrete type occurrences here for interface fields
     // TODO: how to handle unions?
     const occurrences = summaryFields.map(summaryField => {
       const gitHubFileURL = summaryField.filePath.replace(
@@ -234,4 +246,4 @@ function buildReport(
   };
 }
 
-export { buildReport, buildInitialState, Report };
+export { addOccurrence, buildReport, buildInitialState, Report };

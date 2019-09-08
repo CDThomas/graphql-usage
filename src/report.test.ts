@@ -1,6 +1,6 @@
 import { buildSchema, isObjectType } from "graphql";
 
-import { buildInitialState } from "./report";
+import { addOccurrence, buildInitialState } from "./report";
 
 // const testSchema = buildSchema(
 //   fs.readFileSync(path.resolve(__dirname, "../__fixtures__/schema.graphql"), {
@@ -55,7 +55,7 @@ describe("buildInitialState", () => {
 
     expect(field).toEqual({
       name: "title",
-      occurences: [],
+      occurrences: [],
       type: {
         kind: "NonNull",
         name: null,
@@ -66,5 +66,23 @@ describe("buildInitialState", () => {
         }
       }
     });
+  });
+});
+
+describe("addOccurrence", () => {
+  test("works", () => {
+    const state = buildInitialState(testSchema);
+
+    addOccurrence(state, "Book", "title", {
+      filename: "src/Component.js",
+      rootNodeName: "ComponentQuery"
+    });
+
+    expect(state.types.Book.fields.title.occurrences).toEqual([
+      {
+        filename: "src/Component.js",
+        rootNodeName: "ComponentQuery"
+      }
+    ]);
   });
 });
