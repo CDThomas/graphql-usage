@@ -1,12 +1,6 @@
 import { buildSchema, isObjectType } from "graphql";
 
-import { addOccurrence, buildInitialState } from "./report";
-
-// const testSchema = buildSchema(
-//   fs.readFileSync(path.resolve(__dirname, "../__fixtures__/schema.graphql"), {
-//     encoding: "utf-8"
-//   })
-// );
+import { addOccurrence, buildInitialState, format } from "./report";
 
 const testSchema = buildSchema(`
   type Query {
@@ -15,6 +9,8 @@ const testSchema = buildSchema(`
 
   type Book {
     title: String!
+    pageCount: Int
+    isPublished: Boolean
   }
 `);
 
@@ -45,7 +41,9 @@ describe("buildInitialState", () => {
     const fields = initialState.types.Book.fields;
 
     expect(fields).toEqual({
-      title: expect.any(Object)
+      title: expect.any(Object),
+      pageCount: expect.any(Object),
+      isPublished: expect.any(Object)
     });
   });
 
@@ -83,6 +81,36 @@ describe("addOccurrence", () => {
         filename: "src/Component.js",
         rootNodeName: "ComponentQuery"
       }
+    ]);
+  });
+});
+
+describe("format", () => {
+  test("formats types as a list sorted alphabetically", () => {
+    const state = buildInitialState(testSchema);
+    const report = format(state);
+
+    expect(report.types.map(({ name }: any) => name)).toEqual([
+      "Book",
+      "Query",
+      "__Directive",
+      "__EnumValue",
+      "__Field",
+      "__InputValue",
+      "__Schema",
+      "__Type"
+    ]);
+  });
+
+  test("formats fields as a list sorted alphabetically", () => {
+    const state = buildInitialState(testSchema);
+    const report = format(state);
+
+    const bookType = report.types.find((type: any) => type.name === "Book");
+    expect(bookType.fields.map(({ name }: any) => name)).toEqual([
+      "isPublished",
+      "pageCount",
+      "title"
     ]);
   });
 });

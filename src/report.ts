@@ -165,8 +165,23 @@ function addOccurrence(
 ): ReportAccumulator {
   // TODO: handle invalid type/field names.
   // TODO: why doesn't TS warn about potentially null values here?
+  // TODO: github links
   state.types[typeName].fields[fieldName].occurrences.push(occurrence);
   return state;
+}
+
+function format(report: ReportAccumulator): any {
+  const sortByName = R.sortBy(R.prop("name"));
+
+  const types = Object.values(report.types).map(type => {
+    const fields = Object.values(type.fields);
+    return {
+      ...type,
+      fields: sortByName(fields)
+    };
+  });
+
+  return { types: sortByName(types) };
 }
 
 function buildReport(
@@ -246,4 +261,4 @@ function buildReport(
   };
 }
 
-export { addOccurrence, buildReport, buildInitialState, Report };
+export { addOccurrence, buildReport, buildInitialState, format, Report };
