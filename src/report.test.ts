@@ -90,7 +90,7 @@ describe("format", () => {
     const state = buildInitialState(testSchema);
     const report = format(state);
 
-    expect(report.types.map(({ name }: any) => name)).toEqual([
+    expect(report.data.types.map(({ name }) => name)).toEqual([
       "Book",
       "Query",
       "__Directive",
@@ -106,8 +106,8 @@ describe("format", () => {
     const state = buildInitialState(testSchema);
     const report = format(state);
 
-    const bookType = report.types.find((type: any) => type.name === "Book");
-    expect(bookType.fields.map(({ name }: any) => name)).toEqual([
+    const bookType = report.data.types.find(type => type.name === "Book")!;
+    expect(bookType.fields.map(({ name }) => name)).toEqual([
       "isPublished",
       "pageCount",
       "title"
