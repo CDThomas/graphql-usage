@@ -87,7 +87,6 @@ interface ReportOccurrence {
 function buildInitialState(schema: GraphQLSchema): ReportAccumulator {
   const types = schema.toConfig().types.reduce((typeMap, type) => {
     // TODO: non-object types
-    // TODO: abstract types are breaking tests at the moment
     return isObjectType(type)
       ? {
           ...typeMap,
@@ -195,17 +194,15 @@ function format(report: ReportAccumulator): Report {
 }
 
 function formatOfType(ofType: ReportAccumulatorOfType | null): string {
-  if (!ofType) return "";
-
-  if (ofType.kind === TypeKind.NonNull) {
+  if (ofType && ofType.kind === TypeKind.NonNull) {
     return `${formatOfType(ofType.ofType)}!`;
   }
 
-  if (ofType.kind === TypeKind.List) {
+  if (ofType && ofType.kind === TypeKind.List) {
     return `[${formatOfType(ofType.ofType)}]`;
   }
 
-  if (!ofType.name) {
+  if (!ofType || !ofType.name) {
     throw new Error(
       "report: formatOfType expects ofType to be a wrapper or named type"
     );

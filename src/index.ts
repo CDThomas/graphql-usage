@@ -129,10 +129,6 @@ async function analyzeFiles(
   );
   let tags = flatten(data.map(findGraphQLTags));
 
-  // const info: FieldInfo[] = [];
-  // const cb = (fieldInfo: FieldInfo) => info.push(fieldInfo);
-  // findFields(schema, tags, cb);
-
   const state = buildInitialState(schema);
   findFields(
     schema,
