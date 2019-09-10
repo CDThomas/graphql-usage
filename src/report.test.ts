@@ -31,7 +31,7 @@ describe("buildInitialState", () => {
 
     expect(types.Book).toEqual({
       fields: expect.any(Object),
-      kind: "Object",
+      // kind: "Object",
       name: "Book"
     });
   });

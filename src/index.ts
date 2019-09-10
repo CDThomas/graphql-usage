@@ -137,9 +137,15 @@ async function analyzeFiles(
   findFields(
     schema,
     tags,
-    ({ parentType, name, filePath, rootNodeName }: FieldInfo) => {
+    ({ parentType, name, filePath, line, rootNodeName }: FieldInfo) => {
+      const gitHubFileURL = filePath.replace(
+        path.resolve(gitDir),
+        gitHubBaseURL
+      );
+      const link = `${gitHubFileURL}#L${line}`;
+
       addOccurrence(state, parentType, name, {
-        filename: filePath,
+        filename: link,
         rootNodeName
       });
     }

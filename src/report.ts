@@ -14,11 +14,7 @@ import {
   isUnionType,
   isWrappingType
 } from "graphql";
-// import path from "path";
 import R from "ramda";
-
-// import flatten from "./flatten";
-// import { FieldInfo } from "./getFieldInfo";
 
 interface ReportAccumulator {
   types: ReportAccumulatorTypeMap;
@@ -44,7 +40,7 @@ type ReportAccumulatorType = ReportAccumulatorObjectType;
 
 interface ReportAccumulatorObjectType {
   fields: ReportAccumulatorFieldMap;
-  kind: TypeKind.Object;
+  // kind: TypeKind.Object;
   name: string;
 }
 
@@ -77,7 +73,8 @@ interface ReportType {
 }
 
 interface ReportField {
-  type: ReportAccumulatorOfType;
+  type: string;
+  parentType: string;
   name: string;
   occurrences: ReportOccurrence[];
 }
@@ -113,7 +110,7 @@ function buildType(type: GraphQLNamedType): ReportAccumulatorType {
 function buildObjectType(type: GraphQLObjectType): ReportAccumulatorObjectType {
   return {
     fields: buildFields(type),
-    kind: TypeKind.Object,
+    // kind: TypeKind.Object,
     name: type.name
   };
 }
@@ -163,24 +160,13 @@ function addOccurrence(
   fieldName: string,
   occurrence: ReportOccurrence
 ): ReportAccumulator {
-  // TODO: handle invalid type/field names.
-  // TODO: why doesn't TS warn about potentially null values here?
-
-  // TODO: github links
-  // const gitHubFileURL = summaryField.filePath.replace(
-  //   path.resolve(gitDir),
-  //   gitHubBaseURL
-  // );
-  // const link = `${gitHubFileURL}#L${summaryField.line}`;
-
-  // console.log(state.types.Query.fields);
-  // console.log({ typeName, fieldName, occurrence, state });
-
+  // TODO: handle non-object types
   if (!state.types[typeName]) {
-    console.log(`unhandled type: ${typeName}`);
     return state;
   }
 
+  // TODO: handle invalid type/field names.
+  // TODO: why doesn't TS warn about potentially null values here?
   state.types[typeName].fields[fieldName].occurrences.push(occurrence);
   return state;
 }
@@ -189,7 +175,16 @@ function format(report: ReportAccumulator): Report {
   const sortByName = R.sortBy(R.prop("name"));
 
   const types = Object.values(report.types).map(type => {
-    const fields = Object.values(type.fields);
+    // TODO: Remove this. Types are formatted as strings and the parent type is here for ease of
+    //       refactoring the FE and integration tests.
+    const fields = Object.values(type.fields).map(field => {
+      return {
+        ...field,
+        type: formatOfType(field.type),
+        parentType: type.name
+      };
+    });
+
     return {
       ...type,
       fields: sortByName(fields)
@@ -199,81 +194,24 @@ function format(report: ReportAccumulator): Report {
   return { data: { types: sortByName(types) } };
 }
 
-// function buildReport(
-//   summaryFields: FieldInfo[],
-//   schema: GraphQLSchema,
-//   gitDir: string,
-//   gitHubBaseURL: string
-// ): Report {
-//   const byName = R.groupBy((summaryField: FieldInfo) => {
-//     return `${summaryField.parentType}.${summaryField.name}`;
-//   });
+function formatOfType(ofType: ReportAccumulatorOfType | null): string {
+  if (!ofType) return "";
 
-//   const summaryFieldsByName = byName(summaryFields);
+  if (ofType.kind === TypeKind.NonNull) {
+    return `${formatOfType(ofType.ofType)}!`;
+  }
 
-//   // Get all fields in schema
-//   // For each field
-//   // Format as Report field
-//   //   Find occurrences in matching summary fields
-//   const fields: ReportField[] = flatten(
-//     schema.toConfig().types.map(type => {
-//       if (!isObjectType(type)) return [];
+  if (ofType.kind === TypeKind.List) {
+    return `[${formatOfType(ofType.ofType)}]`;
+  }
 
-//       return Object.values(type.getFields()).map(
-//         (field): ReportField => {
-//           return {
-//             parentType: type.name,
-//             type: field.type.toString(),
-//             name: field.name,
-//             occurrences: []
-//           };
-//         }
-//       );
-//     })
-//   );
+  if (!ofType.name) {
+    throw new Error(
+      "report: formatOfType expects ofType to be a wrapper or named type"
+    );
+  }
 
-//   const reportFields = fields.map(field => {
-//     const summaryFields =
-//       summaryFieldsByName[`${field.parentType}.${field.name}`];
-
-//     if (!summaryFields) return field;
-
-//     // TODO: should probably include concrete type occurrences here for interface fields
-//     // TODO: how to handle unions?
-//     const occurrences = summaryFields.map(summaryField => {
-//       const gitHubFileURL = summaryField.filePath.replace(
-//         path.resolve(gitDir),
-//         gitHubBaseURL
-//       );
-//       const link = `${gitHubFileURL}#L${summaryField.line}`;
-
-//       return {
-//         filename: link,
-//         rootNodeName: summaryField.rootNodeName
-//       };
-//     });
-
-//     return {
-//       ...field,
-//       occurrences
-//     };
-//   });
-
-//   const byParentType = R.groupBy(({ parentType }: ReportField) => parentType);
-//   const sortByName = R.sortBy(R.prop("name"));
-
-//   const reportTypes: ReportType[] = Object.entries(
-//     byParentType(reportFields)
-//   ).map(item => {
-//     const [name, fields] = item;
-//     return { name, fields: sortByName(fields) };
-//   });
-
-//   return {
-//     data: {
-//       types: sortByName(reportTypes)
-//     }
-//   };
-// }
+  return ofType.name;
+}
 
 export { addOccurrence, buildInitialState, format, Report };
