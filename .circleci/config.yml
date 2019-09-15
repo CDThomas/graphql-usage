@@ -49,6 +49,9 @@ jobs:
       - restore_cache: *restore_cache
       - run: *install_dependencies
       - run:
+          name: Install UI dependencies
+          command: cd ./graphql-usage-ui && yarn
+      - run:
           name: Build package
           command: yarn build
       - run:
