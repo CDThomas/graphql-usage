@@ -50,7 +50,7 @@ jobs:
       - run: *install_dependencies
       - run:
           name: Release package
-          command: npx semantic-release
+          command: yarn run semantic-release
 
 workflows:
   version: 2
