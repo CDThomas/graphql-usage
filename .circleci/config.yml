@@ -13,7 +13,8 @@ jobs:
             - v1-npm-{{checksum ".circleci/config.yml"}}
       - run: &install_dependencies
           name: Install dependencies
-          command: yarn
+          # --ignore-engines is necessary for Commitizen to install with Node 8
+          command: yarn install --ignore-engines
       - run: ./bin/run --version
       - run: ./bin/run --help
       - run:
