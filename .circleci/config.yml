@@ -49,6 +49,9 @@ jobs:
       - restore_cache: *restore_cache
       - run: *install_dependencies
       - run:
+          name: Build package
+          command: yarn build
+      - run:
           name: Release package
           command: yarn run semantic-release
 
