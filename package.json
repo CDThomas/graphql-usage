@@ -1,7 +1,7 @@
 {
   "name": "graphql-usage",
   "description": "A tool for refactoring GraphQL APIs",
-  "version": "0.6.0",
+  "version": "0.0.0-semantically-released",
   "author": " @CDThomas",
   "bin": {
     "graphql-usage": "./bin/run"
