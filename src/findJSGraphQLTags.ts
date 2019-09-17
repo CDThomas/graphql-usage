@@ -1,4 +1,4 @@
-import parser = require("@babel/parser");
+import { parse, ParserOptions, ParserPlugin } from "@babel/parser";
 import traverse, { NodePath } from "@babel/traverse";
 import {
   Expression,
@@ -10,7 +10,7 @@ import { GraphQLTag } from "./types";
 
 // https://github.com/facebook/relay/blob/master/packages/relay-compiler/language/javascript/FindGraphQLTags.js
 
-const plugins: parser.ParserPlugin[] = [
+const plugins: ParserPlugin[] = [
   "asyncGenerators",
   "classProperties",
   ["decorators", { decoratorsBeforeExport: true }],
@@ -26,7 +26,7 @@ const plugins: parser.ParserPlugin[] = [
   "optionalCatchBinding"
 ];
 
-const PARSER_OPTIONS: parser.ParserOptions = {
+const PARSER_OPTIONS: ParserOptions = {
   allowImportExportEverywhere: true,
   allowReturnOutsideFunction: true,
   allowSuperOutsideMethod: true,
@@ -35,16 +35,16 @@ const PARSER_OPTIONS: parser.ParserOptions = {
   strictMode: false
 };
 
-function find(text: string, filePath: string): Array<GraphQLTag> {
-  const result: Array<GraphQLTag> = [];
-  const ast = parser.parse(text, PARSER_OPTIONS);
+function findGraphQLTags(code: string, filePath: string): GraphQLTag[] {
+  const results: GraphQLTag[] = [];
+  const ast = parse(code, PARSER_OPTIONS);
 
   const visitors = {
     TaggedTemplateExpression: ({
       node
     }: NodePath<TaggedTemplateExpression>) => {
       if (isGraphQLTag(node.tag)) {
-        result.push({
+        results.push({
           template: node.quasi.quasis[0].value.raw,
           sourceLocationOffset: getSourceLocationOffset(node.quasi),
           filePath
@@ -54,7 +54,7 @@ function find(text: string, filePath: string): Array<GraphQLTag> {
   };
 
   traverse(ast, visitors);
-  return result;
+  return results;
 }
 
 function isGraphQLTag(tag: Expression): boolean {
@@ -81,4 +81,4 @@ function getSourceLocationOffset(
   };
 }
 
-export default find;
+export default findGraphQLTags;

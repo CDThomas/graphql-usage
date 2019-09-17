@@ -1,7 +1,8 @@
 import {
-  ASTNode,
   FieldNode,
+  FragmentDefinitionNode,
   getLocation,
+  OperationDefinitionNode,
   parse,
   Source,
   TypeInfo,
@@ -20,59 +21,41 @@ export interface FieldInfo {
   filePath: string;
 }
 
-function getFeildInfo(
-  { template, sourceLocationOffset, filePath }: GraphQLTag,
+function findFields(
+  graphQLTag: GraphQLTag,
   typeInfo: TypeInfo,
   cb: (fieldInfo: FieldInfo) => void
 ) {
-  const ast = parse(template);
+  const ast = parse(graphQLTag.template);
 
   visit(
     ast,
     visitWithTypeInfo(typeInfo, {
-      OperationDefinition(graphqlNode) {
-        if (graphqlNode.name) {
-          visitFields(
-            graphqlNode,
-            graphqlNode.name.value,
-            typeInfo,
-            template,
-            sourceLocationOffset,
-            filePath,
-            cb
-          );
-        } else {
-          throw new Error(`No name for OperationDefinition`);
-        }
+      OperationDefinition(node) {
+        visitFields(node, graphQLTag, typeInfo, cb);
       },
-      FragmentDefinition(graphqlNode) {
-        if (graphqlNode.name) {
-          visitFields(
-            graphqlNode,
-            graphqlNode.name.value,
-            typeInfo,
-            template,
-            sourceLocationOffset,
-            filePath,
-            cb
-          );
-        } else {
-          throw new Error(`No name for FragmentDefinition`);
-        }
+      FragmentDefinition(node) {
+        visitFields(node, graphQLTag, typeInfo, cb);
       }
     })
   );
 }
 
 function visitFields(
-  node: ASTNode,
-  operationOrFragmentName: string,
+  node: OperationDefinitionNode | FragmentDefinitionNode,
+  graphQLTag: GraphQLTag,
   typeInfo: TypeInfo,
-  template: string,
-  sourceLocationOffset: { line: number; column: number },
-  filePath: string,
   cb: (fieldInfo: FieldInfo) => void
 ) {
+  if (!node.name) {
+    throw new Error(
+      "visitFields expects OperationDefinitions and FragmentDefinitions to be named"
+    );
+  }
+
+  const { filePath, sourceLocationOffset, template } = graphQLTag;
+  const operationOrFragmentName = node.name.value;
+
   visit(
     node,
     visitWithTypeInfo(typeInfo, {
@@ -85,15 +68,21 @@ function visitFields(
         const nodeName = graphqlNode.name.value;
 
         if (!parentType) {
-          throw new Error(`No parent type for ${nodeName}`);
+          throw new Error(
+            `visitFields expects fields to have a parent type. No parent type for ${nodeName}`
+          );
         }
 
         if (!nodeType) {
-          throw new Error(`No type for ${nodeName}`);
+          throw new Error(
+            `visitFields expects fields to have a type. No type for ${nodeName}`
+          );
         }
 
         if (!graphqlNode.loc) {
-          throw new Error(`No location for ${nodeName}`);
+          throw new Error(
+            `visitFields expects fields to have a location. No location for ${nodeName}`
+          );
         }
 
         const loc = graphqlNode.loc;
@@ -124,4 +113,4 @@ function isClientOnlyField(field: FieldNode): boolean {
   return !!clientOnlyDirective;
 }
 
-export default getFeildInfo;
+export default findFields;

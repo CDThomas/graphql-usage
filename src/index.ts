@@ -125,7 +125,7 @@ async function analyzeFiles(
   });
 
   const data = await Promise.all<SourceFile>(
-    files.map(unary(partialRight(readFiles, [sourceDir])))
+    files.map(unary(partialRight(readFile, [sourceDir])))
   );
   let tags = flatten(data.map(findGraphQLTags));
 
@@ -195,7 +195,7 @@ interface SourceFile {
   fullPath: string;
 }
 
-async function readFiles(
+async function readFile(
   filePath: string,
   sourceDir: string
 ): Promise<SourceFile> {
