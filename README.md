@@ -10,6 +10,22 @@
 
 # Installation
 
+## Global installation (recommended)
+
+NPM:
+
+```bash
+$ npm install -g graphql-usage
+```
+
+Yarn:
+
+```bash
+$ yarn global add graphql-usage
+```
+
+## Local installation
+
 NPM:
 
 ```bash
