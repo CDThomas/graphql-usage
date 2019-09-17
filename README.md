@@ -22,6 +22,12 @@ Yarn:
 $ yarn add -D graphql-usage
 ```
 
+# Support and Requirements
+
+- Source files using JS, FLow, or TypeScript
+- Projects using Relay, Apollo, or graphql-tag
+- Source files must be in a Git project and the branch that's being analyzed must be pushed to GitHub
+
 # Usage
 
 ```bash
@@ -37,19 +43,11 @@ $ graphql-usage SCHEMA SOURCEDIR
 
 - `-h`, `--help`: show CLI help
 - `-v`, `--version`: show CLI version
+- `--exclude`: Directories to ignore under src
+- `--quiet`: No output to stdout
 
 ## Example:
 
 ```bash
 $ graphql-usage ./schema.graphql ./src/
 ```
-
-# TODO:
-
-- [ ] Show usage info for input types
-- [ ] Improve usage info for enum types
-- [ ] Improve usage info for abstract types
-- [ ] Improve usage info for object types (e.g. whether the type is used rather than individual fields)
-- [ ] Warn when Git branch is out of date or not on remote
-- [ ] Better support for client-only fields and client-side schemas
-- [ ] Windows support
