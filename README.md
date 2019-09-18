@@ -40,7 +40,7 @@ $ yarn add -D graphql-usage
 
 # Support and Requirements
 
-- Source files using JS, FLow, or TypeScript
+- Source files using JS, Flow, or TypeScript
 - Projects using Relay, Apollo, or graphql-tag
 - Source files must be in a Git project and the branch that's being analyzed must be pushed to GitHub
 
