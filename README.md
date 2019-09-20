@@ -60,6 +60,7 @@ $ graphql-usage SCHEMA SOURCEDIR
 - `-h`, `--help`: show CLI help
 - `-v`, `--version`: show CLI version
 - `--exclude`: Directories to ignore under src
+- `--port`: Port to run the report server on
 - `--quiet`: No output to stdout
 
 ## Example:
