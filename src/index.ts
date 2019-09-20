@@ -34,6 +34,10 @@ class GraphqlStats extends Command {
       description: "Directories to ignore under src",
       multiple: true
     }),
+    port: flags.integer({
+      description: "Port to run the report server on",
+      default: 3001
+    }),
     quiet: flags.boolean({
       description: "No output to stdout",
       default: false
@@ -58,7 +62,7 @@ class GraphqlStats extends Command {
   async run() {
     const { args, flags } = this.parse(GraphqlStats);
     const { schema, sourceDir } = args;
-    const { json, exclude, quiet } = flags;
+    const { json, exclude, port, quiet } = flags;
     const renderer = quiet ? "silent" : "default";
 
     const analyzeFilesTask = {
@@ -85,9 +89,9 @@ class GraphqlStats extends Command {
       [
         analyzeFilesTask,
         {
-          title: "Starting server at http://localhost:3001",
+          title: `Starting server at http://localhost:${port}`,
           task: ({ report }: { report: Report }) => {
-            startServer(report);
+            startServer(report, port);
           }
         }
       ],
@@ -181,8 +185,7 @@ function writeJSON(report: Report): Promise<void> {
   );
 }
 
-function startServer(report: Report): void {
-  const port = 3001;
+function startServer(report: Report, port: number): void {
   createServer(report).listen(port, async () => {
     // tslint:disable-next-line:no-http-string
     await open(`http://localhost:${port}`);
