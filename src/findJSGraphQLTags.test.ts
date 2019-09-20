@@ -1,5 +1,8 @@
 import findJSGraphQLTags from "./findJSGraphQLTags";
 
+// TODO: add test for queries/mutations/subscriptions without names
+// TODO: add test for subscriptions
+
 describe("findJSGraphQLTags", () => {
   test("returns GraphQL tags given JS source code", () => {
     const js = `

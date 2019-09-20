@@ -243,8 +243,8 @@ function assertOutputMatchesSnapshot(output: {
     type.fields.map((field: any) => {
       expect(omit(["occurrences"], field)).toMatchSnapshot();
 
-      field.occurrences.map((occurence: any) => {
-        expect(occurence).toMatchSnapshot({
+      field.occurrences.map((occurrence: any) => {
+        expect(occurrence).toMatchSnapshot({
           filename: expect.stringMatching(
             /^https:\/\/github.com\/CDThomas\/graphql-usage\/tree\/.*\.(js|jsx|ts|tsx)#L\d$/
           )

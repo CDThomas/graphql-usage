@@ -1,9 +1,65 @@
-import { GraphQLSchema, isObjectType } from "graphql";
-import path from "path";
+import {
+  GraphQLField,
+  GraphQLNamedType,
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLType,
+  isEnumType,
+  isInterfaceType,
+  isListType,
+  isNamedType,
+  isNonNullType,
+  isObjectType,
+  isScalarType,
+  isUnionType,
+  isWrappingType
+} from "graphql";
 import R from "ramda";
 
-import flatten from "./flatten";
-import { FieldInfo } from "./getFieldInfo";
+interface ReportAccumulator {
+  types: ReportAccumulatorTypeMap;
+  // directives: ReportAccumulatorDirectiveMap;
+}
+
+interface ReportAccumulatorTypeMap {
+  [key: string]: ReportAccumulatorType;
+}
+
+const enum TypeKind {
+  Scalar = "Scalar",
+  Object = "Object",
+  Interface = "Interface",
+  Union = "Union",
+  Enum = "Enum",
+  InputObject = "InputObject",
+  List = "List",
+  NonNull = "NonNull"
+}
+
+type ReportAccumulatorType = ReportAccumulatorObjectType;
+
+interface ReportAccumulatorObjectType {
+  fields: ReportAccumulatorFieldMap;
+  // kind: TypeKind.Object;
+  name: string;
+}
+
+interface ReportAccumulatorFieldMap {
+  [key: string]: ReportAccumulatorField;
+}
+
+interface ReportAccumulatorField {
+  name: string;
+  occurrences: ReportOccurrence[];
+  type: ReportAccumulatorOfType;
+  // args: ReportAccumulatorArgs;
+}
+
+interface ReportAccumulatorOfType {
+  kind: TypeKind;
+  name: string | null;
+  ofType: ReportAccumulatorOfType | null;
+}
 
 interface Report {
   data: {
@@ -17,8 +73,8 @@ interface ReportType {
 }
 
 interface ReportField {
-  parentType: string;
   type: string;
+  parentType: string;
   name: string;
   occurrences: ReportOccurrence[];
 }
@@ -28,81 +84,131 @@ interface ReportOccurrence {
   rootNodeName: string;
 }
 
-function buildReport(
-  summaryFields: FieldInfo[],
-  schema: GraphQLSchema,
-  gitDir: string,
-  gitHubBaseURL: string
-): Report {
-  const byName = R.groupBy((summaryField: FieldInfo) => {
-    return `${summaryField.parentType}.${summaryField.name}`;
-  });
-
-  const summaryFieldsByName = byName(summaryFields);
-
-  // Get all fields in schema
-  // For each field
-  // Format as Report field
-  //   Find occurrences in matching summary fields
-  const fields: ReportField[] = flatten(
-    schema.toConfig().types.map(type => {
-      if (!isObjectType(type)) return [];
-
-      return Object.values(type.getFields()).map(
-        (field): ReportField => {
-          return {
-            parentType: type.name,
-            type: field.type.toString(),
-            name: field.name,
-            occurrences: []
-          };
+function buildInitialState(schema: GraphQLSchema): ReportAccumulator {
+  const types = schema.toConfig().types.reduce((typeMap, type) => {
+    // TODO: non-object types
+    return isObjectType(type)
+      ? {
+          ...typeMap,
+          [type.name]: buildType(type)
         }
-      );
-    })
-  );
+      : typeMap;
+  }, {});
 
-  const reportFields = fields.map(field => {
-    const summaryFields =
-      summaryFieldsByName[`${field.parentType}.${field.name}`];
+  return {
+    types
+  };
+}
 
-    if (!summaryFields) return field;
+function buildType(type: GraphQLNamedType): ReportAccumulatorType {
+  if (isObjectType(type)) return buildObjectType(type);
 
-    // TODO: should probably include concrete type occurences here for interface fields
-    // TODO: how to handle unions?
-    const occurrences = summaryFields.map(summaryField => {
-      const gitHubFileURL = summaryField.filePath.replace(
-        path.resolve(gitDir),
-        gitHubBaseURL
-      );
-      const link = `${gitHubFileURL}#L${summaryField.line}`;
+  throw new Error("report: buildType expects a GraphQLNamedType");
+}
 
+function buildObjectType(type: GraphQLObjectType): ReportAccumulatorObjectType {
+  return {
+    fields: buildFields(type),
+    // kind: TypeKind.Object,
+    name: type.name
+  };
+}
+
+function buildFields(type: GraphQLObjectType): ReportAccumulatorFieldMap {
+  return Object.values(type.getFields()).reduce((fieldMap, currentField) => {
+    return {
+      ...fieldMap,
+      [currentField.name]: buildField(currentField)
+    };
+  }, {});
+}
+
+function buildField(field: GraphQLField<any, any>): ReportAccumulatorField {
+  const { type } = field;
+  return {
+    name: field.name,
+    occurrences: [],
+    type: buildOfType(type)
+  };
+}
+
+function getTypeKind(type: GraphQLType): TypeKind {
+  if (isScalarType(type)) return TypeKind.Scalar;
+  if (isObjectType(type)) return TypeKind.Object;
+  if (isInterfaceType(type)) return TypeKind.Interface;
+  if (isUnionType(type)) return TypeKind.Union;
+  if (isEnumType(type)) return TypeKind.Enum;
+  if (isListType(type)) return TypeKind.List;
+  if (isNonNullType(type)) return TypeKind.NonNull;
+  // TODO: add input types?
+
+  throw new Error("report: getTypeKind expects a GraphQLType");
+}
+
+function buildOfType(type: GraphQLType): ReportAccumulatorOfType {
+  return {
+    kind: getTypeKind(type),
+    name: isNamedType(type) ? type.name : null,
+    ofType: isWrappingType(type) ? buildOfType(type.ofType) : null
+  };
+}
+
+function addOccurrence(
+  state: ReportAccumulator,
+  typeName: string,
+  fieldName: string,
+  occurrence: ReportOccurrence
+): ReportAccumulator {
+  // TODO: handle non-object types
+  if (!state.types[typeName]) {
+    return state;
+  }
+
+  // TODO: handle invalid type/field names.
+  // TODO: why doesn't TS warn about potentially null values here?
+  state.types[typeName].fields[fieldName].occurrences.push(occurrence);
+  return state;
+}
+
+function format(report: ReportAccumulator): Report {
+  const sortByName = R.sortBy(R.prop("name"));
+
+  const types = Object.values(report.types).map(type => {
+    // TODO: Remove this. Types are formatted as strings and the parent type is here for ease of
+    //       refactoring the FE and integration tests.
+    const fields = Object.values(type.fields).map(field => {
       return {
-        filename: link,
-        rootNodeName: summaryField.rootNodeName
+        ...field,
+        type: formatOfType(field.type),
+        parentType: type.name
       };
     });
 
     return {
-      ...field,
-      occurrences
+      ...type,
+      fields: sortByName(fields)
     };
   });
 
-  const byParentType = R.groupBy(({ parentType }: ReportField) => parentType);
-  const sortByName = R.sortBy(R.prop("name"));
-
-  const reportTypes: ReportType[] = Object.entries(
-    byParentType(reportFields)
-  ).map(item => {
-    const [name, fields] = item;
-    return { name, fields: sortByName(fields) };
-  });
-
-  return {
-    data: {
-      types: sortByName(reportTypes)
-    }
-  };
+  return { data: { types: sortByName(types) } };
 }
 
-export { buildReport, Report };
+function formatOfType(ofType: ReportAccumulatorOfType | null): string {
+  if (ofType && ofType.kind === TypeKind.NonNull) {
+    return `${formatOfType(ofType.ofType)}!`;
+  }
+
+  if (ofType && ofType.kind === TypeKind.List) {
+    return `[${formatOfType(ofType.ofType)}]`;
+  }
+
+  if (!ofType || !ofType.name) {
+    throw new Error(
+      "report: formatOfType expects ofType to be a wrapper or named type"
+    );
+  }
+
+  return ofType.name;
+}
+
+export { addOccurrence, buildInitialState, format, Report };

@@ -18,7 +18,7 @@ import findTSGraphQLTags from "./findTSGraphQLTags";
 import flatten from "./flatten";
 import getFeildInfo, { FieldInfo } from "./getFieldInfo";
 import { getGitHubBaseURL, getGitProjectRoot } from "./gitUtils";
-import { buildReport, Report } from "./report";
+import { addOccurrence, buildInitialState, format, Report } from "./report";
 import createServer from "./server";
 import { GraphQLTag } from "./types";
 
@@ -125,15 +125,29 @@ async function analyzeFiles(
   });
 
   const data = await Promise.all<SourceFile>(
-    files.map(unary(partialRight(readFiles, [sourceDir])))
+    files.map(unary(partialRight(readFile, [sourceDir])))
   );
   let tags = flatten(data.map(findGraphQLTags));
 
-  const info: FieldInfo[] = [];
-  const cb = (fieldInfo: FieldInfo) => info.push(fieldInfo);
-  findFields(schema, tags, cb);
+  const state = buildInitialState(schema);
+  findFields(
+    schema,
+    tags,
+    ({ parentType, name, filePath, line, rootNodeName }: FieldInfo) => {
+      const gitHubFileURL = filePath.replace(
+        path.resolve(gitDir),
+        gitHubBaseURL
+      );
+      const link = `${gitHubFileURL}#L${line}`;
 
-  return buildReport(info, schema, gitDir, gitHubBaseURL);
+      addOccurrence(state, parentType, name, {
+        filename: link,
+        rootNodeName
+      });
+    }
+  );
+
+  return format(state);
 }
 
 async function readSchema(schemaFile: string): Promise<GraphQLSchema> {
@@ -181,7 +195,7 @@ interface SourceFile {
   fullPath: string;
 }
 
-async function readFiles(
+async function readFile(
   filePath: string,
   sourceDir: string
 ): Promise<SourceFile> {
