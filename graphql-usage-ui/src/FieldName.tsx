@@ -1,10 +1,10 @@
 import React from "react";
 
 interface Props {
-  highlight: boolean;
+  highlight?: boolean;
 }
 
-const FieldName: React.FC<Props> = ({ children, highlight }) => {
+const FieldName: React.FC<Props> = ({ children, highlight = false }) => {
   const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
   return (
     <span style={{ color: "#1f61a0", padding: "10px 0px", ...highlightStyles }}>
