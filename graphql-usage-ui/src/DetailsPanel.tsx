@@ -22,7 +22,8 @@ const Panel: React.FC = ({ children }) => {
         height: "100%",
         marginBottom: "24px",
         backgroundColor: "#fff",
-        boxShadow: "0 0 8px rgba(0, 0, 0, 0.15)"
+        boxShadow: "0 0 8px rgba(0, 0, 0, 0.15)",
+        overflowY: "scroll"
       }}
     >
       {children}
