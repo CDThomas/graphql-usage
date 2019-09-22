@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { ReportField, Report, ReportType } from "./reportTypes";
-import Header from "./Header";
+import React, { useEffect, useState } from "react";
+
 import DetailsPanel from "./DetailsPanel";
+import Header from "./Header";
+import { Report, ReportField, ReportType } from "./reportTypes";
 
 interface SchemaProps {
   types: ReportType[];
   filter: string;
-  onFieldClick: (field: ReportField) => void;
+  onFieldClick(field: ReportField): void;
 }
 function Schema({ types, filter, onFieldClick }: SchemaProps) {
   return (
@@ -35,7 +36,7 @@ function Schema({ types, filter, onFieldClick }: SchemaProps) {
 function TypeLine({
   children
 }: {
-  children: Array<JSX.Element | String> | JSX.Element | string;
+  children: Array<JSX.Element | string> | JSX.Element | string;
 }) {
   return <div>{children}</div>;
 }
@@ -43,18 +44,19 @@ function TypeLine({
 interface FieldLineProps {
   field: ReportField;
   filter: string;
-  onFieldClick: (field: ReportField) => void;
+  onFieldClick(field: ReportField): void;
 }
 function FieldLine({ field, filter, onFieldClick }: FieldLineProps) {
   const { name, type, occurrences } = field;
   const lowerCaseFilter = filter.toLowerCase();
   const fieldMatchesFilter = field.name.toLowerCase().includes(lowerCaseFilter);
   const typeMatchesFilter = field.type.toLowerCase().includes(lowerCaseFilter);
+  const handleFieldClick = () => onFieldClick(field);
 
   return (
     <div
       style={{ display: "flex", alignItems: "center", paddingLeft: "16px" }}
-      onClick={() => onFieldClick(field)}
+      onClick={handleFieldClick}
     >
       <div className="field-line" style={{ padding: "10px 0px" }}>
         <FieldName highlight={!!filter && fieldMatchesFilter}>{name}</FieldName>
@@ -140,7 +142,7 @@ function Delimiter({ token }: { token: string }) {
 interface TypeBlockProps {
   type: ReportType;
   filter: string;
-  onFieldClick: (field: ReportField) => void;
+  onFieldClick(field: ReportField): void;
 }
 function TypeBlock({ type, filter, onFieldClick }: TypeBlockProps) {
   const { name, fields } = type;
