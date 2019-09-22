@@ -15,6 +15,9 @@ function App() {
     setShowDetails(true);
     setSelectedField(field);
   };
+  const handleClose = (): void => {
+    setShowDetails(false);
+  };
 
   const [report, setReport] = useState<Report | null>(null);
   const hasReportLoaded = !!report;
@@ -64,7 +67,7 @@ function App() {
             onFieldClick={handleFieldClick}
           />
           {showDetails && selectedField && (
-            <DetailsPanel field={selectedField} />
+            <DetailsPanel field={selectedField} onClose={handleClose} />
           )}
         </div>
       )}
