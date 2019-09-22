@@ -38,14 +38,6 @@ function Schema({ types, filter, onFieldClick }: SchemaProps) {
   );
 }
 
-function TypeLine({
-  children
-}: {
-  children: Array<JSX.Element | string> | JSX.Element | string;
-}) {
-  return <div>{children}</div>;
-}
-
 interface FieldLineProps {
   field: ReportField;
   filter: string;
@@ -106,11 +98,11 @@ function TypeBlock({ type, filter, onFieldClick }: TypeBlockProps) {
 
   return (
     <div style={{ paddingBottom: "20px" }}>
-      <TypeLine>
+      <div>
         <TypeKind>type</TypeKind>{" "}
         <TypeName highlight={!!filter && typeMatchesFilter}>{name}</TypeName>{" "}
         <Delimiter token={"{"} />
-      </TypeLine>
+      </div>
       {fields.map(field => {
         return (
           <FieldLine
@@ -121,9 +113,7 @@ function TypeBlock({ type, filter, onFieldClick }: TypeBlockProps) {
           />
         );
       })}
-      <TypeLine>
-        <Delimiter token={"}"} />
-      </TypeLine>
+      <Delimiter token={"}"} />
     </div>
   );
 }
