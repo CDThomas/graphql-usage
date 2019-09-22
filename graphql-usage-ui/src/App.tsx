@@ -2,37 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import DetailsPanel from "./DetailsPanel";
 import Header from "./Header";
-import { Report, ReportField, ReportType } from "./reportTypes";
-import TypeBlock from "./TypeBlock";
-
-interface SchemaProps {
-  types: ReportType[];
-  filter: string;
-  onFieldClick(field: ReportField): void;
-}
-function Schema({ types, filter, onFieldClick }: SchemaProps) {
-  return (
-    <div
-      style={{
-        padding: "24px",
-        backgroundColor: "#ffffff",
-        fontFamily:
-          "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace"
-      }}
-    >
-      {types.map(type => {
-        return (
-          <TypeBlock
-            type={type}
-            filter={filter}
-            key={type.name}
-            onFieldClick={onFieldClick}
-          />
-        );
-      })}
-    </div>
-  );
-}
+import { Report, ReportField } from "./reportTypes";
+import Schema from "./Schema";
 
 function App() {
   const [filter, setFilter] = useState("");
