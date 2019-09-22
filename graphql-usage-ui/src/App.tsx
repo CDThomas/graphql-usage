@@ -1,68 +1,71 @@
-import React, { useState, useEffect } from "react";
-import { ReportField, Report, ReportType } from "./reportTypes";
-import Header from "./Header";
+import React, { useEffect, useState } from "react";
+
 import DetailsPanel from "./DetailsPanel";
+import Header from "./Header";
+import { Report, ReportField, ReportType } from "./reportTypes";
 
 interface SchemaProps {
   types: ReportType[];
   filter: string;
-  onFieldClick: (field: ReportField) => void;
+  onFieldClick(field: ReportField): void;
 }
-function Schema({ types, filter, onFieldClick }: SchemaProps) {
-  return (
-    <div
-      style={{
-        padding: "24px",
-        backgroundColor: "#ffffff",
-        fontFamily:
-          "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace"
-      }}
-    >
-      {types.map(type => {
-        return (
-          <TypeBlock
-            type={type}
-            filter={filter}
-            key={type.name}
-            onFieldClick={onFieldClick}
-          />
-        );
-      })}
-    </div>
-  );
-}
+const Schema: React.FC<SchemaProps> = React.memo(
+  ({ types, filter, onFieldClick }) => {
+    return (
+      <div
+        style={{
+          padding: "24px",
+          backgroundColor: "#ffffff",
+          fontFamily:
+            "source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace"
+        }}
+      >
+        {types.map(type => {
+          return (
+            <TypeBlock
+              type={type}
+              filter={filter}
+              key={type.name}
+              onFieldClick={onFieldClick}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+);
 
-function TypeLine({
-  children
-}: {
-  children: Array<JSX.Element | String> | JSX.Element | string;
-}) {
+const TypeLine: React.FC = ({ children }) => {
   return <div>{children}</div>;
-}
+};
 
 interface FieldLineProps {
   field: ReportField;
   filter: string;
-  onFieldClick: (field: ReportField) => void;
+  onFieldClick(field: ReportField): void;
 }
 function FieldLine({ field, filter, onFieldClick }: FieldLineProps) {
   const { name, type, occurrences } = field;
   const lowerCaseFilter = filter.toLowerCase();
   const fieldMatchesFilter = field.name.toLowerCase().includes(lowerCaseFilter);
   const typeMatchesFilter = field.type.toLowerCase().includes(lowerCaseFilter);
+  const isClickable = field.occurrences.length > 0;
 
   return (
     <div
       style={{ display: "flex", alignItems: "center", paddingLeft: "16px" }}
       onClick={() => onFieldClick(field)}
     >
-      <div className="field-line" style={{ padding: "10px 0px" }}>
+      <div
+        className={isClickable ? "field-line-clickable" : ""}
+        style={{ padding: "10px 0px" }}
+      >
         <FieldName highlight={!!filter && fieldMatchesFilter}>{name}</FieldName>
         <Delimiter token={":"} />{" "}
         <FieldType highlight={!!filter && typeMatchesFilter}>{type}</FieldType>
       </div>
 
-      {occurrences.length === 0 && (
+      {occurrences.length === 0 ? (
         <span
           style={{
             display: "inline-block",
@@ -80,6 +83,25 @@ function FieldLine({ field, filter, onFieldClick }: FieldLineProps) {
           }}
         >
           Unused
+        </span>
+      ) : (
+        <span
+          style={{
+            display: "inline-block",
+            padding: ".25em .4em",
+            fontSize: "75%",
+            fontWeight: 700,
+            lineHeight: 1,
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            verticalAlign: "baseline",
+            borderRadius: ".25rem",
+            backgroundColor: "#79d5f1",
+            color: "#fff",
+            marginLeft: "8px"
+          }}
+        >
+          {occurrences.length}
         </span>
       )}
     </div>
@@ -140,7 +162,7 @@ function Delimiter({ token }: { token: string }) {
 interface TypeBlockProps {
   type: ReportType;
   filter: string;
-  onFieldClick: (field: ReportField) => void;
+  onFieldClick(field: ReportField): void;
 }
 function TypeBlock({ type, filter, onFieldClick }: TypeBlockProps) {
   const { name, fields } = type;
@@ -178,9 +200,15 @@ function App() {
 
   const [showDetails, setShowDetails] = useState(false);
   const [selectedField, setSelectedField] = useState<ReportField | null>(null);
-  const handleFieldClick = (field: ReportField): void => {
-    setShowDetails(true);
-    setSelectedField(field);
+  const handleFieldClick = React.useCallback(
+    (field: ReportField): void => {
+      setShowDetails(true);
+      setSelectedField(field);
+    },
+    [true]
+  );
+  const handleClose = (): void => {
+    setShowDetails(false);
   };
 
   const [report, setReport] = useState<Report | null>(null);
@@ -194,29 +222,35 @@ function App() {
       });
   }, [hasReportLoaded]);
 
+  const types = React.useMemo(() => {
+    if (!report) return [];
+
+    return report.data.types.filter(type => {
+      const lowerCaseFilter = filter.toLowerCase();
+      const typeMatchesFilter = type.name
+        .toLowerCase()
+        .includes(lowerCaseFilter);
+
+      const fieldsMatchFilter = type.fields
+        .map(field => {
+          const typeMatchesFilter = field.type
+            .toLowerCase()
+            .includes(lowerCaseFilter);
+          const fieldMatchesFilter = field.name
+            .toLowerCase()
+            .includes(lowerCaseFilter);
+
+          return fieldMatchesFilter || typeMatchesFilter;
+        })
+        .includes(true);
+
+      return typeMatchesFilter || fieldsMatchFilter;
+    });
+  }, [report, filter]);
+
   if (!report) {
     return <div>Loading...</div>;
   }
-
-  const types = report.data.types.filter(type => {
-    const lowerCaseFilter = filter.toLowerCase();
-    const typeMatchesFilter = type.name.toLowerCase().includes(lowerCaseFilter);
-
-    const fieldsMatchFilter = type.fields
-      .map(field => {
-        const typeMatchesFilter = field.type
-          .toLowerCase()
-          .includes(lowerCaseFilter);
-        const fieldMatchesFilter = field.name
-          .toLowerCase()
-          .includes(lowerCaseFilter);
-
-        return fieldMatchesFilter || typeMatchesFilter;
-      })
-      .includes(true);
-
-    return typeMatchesFilter || fieldsMatchFilter;
-  });
 
   return (
     <div style={{ paddingTop: "94px" }}>
@@ -231,7 +265,7 @@ function App() {
             onFieldClick={handleFieldClick}
           />
           {showDetails && selectedField && (
-            <DetailsPanel field={selectedField} />
+            <DetailsPanel field={selectedField} onClose={handleClose} />
           )}
         </div>
       )}
