@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import Delimiter from "./Delimiter";
 import DetailsPanel from "./DetailsPanel";
-import FieldLine from "./FieldLine";
 import Header from "./Header";
 import { Report, ReportField, ReportType } from "./reportTypes";
-import TypeKind from "./TypeKind";
-import TypeName from "./TypeName";
+import TypeBlock from "./TypeBlock";
 
 interface SchemaProps {
   types: ReportType[];
@@ -33,39 +30,6 @@ function Schema({ types, filter, onFieldClick }: SchemaProps) {
           />
         );
       })}
-    </div>
-  );
-}
-
-interface TypeBlockProps {
-  type: ReportType;
-  filter: string;
-  onFieldClick(field: ReportField): void;
-}
-function TypeBlock({ type, filter, onFieldClick }: TypeBlockProps) {
-  const { name, fields } = type;
-  const typeMatchesFilter = type.name
-    .toLowerCase()
-    .includes(filter.toLowerCase());
-
-  return (
-    <div style={{ paddingBottom: "20px" }}>
-      <div>
-        <TypeKind>type</TypeKind>{" "}
-        <TypeName highlight={!!filter && typeMatchesFilter}>{name}</TypeName>{" "}
-        <Delimiter token={"{"} />
-      </div>
-      {fields.map(field => {
-        return (
-          <FieldLine
-            field={field}
-            key={field.name}
-            filter={filter}
-            onFieldClick={onFieldClick}
-          />
-        );
-      })}
-      <Delimiter token={"}"} />
     </div>
   );
 }
