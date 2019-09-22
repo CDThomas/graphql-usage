@@ -3,6 +3,7 @@ import React from "react";
 import Delimiter from "./Delimiter";
 import FieldName from "./FieldName";
 import FieldType from "./FieldType";
+import Label from "./Label";
 import { ReportField } from "./reportTypes";
 
 interface Props {
@@ -29,25 +30,10 @@ const FieldLine: React.FC<Props> = ({ field, filter, onFieldClick }) => {
         <FieldType highlight={!!filter && typeMatchesFilter}>{type}</FieldType>
       </div>
 
-      {occurrences.length === 0 && (
-        <span
-          style={{
-            display: "inline-block",
-            padding: ".25em .4em",
-            fontSize: "75%",
-            fontWeight: 700,
-            lineHeight: 1,
-            textAlign: "center",
-            whiteSpace: "nowrap",
-            verticalAlign: "baseline",
-            borderRadius: ".25rem",
-            backgroundColor: "#f25c54",
-            color: "#fff",
-            marginLeft: "8px"
-          }}
-        >
-          Unused
-        </span>
+      {occurrences.length === 0 ? (
+        <Label color="red">Unused</Label>
+      ) : (
+        <Label>{occurrences.length}</Label>
       )}
     </div>
   );
