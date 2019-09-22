@@ -17,14 +17,20 @@ const FieldLine: React.FC<Props> = ({ field, filter, onFieldClick }) => {
   const lowerCaseFilter = filter.toLowerCase();
   const fieldMatchesFilter = field.name.toLowerCase().includes(lowerCaseFilter);
   const typeMatchesFilter = field.type.toLowerCase().includes(lowerCaseFilter);
-  const handleFieldClick = () => onFieldClick(field);
+  const isClickable = field.occurrences.length > 0;
+  const handleFieldClick = () => {
+    if (isClickable) onFieldClick(field);
+  };
 
   return (
     <div
       style={{ display: "flex", alignItems: "center", paddingLeft: "16px" }}
       onClick={handleFieldClick}
     >
-      <div className="field-line" style={{ padding: "10px 0px" }}>
+      <div
+        className={isClickable ? "clickable-field-line" : ""}
+        style={{ padding: "10px 0px" }}
+      >
         <FieldName highlight={!!filter && fieldMatchesFilter}>{name}</FieldName>
         <Delimiter token={":"} />{" "}
         <FieldType highlight={!!filter && typeMatchesFilter}>{type}</FieldType>

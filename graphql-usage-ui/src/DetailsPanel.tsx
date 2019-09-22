@@ -92,17 +92,39 @@ const DetailsPanelHeading: React.FC = ({ children }) => {
   );
 };
 
-interface Props {
-  field: ReportField;
+interface CloseButtonProps {
+  onClick(): void;
 }
 
-const DetailsPanel: React.FC<Props> = ({ field }) => {
+const CloseButton: React.FC<CloseButtonProps> = ({ onClick }) => {
+  return (
+    <div
+      style={{
+        margin: "-7px -8px -6px 0",
+        cursor: "pointer",
+        padding: "18px 16px 15px 12px",
+        fontSize: "24px"
+      }}
+      onClick={onClick}
+    >
+      ✕
+    </div>
+  );
+};
+
+interface Props {
+  field: ReportField;
+  onClose(): void;
+}
+
+const DetailsPanel: React.FC<Props> = ({ field, onClose }) => {
   if (field.occurrences.length === 0) return null;
 
   return (
     <Panel>
       <DetailsPanelHeader>
         <DetailsPanelTitle field={field} />
+        <CloseButton onClick={onClose} />
       </DetailsPanelHeader>
       <DetailsPanelBody>
         <DetailsPanelHeading>Type</DetailsPanelHeading>
