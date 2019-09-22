@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 
+import Delimiter from "./Delimiter";
 import DetailsPanel from "./DetailsPanel";
+import FieldName from "./FieldName";
+import FieldType from "./FieldType";
 import Header from "./Header";
 import { Report, ReportField, ReportType } from "./reportTypes";
+import TypeKind from "./TypeKind";
+import TypeName from "./TypeName";
 
 interface SchemaProps {
   types: ReportType[];
@@ -86,57 +91,6 @@ function FieldLine({ field, filter, onFieldClick }: FieldLineProps) {
       )}
     </div>
   );
-}
-
-interface FieldNameProps {
-  children: string;
-  highlight: boolean;
-}
-function FieldName({ children, highlight }: FieldNameProps) {
-  const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
-  return (
-    <span style={{ color: "#1f61a0", padding: "10px 0px", ...highlightStyles }}>
-      {children}
-    </span>
-  );
-}
-
-function TypeKind({ children }: { children: string }) {
-  return <span style={{ color: "#1f61a0" }}>{children}</span>;
-}
-
-interface TypeNameProps {
-  children: string;
-  highlight: boolean;
-}
-function TypeName({ children, highlight }: TypeNameProps) {
-  const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
-
-  return (
-    <span style={{ color: "#f25c54", padding: "10px 0px", ...highlightStyles }}>
-      {children}
-    </span>
-  );
-}
-
-interface FieldTypeProps {
-  children: string;
-  highlight: boolean;
-}
-function FieldType({ children, highlight }: FieldTypeProps) {
-  const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
-  return (
-    <span style={{ color: "#f5a000", padding: "10px 0px", ...highlightStyles }}>
-      {children}
-    </span>
-  );
-}
-
-function Delimiter({ token }: { token: string }) {
-  const color =
-    token === "{" || token === "}" ? "rgba(23,42,58,.5)" : "#555555";
-
-  return <span style={{ color }}>{token}</span>;
 }
 
 interface TypeBlockProps {
