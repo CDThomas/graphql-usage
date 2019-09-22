@@ -1,10 +1,10 @@
 import React from "react";
 
 interface Props {
-  highlight: boolean;
+  highlight?: boolean;
 }
 
-const TypeName: React.FC<Props> = ({ children, highlight }) => {
+const TypeName: React.FC<Props> = ({ children, highlight = false }) => {
   const highlightStyles = highlight ? { backgroundColor: "#ffffe0" } : {};
 
   return (
